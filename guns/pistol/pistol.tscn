@@ -11,5 +11,5 @@ mag_size = 8
 max_ammo = 69
 reload_time = 1
 reload_time_empty = 1
-accuracy = 100
 payload = ExtResource("2_o5yjw")
+accuracy = 1.0

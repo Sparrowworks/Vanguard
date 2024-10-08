@@ -7,7 +7,6 @@ extends Node
 @export var max_ammo:int
 @export var reload_time:int
 @export var reload_time_empty:int
-@export var accuracy:int
 @export var recoil:int
 @export var payload:PackedScene # Place a bullet, melee weapon ext...
 @export var has_silencer:bool
@@ -16,6 +15,8 @@ extends Node
 @export_group("Payload Stats")
 @export_enum("Projectile", "Melee") var payload_type:int
 @export var damage:int
+@export var accuracy:float # 1.0 very accurate / 0.0 complete trash
+@export var max_spread:int # the maximum angle in which the bullet the launched when at 0 accuracy
 @export var p_range:int # to evade warning "The variable "range" has the same name as a built-in function."
 @export var radius:int
 @export var speed:int
@@ -47,7 +48,7 @@ func _shoot() -> void:
 	current_state = WEAPON_STATE.SHOOTING
 	TIMER.wait_time = fire_rate
 	payload.instantiate()
-	payload.get_script()._configure_payload(damage, p_range, radius, speed, knockback, crit_chance)
+	payload.get_script()._configure_payload(damage, accuracy, max_spread, p_range, radius, speed, knockback, crit_chance)
 	current_mag -= 1
 	
 	TIMER.start()
