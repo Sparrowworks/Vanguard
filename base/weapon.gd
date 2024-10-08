@@ -1,8 +1,5 @@
-extends Node
-
 class_name Weapon
-
-@onready var TIMER:Timer = $Timer
+extends Node
 
 @export_group("Weapon Stats")
 @export var fire_rate:int
@@ -12,16 +9,31 @@ class_name Weapon
 @export var reload_time_empty:int
 @export var accuracy:int
 @export var recoil:int
+@export var payload:PackedScene # Place a gun area2d, melee weapon...
 @export var has_silencer:bool
 @export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
-var payload:Payload
 @export_group("Payload Stats")
 @export_enum("Projectile", "Melee") var payload_type:int
 @export var damage:int
-@export var Brange:int # to evade warning "The variable "range" has the same name as a built-in function."
+@export var p_range:int # to evade warning "The variable "range" has the same name as a built-in function."
+@export var radius:int
+@export var speed:int
 @export var knockback:int
 @export var crit_chance:int
+
+var TIMER:Timer
+var payload_script:Script
+func _ready() -> void:
+	if (payload == null):
+		print("Payload undefined, please set a bullet or a melee weapon")
+		return
+	
+	payload_script = payload.get_script()
+	payload_script._get_payload_stats(damage, p_range, radius, speed, knockback, crit_chance)
+	
+	TIMER = $Timer
+	
 
 var current_ammo:int = max_ammo
 var current_mag:int = mag_size
