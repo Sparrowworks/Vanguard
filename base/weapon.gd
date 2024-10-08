@@ -23,14 +23,10 @@ extends Node
 @export var crit_chance:int
 
 var TIMER:Timer
-var payload_script:Script
 func _ready() -> void:
 	if (payload == null):
 		print("Payload undefined, please set a bullet or a melee weapon")
 		return
-	
-	payload_script = payload.get_script()
-	payload_script._get_payload_stats(damage, p_range, radius, speed, knockback, crit_chance)
 	
 	TIMER = $Timer
 	
@@ -52,6 +48,8 @@ func _shoot() -> void:
 	
 	current_state = WEAPON_STATE.SHOOTING
 	TIMER.wait_time = fire_rate
+	payload.instantiate()
+	payload.get_script()._configure_payload(damage, p_range, radius, speed, knockback, crit_chance)
 	current_mag -= 1
 	
 	TIMER.start()
