@@ -55,7 +55,7 @@ func _shoot() -> void:
 	TIMER.start()
 	
 
-func _reload():
+func _reload() -> void:
 	if (current_mag == mag_size && current_ammo == 0 || current_state != WEAPON_STATE.READY):
 		return
 	

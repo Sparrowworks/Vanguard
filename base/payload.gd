@@ -8,7 +8,7 @@ var speed:int
 var knockback:int
 var crit_chance:int
 
-func _configure_payload(dmg, rang, rad, spd, kb, cc):
+func _configure_payload(dmg, rang, rad, spd, kb, cc) -> void:
 	damage = dmg
 	p_range = rang
 	radius = rad
