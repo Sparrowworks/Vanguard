@@ -9,7 +9,7 @@ extends Node
 @export var reload_time_empty:int
 @export var accuracy:int
 @export var recoil:int
-@export var payload:PackedScene # Place a gun area2d, melee weapon...
+@export var payload:PackedScene # Place a bullet, melee weapon ext...
 @export var has_silencer:bool
 @export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
@@ -27,9 +27,7 @@ func _ready() -> void:
 	if (payload == null):
 		print("Payload undefined, please set a bullet or a melee weapon")
 		return
-	
 	TIMER = $Timer
-	
 
 var current_ammo:int = max_ammo
 var current_mag:int = mag_size
