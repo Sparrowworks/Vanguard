@@ -19,6 +19,8 @@ extends Node
 @export var max_spread:int # the maximum angle in which the bullet the launched when at 0 accuracy
 @export var p_range:int # to evade warning "The variable "range" has the same name as a built-in function."
 @export var radius:int
+@export var propagation_speed:float # speed at which a field expands and reaches its max radius
+@export var field_fade_time:int # time it takes for the field to be removed once it reached its full radius
 @export var speed:int
 @export var knockback:int
 @export var crit_chance:int
@@ -48,7 +50,18 @@ func _shoot() -> void:
 	current_state = WEAPON_STATE.SHOOTING
 	TIMER.wait_time = fire_rate
 	payload.instantiate()
-	payload.get_script()._configure_payload(damage, accuracy, max_spread, p_range, radius, speed, knockback, crit_chance)
+	payload._configure_payload(
+		damage,
+		accuracy,
+		max_spread,
+		p_range,
+		radius,
+		propagation_speed,
+		field_fade_time,
+		speed,
+		knockback,
+		crit_chance
+	)
 	current_mag -= 1
 	
 	TIMER.start()

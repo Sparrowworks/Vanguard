@@ -1,6 +1,5 @@
 extends Payload
 
-var TIMER:Timer
 var direction:Vector2 = Vector2(1,0)
 func _ready() -> void:
 	var spread:float = (1.0 - accuracy) * max_spread
