@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdg3qi6f4n7vf"]
 
-[ext_resource type="PackedScene" uid="uid://doqbqxslfj3d5" path="res://base/weapon.tscn" id="1_3vr85"]
-[ext_resource type="PackedScene" uid="uid://b3e6i42bqdrf2" path="res://payload/bullets/bullet.tscn" id="2_o5yjw"]
+[ext_resource type="PackedScene" uid="uid://doqbqxslfj3d5" path="res://armature/armature.tscn" id="1_3vr85"]
+[ext_resource type="PackedScene" uid="uid://b3e6i42bqdrf2" path="res://bullet/bullet.tscn" id="2_o5yjw"]
 
 [node name="Pistol" type="Node2D"]
 

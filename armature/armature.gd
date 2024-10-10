@@ -1,4 +1,4 @@
-class_name Weapon
+class_name Armature
 extends Node
 
 @export_group("Weapon Stats")
