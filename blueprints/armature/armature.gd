@@ -11,7 +11,7 @@ extends Node
 @export_group("Weapon Emissions")
 @export var field:PackedScene
 @export var payload:PackedScene # Place a bullet, melee weapon ext...
-@export_enum("Automatic", "Semi", "Burst") var fire_mode:int
+#@export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
 var current_state:int = WEAPON_STATE.READY
 enum WEAPON_STATE {
