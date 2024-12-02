@@ -10,8 +10,8 @@ extends Node
 @export var recoil:int
 
 @export_group("Weapon Emissions")
-@export var payload:PackedScene # Place a bullet, melee weapon ext...
 @export var field:PackedScene
+@export var payload:PackedScene # Place a bullet, melee weapon ext...
 @export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
 var current_state:int = WEAPON_STATE.READY

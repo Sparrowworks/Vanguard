@@ -7,6 +7,7 @@ extends Area2D
 
 @export_group("Field Emissions")
 @export var field:PackedScene
+@export var payload:PackedScene
 
 var FIELD:CollisionShape2D
 var TIMER:Timer

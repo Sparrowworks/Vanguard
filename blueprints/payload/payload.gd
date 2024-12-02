@@ -13,6 +13,7 @@ var TIMER:Timer
 
 @export_group("Payload Emissions")
 @export var field:PackedScene
+@export var payload:PackedScene
 
 func _ready() -> void:
 	TIMER = $Timer
