@@ -6,10 +6,6 @@ func _ready() -> void:
 	var random_angle:float = randf_range(-spread, spread)
 	var adjusted_angle = rotation + deg_to_rad(random_angle)
 	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
-	
-	TIMER = $Timer
-	TIMER.wait_time = p_range
-	TIMER.start()
 
 func _physics_process(delta: float) -> void:
 	global_position += direction.rotated(rotation) * speed * delta

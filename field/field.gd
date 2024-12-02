@@ -1,6 +1,15 @@
-extends Payload
+extends Area2D
+
+@export_group("Field Stats")
+@export var radius:int
+@export var propagation_speed:float # speed at which a field expands and reaches its max radius
+@export var field_fade_time:int # time it takes for the field to be removed once it reached its full radius
+
+@export_group("Field Emissions")
+@export var field:PackedScene
 
 var FIELD:CollisionShape2D
+var TIMER:Timer
 func _ready() -> void:
 	FIELD = $CollisionShape2D
 	TIMER = $Timer
