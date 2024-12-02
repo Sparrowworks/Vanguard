@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://doqbqxslfj3d5"]
 
-[ext_resource type="Script" path="res://armature/armature.gd" id="1_gm1yv"]
+[ext_resource type="Script" path="res://blueprints/armature/armature.gd" id="1_gm1yv"]
 
 [node name="Armature" type="Node"]
 script = ExtResource("1_gm1yv")

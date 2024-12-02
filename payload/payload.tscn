@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp6ask5xmce30"]
-
-[ext_resource type="Script" path="res://payload/payload.gd" id="1_aaav6"]
-
-[node name="Payload" type="Node"]
-script = ExtResource("1_aaav6")
