@@ -7,7 +7,6 @@ extends Node
 @export var reload_time:int
 @export var reload_time_empty:int
 @export var fire_rate:int
-@export var recoil:int
 
 @export_group("Weapon Emissions")
 @export var field:PackedScene
