@@ -48,6 +48,7 @@ func _ready() -> void:
 func _shoot() -> void:
 	if (current_mag == 0):
 		_reload()
+		return
 	if (current_state != WEAPON_STATE.READY):
 		return
 	
