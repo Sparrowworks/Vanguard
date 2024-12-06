@@ -54,6 +54,7 @@ var TIMER:Timer
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
+	print(current_state)
 
 	if (projectile == null):
 		printerr("Payload undefined, please set a bullet or a melee weapon")
