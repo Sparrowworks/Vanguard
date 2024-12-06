@@ -18,6 +18,8 @@ extends Node2D
 @export var reload_time_empty:float
 ## The rate at which the weapon can fire (in milliseconds between shots).
 @export var fire_rate:float
+## Defines the reload mechanism
+@export_enum("Automatic", "Manual") var reload_mechanism:int
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
 @export_enum("Automatic", "Semi", "Burst") var firing_mode:int
 
@@ -71,7 +73,8 @@ func shoot() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
 	if (current_mag == 0):
-		reload()
+		if (reload_mechanism == 0):
+			reload()
 		return
 
 	current_state = WEAPON_STATE.SHOOTING
