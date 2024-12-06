@@ -18,13 +18,14 @@ extends Node2D
 @export var reload_time_empty:float
 ## The rate at which the weapon can fire (in milliseconds between shots).
 @export var fire_rate:float
+## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
+@export_enum("Automatic", "Semi", "Burst") var firing_mode:int
 
 @export_group("Gun Emissions")
 ## Slot for field
 @export var field:PackedScene
 ## Slot for projectile
 @export var projectile:PackedScene
-#@export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
 ## Represents the current state of the weapon.
 ## It can be one of three states defined in the WEAPON_STATE enum.
