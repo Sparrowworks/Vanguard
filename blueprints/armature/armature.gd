@@ -7,7 +7,7 @@ extends Node2D
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
-@export_group("Weapon Stats")
+@export_group("Gun Stats")
 ## The maximum number of rounds that can be held in the weapon's magazine.
 @export var mag_size:int
 ## The total amount of ammunition available for the weapon.
@@ -19,7 +19,7 @@ extends Node2D
 ## The rate at which the weapon can fire (in seconds between shots).
 @export var fire_rate:int
 
-@export_group("Weapon Emissions")
+@export_group("Gun Emissions")
 ## Slot for field
 @export var field:PackedScene
 ## Slot for projectile
