@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	
 	FIELD.shape.radius = min(radius, FIELD.shape.radius + propagation_speed * delta)
 	
-	if (field_fade_time == radius):
+	if (FIELD.shape.radius == radius):
 		TIMER.start()
 
 func _on_timer_timeout() -> void:
