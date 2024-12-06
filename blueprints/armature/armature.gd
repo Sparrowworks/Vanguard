@@ -18,8 +18,8 @@ extends Node2D
 @export var reload_time_empty:float
 ## The rate at which the weapon can fire (in milliseconds between shots).
 @export var fire_rate:float
-## Defines the reload mechanism
-@export_enum("Automatic", "Manual") var reload_mechanism:int
+## Defines the reload mode (automatic or manual)
+@export_enum("Automatic", "Manual") var reload_mode:int
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
 @export_enum("Automatic", "Semi", "Burst") var firing_mode:int
 
@@ -73,7 +73,7 @@ func shoot() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
 	if (current_mag == 0):
-		if (reload_mechanism == 0):
+		if (reload_mode == 0):
 			reload()
 		return
 
@@ -113,6 +113,30 @@ func reload() -> void:
 	weapon_reloaded.emit(current_mag, current_ammo)
 
 	TIMER.start()
+
+func modify_stats(stat:String, amount:float) -> void:
+	match stat:
+		"mag_size":
+			mag_size += int(mag_size * amount)
+		"max_ammo":
+			max_ammo += int(max_ammo * amount)
+		"reload_time":
+			reload_time += int(reload_time * amount)
+		"reload_time_empty":
+			reload_time_empty += int(reload_time_empty * amount)
+		"fire_rate":
+			fire_rate += int(fire_rate * amount)
+		_:
+			printerr("Undefined stat stringname")
+
+func modify_modes(mode:String, new_mode:int) -> void:
+	match mode:
+		"Reload":
+			reload_mode = new_mode
+		"Firing":
+			firing_mode = new_mode
+		_:
+			printerr("Invalid mode")
 
 func _on_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
