@@ -68,10 +68,10 @@ func _ready() -> void:
 ## If there is no ammunition, it will reload.
 ## If the weapon is currently firing or reloading, it exits without firing.
 func shoot() -> void:
+	if (current_state != WEAPON_STATE.READY):
+		return
 	if (current_mag == 0):
 		reload()
-		return
-	if (current_state != WEAPON_STATE.READY):
 		return
 
 	current_state = WEAPON_STATE.SHOOTING
