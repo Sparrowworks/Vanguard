@@ -8,22 +8,22 @@ extends Area2D
 ## It can be used for various gameplay mechanics, such as damage zones or area effects.
 
 @export_group("Field Stats")
-## The maximum radius that the field can reach during its expansion.
+## The maximum radius the field can reach.
 @export var radius:int
-## Determines how quickly the field reaches its maximum radius.
+## How quickly the field expands to reach its maximum radius (in milliseconds per 1 physics frame).
 @export var propagation_speed: float
-## The duration (in seconds) it takes for the field to fade away after reaching its full radius.
+## The duration (in milliseconds) it takes for the field to fade away after reaching its full radius.
 @export var field_fade_time: float
 
 @export_group("Field Emissions")
-## Slot for field
+## Slot for custom field
 @export var field:PackedScene
 ## Slot for custom projectile
 @export var projectile:PackedScene
 
 ## A reference to the collision shape of the field, used to determine its size and detect overlaps with other objects.
 var FIELD:CollisionShape2D
-## A timer used to manage the fading out of the field after it has reached its maximum size.
+## Manages the fading out of the field after it has reached its maximum size.
 var TIMER:Timer
 
 func _ready() -> void:
