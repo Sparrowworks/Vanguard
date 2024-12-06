@@ -12,8 +12,8 @@ var TIMER:Timer
 @export var accuracy:float
 ## Defines the maximum angle of deviation for the projectile when fired at zero accuracy.
 @export var max_spread:int
-## Specifies how far the projectile can travel before it is considered ineffective or destroyed.
-@export var projectile_range:int # to evade warning "The variable "range" has the same name as a built-in function."
+## Determines for how long the projectile remains in the world (in seconds)
+@export var lifespan:int
 ## The velocity at which the projectile travels in the game world
 @export var speed:int
 
@@ -32,7 +32,7 @@ func _ready() -> void:
 	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
 
 	TIMER = $Timer
-	TIMER.wait_time = projectile_range
+	TIMER.wait_time = lifespan
 	TIMER.start()
 
 func _physics_process(delta: float) -> void:

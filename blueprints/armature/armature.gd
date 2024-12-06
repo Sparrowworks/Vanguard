@@ -12,11 +12,11 @@ extends Node2D
 @export var mag_size:int
 ## The total amount of ammunition available for the weapon.
 @export var max_ammo:int
-## The time (in seconds) it takes to reload the weapon when there are rounds left in the magazine.
+## The time (in milliseconds) it takes to reload the weapon when there are rounds left in the magazine.
 @export var reload_time:float
-## Addtional time (in seconds) it takes to reload the weapon when the magazine is empty.
+## Addtional time (in milliseconds) it takes to reload the weapon when the magazine is empty.
 @export var reload_time_empty:float
-## The rate at which the weapon can fire (in seconds between shots).
+## The rate at which the weapon can fire (in milliseconds between shots).
 @export var fire_rate:float
 
 @export_group("Gun Emissions")
@@ -54,6 +54,7 @@ var TIMER:Timer
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
+	print(current_state)
 
 	if (projectile == null):
 		printerr("Payload undefined, please set a bullet or a melee weapon")
