@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp6ask5xmce30"]
+[gd_scene load_steps=4 format=3 uid="uid://cp6ask5xmce30"]
 
 [ext_resource type="Script" path="res://blueprints/projectile/projectile.gd" id="1_hwnxt"]
+[ext_resource type="Texture2D" uid="uid://7gul8j33i6ft" path="res://icon.svg" id="2_kov32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkips"]
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_hwnxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kov32")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tkips")

@@ -73,11 +73,10 @@ func shoot() -> void:
 
 	current_state = WEAPON_STATE.SHOOTING
 	TIMER.wait_time = fire_rate
-	projectile.instantiate()
+	add_child(projectile.instantiate())
+	add_child(field.instantiate())
 	current_mag -= 1
 	weapon_shot.emit(current_mag)
-
-	prints(current_ammo,current_mag)
 
 	TIMER.start()
 
@@ -93,7 +92,6 @@ var current_mag:int
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
 ## the method will exit without reloading.
 func reload() -> void:
-	print(current_state)
 	if (current_mag == mag_size && current_ammo == 0 || current_state != WEAPON_STATE.READY):
 		return
 
