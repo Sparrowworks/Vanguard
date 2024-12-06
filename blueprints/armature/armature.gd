@@ -23,7 +23,7 @@ extends Node2D
 ## Slot for field
 @export var field:PackedScene
 ## Slot for projectile
-@export var payload:PackedScene
+@export var projectile:PackedScene
 #@export_enum("Automatic", "Semi", "Burst") var fire_mode:int
 
 ## Represents the current state of the weapon. 
@@ -55,7 +55,7 @@ func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
 	
-	if (payload == null):
+	if (projectile == null):
 		print("Payload undefined, please set a bullet or a melee weapon")
 		return
 	TIMER = $Timer
@@ -73,7 +73,7 @@ func shoot() -> void:
 	
 	current_state = WEAPON_STATE.SHOOTING
 	TIMER.wait_time = fire_rate
-	payload.instantiate()
+	projectile.instantiate()
 	current_mag -= 1
 	weapon_shot.emit(current_mag)
 	
