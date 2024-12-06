@@ -60,8 +60,8 @@ func _shoot() -> void:
 	TIMER.start()
 
 ## The current amount of ammunition available for use.
-## Decreases when shots are fired and increases during reloading based on available ammo.
 var current_ammo:int = max_ammo
+## Decreases when reloading based on available ammo.
 ## The number of rounds currently loaded in the weapon's magazine.
 ## Decreases with each shot fired and increases during reloading
 ## until it reaches its maximum capacity (mag_size).
