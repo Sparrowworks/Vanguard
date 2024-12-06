@@ -70,7 +70,6 @@ func _reload() -> void:
 		return
 	
 	current_state = WEAPON_STATE.RELOADING
-	
 	if (current_mag == 0):
 		TIMER.wait_time = reload_time + reload_time_empty
 	else:
