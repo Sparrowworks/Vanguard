@@ -18,8 +18,8 @@ extends Area2D
 @export_group("Field Emissions")
 ## Slot for field
 @export var field:PackedScene
-## Slot for payload
-@export var payload:PackedScene
+## Slot for custom projectile
+@export var projectile:PackedScene
 
 ## A reference to the collision shape of the field, used to determine its size and detect overlaps with other objects.
 var FIELD:CollisionShape2D
