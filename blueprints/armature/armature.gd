@@ -40,6 +40,9 @@ enum WEAPON_STATE {
 ## Used to manage delays between firing and reloading actions.
 var TIMER:Timer
 func _ready() -> void:
+	current_mag = mag_size
+	current_ammo = max_ammo
+	
 	if (payload == null):
 		print("Payload undefined, please set a bullet or a melee weapon")
 		return
@@ -60,12 +63,12 @@ func _shoot() -> void:
 	TIMER.start()
 
 ## The current amount of ammunition available for use.
-var current_ammo:int = max_ammo
 ## Decreases when reloading based on available ammo.
+var current_ammo:int
 ## The number of rounds currently loaded in the weapon's magazine.
 ## Decreases with each shot fired and increases during reloading
 ## until it reaches its maximum capacity (mag_size).
-var current_mag:int = mag_size
+var current_mag:int
 func _reload() -> void:
 	if (current_mag == mag_size && current_ammo == 0 || current_state != WEAPON_STATE.READY):
 		return
