@@ -56,7 +56,7 @@ func _ready() -> void:
 	current_ammo = max_ammo
 	
 	if (projectile == null):
-		print("Payload undefined, please set a bullet or a melee weapon")
+		printerr("Payload undefined, please set a bullet or a melee weapon")
 		return
 	TIMER = $Timer
 	weapon_ready.emit(current_mag, current_ammo)
