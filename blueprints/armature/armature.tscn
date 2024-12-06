@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://blueprints/armature/armature.gd" id="1_gm1yv"]
 
-[node name="Armature" type="Node"]
+[node name="Armature" type="Node2D"]
 script = ExtResource("1_gm1yv")
 
 [node name="Timer" type="Timer" parent="."]

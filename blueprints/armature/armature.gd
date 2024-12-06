@@ -1,5 +1,5 @@
 class_name Armature
-extends Node
+extends Node2D
 
 ## Base class for guns
 ##
