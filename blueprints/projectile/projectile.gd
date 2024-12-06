@@ -32,6 +32,7 @@ func _ready() -> void:
 	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
 
 	TIMER = $Timer
+	TIMER.one_shot = true
 	TIMER.wait_time = lifespan
 	TIMER.start()
 

@@ -61,6 +61,7 @@ func _ready() -> void:
 		printerr("Payload undefined, please set a bullet or a melee weapon")
 		return
 	TIMER = $Timer
+	TIMER.one_shot = true
 	weapon_ready.emit(current_mag, current_ammo)
 
 ## The shoot() method is responsible for handling the firing mechanism of the weapon.
@@ -112,4 +113,5 @@ func reload() -> void:
 
 func _on_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
+	print(str(current_mag) + " " + str(current_ammo))
 	weapon_ready.emit(current_mag, current_ammo)

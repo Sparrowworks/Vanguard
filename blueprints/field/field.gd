@@ -29,6 +29,7 @@ var TIMER:Timer
 func _ready() -> void:
 	FIELD = $CollisionShape2D
 	TIMER = $Timer
+	TIMER.one_shot = true
 
 	TIMER.wait_time = field_fade_time
 
