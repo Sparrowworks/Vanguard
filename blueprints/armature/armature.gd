@@ -36,6 +36,9 @@ enum WEAPON_STATE {
 	## The weapon is reloading
 	RELOADING,
 }
+signal weapon_ready(mag:int, ammo:int)
+signal weapon_shot(mag:int)
+signal weapon_reloaded(mag:int, ammo:int)
 
 ## Used to manage delays between firing and reloading actions.
 var TIMER:Timer
@@ -47,6 +50,7 @@ func _ready() -> void:
 		print("Payload undefined, please set a bullet or a melee weapon")
 		return
 	TIMER = $Timer
+	weapon_ready.emit(current_mag, current_ammo)
 
 func _shoot() -> void:
 	if (current_mag == 0):
@@ -59,6 +63,7 @@ func _shoot() -> void:
 	TIMER.wait_time = fire_rate
 	payload.instantiate()
 	current_mag -= 1
+	weapon_shot.emit(current_mag)
 	
 	TIMER.start()
 
@@ -82,8 +87,10 @@ func _reload() -> void:
 	var ammo_to_load = min(mag_size - current_mag, current_ammo)
 	current_ammo -= ammo_to_load
 	current_mag += ammo_to_load
+	weapon_reloaded.emit(current_mag, current_ammo)
 	
 	TIMER.start()
 
 func _on_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
+	weapon_ready.emit(current_mag, current_ammo)
