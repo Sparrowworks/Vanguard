@@ -1,16 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdg3qi6f4n7vf"]
+[gd_scene load_steps=2 format=3 uid="uid://cdg3qi6f4n7vf"]
 
 [ext_resource type="Script" path="res://weapons/pistol/pistol.gd" id="1_mpj23"]
-[ext_resource type="PackedScene" uid="uid://b3e6i42bqdrf2" path="res://weapons/pistol/pistol_bullet.tscn" id="2_15yhv"]
 
 [node name="Pistol" type="Node2D"]
 script = ExtResource("1_mpj23")
 mag_size = 8
 max_ammo = 69
-reload_time = 1
-reload_time_empty = 1
-fire_rate = 1
-payload = ExtResource("2_15yhv")
 
 [node name="Timer" type="Timer" parent="."]
 

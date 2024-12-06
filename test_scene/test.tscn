@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjuweh32idvkx"]
+[gd_scene load_steps=5 format=3 uid="uid://cjuweh32idvkx"]
 
 [ext_resource type="Script" path="res://test_scene/test.gd" id="1_jlb5m"]
 [ext_resource type="PackedScene" uid="uid://cdg3qi6f4n7vf" path="res://weapons/pistol/pistol.tscn" id="2_tf4ak"]
+[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://blueprints/field/field.tscn" id="3_7byuc"]
+[ext_resource type="PackedScene" uid="uid://cp6ask5xmce30" path="res://blueprints/projectile/projectile.tscn" id="4_4nfha"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_jlb5m")
 
 [node name="Pistol" parent="." instance=ExtResource("2_tf4ak")]
+reload_time = 1.0
+reload_time_empty = 1.5
+fire_rate = 0.2
+field = ExtResource("3_7byuc")
+projectile = ExtResource("4_4nfha")

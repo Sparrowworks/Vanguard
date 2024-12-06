@@ -3,8 +3,8 @@ extends Area2D
 
 ## The base class for explosions, noise and effect-inducing zones
 ##
-## This script defines a field effect in a 2D game using Godot's Area2D node. 
-## The field expands over time and fades out after reaching its maximum radius. 
+## This script defines a field effect in a 2D game using Godot's Area2D node.
+## The field expands over time and fades out after reaching its maximum radius.
 ## It can be used for various gameplay mechanics, such as damage zones or area effects.
 
 @export_group("Field Stats")
@@ -33,9 +33,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if (TIMER.wait_time < field_fade_time):
 		return
-	
+
 	FIELD.shape.radius = min(radius, FIELD.shape.radius + propagation_speed * delta)
-	
+
 	if (FIELD.shape.radius == radius):
 		TIMER.start()
 
