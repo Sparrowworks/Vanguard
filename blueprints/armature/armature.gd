@@ -133,9 +133,9 @@ func modify_stats(stat:String, amount:float) -> void:
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func modify_modes(mode:String, new_mode:int) -> void:
 	match mode:
-		"Reload":
+		"reload":
 			reload_mode = new_mode
-		"Firing":
+		"firing":
 			firing_mode = new_mode
 		_:
 			printerr("Invalid mode")
