@@ -114,21 +114,20 @@ func reload() -> void:
 
 	TIMER.start()
 
-## Modifies weapon stats based on the stat name and a percentage.
-func modify_stats(stat:String, amount:float) -> void:
-	match stat:
-		"mag_size":
-			mag_size *= int(1 + amount / 100)
-		"max_ammo":
-			max_ammo *= int(1 + amount / 100)
-		"reload_time":
-			reload_time *= (1 + amount / 100)
-		"reload_time_empty":
-			reload_time_empty *= (1 + amount / 100)
-		"fire_rate":
-			fire_rate *= (1 + amount / 100)
-		_:
-			printerr("Undefined stat stringname")
+var equipped_kits:Array[String]
+## Modifies weapon stats by providing a kit.
+func modify_stats(kit:GunKit) -> void:
+	for i in equipped_kits:
+		if (i == kit.kit_name):
+			print("kit already installed")
+			return
+
+	equipped_kits.append(kit)
+	mag_size *= int(1 + kit.mag_size_modifier / 100)
+	max_ammo *= int(1 + kit.max_ammo_modifier / 100)
+	reload_time *= (1 + kit.mag_size_modifier / 100)
+	reload_time_empty *= (1 + kit.mag_size_modifier / 100)
+	fire_rate *= (1 + kit.mag_size_modifier / 100)
 
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func modify_modes(mode:String, new_mode:int) -> void:
