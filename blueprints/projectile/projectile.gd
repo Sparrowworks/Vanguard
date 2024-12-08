@@ -39,5 +39,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	global_position += direction.rotated(rotation) * speed * delta
 
+func modify_stats() -> void:
+	pass
+
 func _on_timer_timeout() -> void:
 	queue_free()
