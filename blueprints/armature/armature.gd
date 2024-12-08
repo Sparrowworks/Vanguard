@@ -118,15 +118,15 @@ func reload() -> void:
 func modify_stats(stat:String, amount:float) -> void:
 	match stat:
 		"mag_size":
-			mag_size += int(mag_size * amount)
+			mag_size *= int(1 + amount / 100)
 		"max_ammo":
-			max_ammo += int(max_ammo * amount)
+			max_ammo *= int(1 + amount / 100)
 		"reload_time":
-			reload_time += reload_time * amount
+			reload_time *= (1 + amount / 100)
 		"reload_time_empty":
-			reload_time_empty += reload_time_empty * amount
+			reload_time_empty *= (1 + amount / 100)
 		"fire_rate":
-			fire_rate += fire_rate * amount
+			fire_rate *= (1 + amount / 100)
 		_:
 			printerr("Undefined stat stringname")
 
