@@ -114,6 +114,7 @@ func reload() -> void:
 
 	TIMER.start()
 
+## Modifies weapon stats based on the stat name and a percentage.
 func modify_stats(stat:String, amount:float) -> void:
 	match stat:
 		"mag_size":
@@ -129,6 +130,7 @@ func modify_stats(stat:String, amount:float) -> void:
 		_:
 			printerr("Undefined stat stringname")
 
+## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func modify_modes(mode:String, new_mode:int) -> void:
 	match mode:
 		"Reload":
