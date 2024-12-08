@@ -121,11 +121,11 @@ func modify_stats(stat:String, amount:float) -> void:
 		"max_ammo":
 			max_ammo += int(max_ammo * amount)
 		"reload_time":
-			reload_time += int(reload_time * amount)
+			reload_time += reload_time * amount
 		"reload_time_empty":
-			reload_time_empty += int(reload_time_empty * amount)
+			reload_time_empty += reload_time_empty * amount
 		"fire_rate":
-			fire_rate += int(fire_rate * amount)
+			fire_rate += fire_rate * amount
 		_:
 			printerr("Undefined stat stringname")
 
