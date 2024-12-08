@@ -30,8 +30,8 @@ func _ready() -> void:
 	FIELD = $CollisionShape2D
 	TIMER = $Timer
 	TIMER.one_shot = true
-
 	TIMER.wait_time = field_fade_time
+	print("field created")
 
 func _physics_process(delta: float) -> void:
 	if (FIELD.shape.radius == radius && TIMER.time_left <= 0):
@@ -41,5 +41,5 @@ func _physics_process(delta: float) -> void:
 	FIELD.shape.radius = min(radius, FIELD.shape.radius + propagation_speed * delta)
 
 func _on_timer_timeout() -> void:
-	print("done")
+	print("field destroyed")
 	queue_free()
