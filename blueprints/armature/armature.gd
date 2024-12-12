@@ -118,12 +118,12 @@ func reload() -> void:
 var equipped_kits:Array[String]
 ## Modifies weapon stats by providing a kit.
 func modify_stats(kit:GunKit) -> void:
-	for i in equipped_kits:
-		if (i == kit.kit_name):
+	for kit_equipped in equipped_kits:
+		if (kit_equipped == kit.kit_name):
 			print("kit already installed")
 			return
 
-	equipped_kits.append(kit)
+	equipped_kits.append(kit.kit_name)
 	mag_size *= int(1 + kit.mag_size_modifier / 100)
 	max_ammo *= int(1 + kit.max_ammo_modifier / 100)
 	reload_time *= (1 + kit.mag_size_modifier / 100)
