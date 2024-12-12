@@ -130,6 +130,15 @@ func equip_kit(kit:GunStatKit) -> void:
 	reload_time_empty *= (1 + kit.mag_size_modifier / 100)
 	fire_rate *= (1 + kit.mag_size_modifier / 100)
 
+## Reverses the changes made by equip_kit
+func unequip_kit(kit:GunStatKit) -> void:
+	equipped_kits.erase(kit.kit_name)
+	mag_size *= int(1 - kit.mag_size_modifier / 100)
+	max_ammo *= int(1 - kit.max_ammo_modifier / 100)
+	reload_time *= (1 - kit.mag_size_modifier / 100)
+	reload_time_empty *= (1 - kit.mag_size_modifier / 100)
+	fire_rate *= (1 - kit.mag_size_modifier / 100)
+
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func change_modes(mode:String, new_mode:int) -> void:
 	match mode:
