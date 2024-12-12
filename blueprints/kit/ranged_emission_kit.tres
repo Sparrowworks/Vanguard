@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GunEmissionKit" load_steps=2 format=3 uid="uid://cs3ahdbiiupu"]
 
-[ext_resource type="Script" path="res://blueprints/kit/gun_emission_kit.gd" id="1_wenvm"]
+[ext_resource type="Script" path="res://blueprints/kit/ranged_emission_kit.gd" id="1_wenvm"]
 
 [resource]
 script = ExtResource("1_wenvm")

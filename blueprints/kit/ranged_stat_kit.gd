@@ -1,10 +1,10 @@
-class_name GunStatKit
+class_name RangedStatKit
 extends Resource
 
-## Base class for gun stat modifiers.
+## Base class for ranged stat modifiers.
 ##
 ## To create a new kit (or attachment), create a custom resource and assign it this script.
-## Simply write a percentage and equip_gun_kit will take care of the math,
+## Simply write a percentage and equip_stat_kit will take care of the math,
 ## your only limitation is how much the float type can handle.
 
 @export_group("Kit Stat Modifiers")

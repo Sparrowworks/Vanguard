@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GunStatKit" load_steps=2 format=3 uid="uid://bgb07ch4jt7vq"]
 
-[ext_resource type="Script" path="res://blueprints/kit/gun_stat_kit.gd" id="1_8cw7w"]
+[ext_resource type="Script" path="res://blueprints/kit/ranged_stat_kit.gd" id="1_8cw7w"]
 
 [resource]
 script = ExtResource("1_8cw7w")

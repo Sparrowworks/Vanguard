@@ -117,7 +117,7 @@ func reload() -> void:
 ## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
 ## Modifies weapon stats by providing a kit.
-func equip_stat_kit(kit:GunStatKit) -> void:
+func equip_stat_kit(kit:RangedStatKit) -> void:
 	for kit_equipped in equipped_kits:
 		if (kit_equipped == kit.kit_name):
 			print("kit already installed")
@@ -131,7 +131,7 @@ func equip_stat_kit(kit:GunStatKit) -> void:
 	fire_rate *= (1 + kit.mag_size_modifier / 100)
 
 ## Reverses the changes made by equip_kit
-func unequip_stat_kit(kit:GunStatKit) -> void:
+func unequip_stat_kit(kit:RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
 	mag_size *= int(1 - kit.mag_size_modifier / 100)
 	max_ammo *= int(1 - kit.max_ammo_modifier / 100)
@@ -140,7 +140,7 @@ func unequip_stat_kit(kit:GunStatKit) -> void:
 	fire_rate *= (1 - kit.mag_size_modifier / 100)
 
 ## Changes the weapon's emissions, null variables will be ignored.
-func equip_emission_kit(kit:GunEmissionKit) -> void:
+func equip_emission_kit(kit:RangedEmissionKit) -> void:
 	if (kit.new_projectile != null):
 		projectile = kit.new_projectile
 	else:

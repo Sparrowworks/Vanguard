@@ -1,7 +1,7 @@
-class_name GunEmissionKit
+class_name RangedEmissionKit
 extends Resource
 
-## Base class for kits related to changing gun emissions.
+## Base class for kits related to changing ranged emissions.
 ##
 ## To create a new kit (or attachment), create a custom resource and assign it this script.
 ## Simply add the desired PackedScenes
