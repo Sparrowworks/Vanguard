@@ -8,7 +8,7 @@ extends Area2D
 ## A timer used to manage the fate of the projectile after it has reached 0.
 var TIMER:Timer
 @export_group("Projectile Stats")
-## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy), 
+## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy),
 ## Determines how precisely the projectile will hit its target.
 @export var accuracy:float
 ## Defines the maximum angle of deviation for the projectile when fired at zero accuracy.

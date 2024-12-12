@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RangedEmissionKit" load_steps=4 format=3 uid="uid://d4jmtu18rfu1w"]
+
+[ext_resource type="PackedScene" uid="uid://ccwfgwtjvrx3c" path="res://weapons/pistol/silent_pistol_noise.tscn" id="1_4gor0"]
+[ext_resource type="PackedScene" uid="uid://dbiichedux50" path="res://weapons/pistol/fast_pistol_bullet.tscn" id="1_o5h72"]
+[ext_resource type="Script" path="res://blueprints/kit/ranged_emission_kit.gd" id="1_yafok"]
+
+[resource]
+script = ExtResource("1_yafok")
+new_projectile = ExtResource("1_o5h72")
+new_field = ExtResource("1_4gor0")
