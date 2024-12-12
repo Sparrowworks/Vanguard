@@ -60,7 +60,7 @@ func _ready() -> void:
 	print(current_state)
 
 	if (projectile == null):
-		printerr("Payload undefined, please set a bullet or a melee weapon")
+		printerr("Undefined Projectile")
 		return
 	TIMER = $Timer
 	TIMER.one_shot = true
