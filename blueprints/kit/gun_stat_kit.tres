@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GunKit" load_steps=2 format=3 uid="uid://co6gi2wyfcial"]
 
-[ext_resource type="Script" path="res://blueprints/kit/gun_kit.gd" id="1_ysodx"]
+[ext_resource type="Script" path="res://blueprints/kit/gun_stat_kit.gd" id="1_ysodx"]
 
 [resource]
 script = ExtResource("1_ysodx")
@@ -10,3 +10,4 @@ max_ammo_modifier = 0.0
 reload_time_modifier = 0.0
 reload_time_empty_modifier = 0.0
 fire_rate_modifier = 0.0
+unequip_projectile = false

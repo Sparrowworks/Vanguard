@@ -1,4 +1,4 @@
-class_name GunKit
+class_name GunStatKit
 extends Resource
 
 ## Base class for gun addons/attachments modifiers.
@@ -7,6 +7,7 @@ extends Resource
 ## Simply write a percentage and modify_stats will take care of the math,
 ## your only limitation is how much the float type can handle.
 
+@export_group("Kit Stat Modifiers")
 ## Internal name for comparison checks
 @export var kit_name:String
 ## The percentage by which to increase or decrease the size of the magazine.
