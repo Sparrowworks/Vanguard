@@ -1,9 +1,9 @@
-class_name Armature
+class_name Ranged
 extends Node2D
 
-## Base class for guns
+## Base class for ranged weapons
 ##
-## The Armature class represents a weapon system in a 2D game using Godot's Node structure.
+## The Ranged class represents a weapon system in a 2D game using Godot's Node structure.
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
