@@ -3,12 +3,13 @@ extends Area2D
 
 ## The base class for all damage-causing object-destroying projectiles
 ##
-## This script serves as a foundation for creating various types of projectiles that can inflict damage on targets within the game.
+## This script serves as a foundation for creating various types of projectiles.
 
 ## A timer used to manage the fate of the projectile after it has reached 0.
 var TIMER:Timer
 @export_group("Projectile Stats")
-## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy), Determines how precisely the projectile will hit its target.
+## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy), 
+## Determines how precisely the projectile will hit its target.
 @export var accuracy:float
 ## Defines the maximum angle of deviation for the projectile when fired at zero accuracy.
 @export var max_spread:int
