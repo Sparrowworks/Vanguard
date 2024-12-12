@@ -114,6 +114,7 @@ func reload() -> void:
 
 	TIMER.start()
 
+## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
 ## Modifies weapon stats by providing a kit.
 func modify_stats(kit:GunKit) -> void:
