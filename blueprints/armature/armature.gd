@@ -117,7 +117,7 @@ func reload() -> void:
 ## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
 ## Modifies weapon stats by providing a kit.
-func modify_stats(kit:GunKit) -> void:
+func equip_kit(kit:GunStatKit) -> void:
 	for kit_equipped in equipped_kits:
 		if (kit_equipped == kit.kit_name):
 			print("kit already installed")
@@ -131,7 +131,7 @@ func modify_stats(kit:GunKit) -> void:
 	fire_rate *= (1 + kit.mag_size_modifier / 100)
 
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
-func modify_modes(mode:String, new_mode:int) -> void:
+func change_modes(mode:String, new_mode:int) -> void:
 	match mode:
 		"reload":
 			reload_mode = new_mode
