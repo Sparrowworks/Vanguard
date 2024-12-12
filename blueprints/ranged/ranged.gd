@@ -139,6 +139,17 @@ func unequip_stat_kit(kit:GunStatKit) -> void:
 	reload_time_empty *= (1 - kit.mag_size_modifier / 100)
 	fire_rate *= (1 - kit.mag_size_modifier / 100)
 
+## Changes the weapon's emissions, null variables will be ignored.
+func equip_emission_kit(kit:GunEmissionKit) -> void:
+	if (kit.new_projectile != null):
+		projectile = kit.new_projectile
+	else:
+		print("Null projectile detected, New projectile rejected...")
+	if (kit.new_field != null):
+		field = kit.new_field
+	else:
+		print("Null field detected, New field rejected...")
+
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func change_modes(mode:String, new_mode:int) -> void:
 	match mode:
