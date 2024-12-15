@@ -7,7 +7,6 @@ extends Node2D
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
-@export_group("Gun Stats")
 ## The maximum number of rounds that can be held in the weapon's magazine.
 var mag_size:int
 ## The total amount of ammunition available for the weapon.
@@ -19,11 +18,10 @@ var reload_time_empty:float
 ## The rate at which the weapon can fire (in milliseconds between shots).
 var fire_rate:float
 
-## Defines the reload mode (automatic or manual)
-@export_enum("Automatic", "Manual") var reload_mode:int
-## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
-@export_enum("Automatic", "Semi", "Burst") var firing_mode:int
-
+@export_group("Gun Stats")
+## Create a resource that uses RangedStatKit's script and fill it with your desired weapon stats.
+## This is the only internal exception where a kit's value replace a weapon stat instead of adding/subtracting
+## from it.
 @export var base_stats: RangedStatKit:
 	set(val):
 		if val:
@@ -32,8 +30,12 @@ var fire_rate:float
 			reload_time = val.reload_time_modifier
 			reload_time_empty = val.reload_time_empty_modifier
 			fire_rate = val.fire_rate_modifier
-
 			base_stats = val
+
+## Defines the reload mode (automatic or manual)
+@export_enum("Automatic", "Manual") var reload_mode:int
+## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
+@export_enum("Automatic", "Semi", "Burst") var firing_mode:int
 
 @export_group("Gun Emissions")
 ## Slot for field
