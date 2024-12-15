@@ -64,6 +64,21 @@ signal weapon_shot(mag:int)
 ## Emitted when the weapon has finished reloading
 ## It provides information about the current magazine and ammunition count.
 signal weapon_reloaded(mag:int, ammo:int)
+## Emitted when a stat kit has been equipped.
+## It provides information about the equipped stat kit.
+signal stat_kit_equipped(kit:RangedStatKit)
+## Emitted when a stat kit has been unequipped.
+## It provides information about the unequipped stat kit.
+signal stat_kit_unequipped(kit:RangedStatKit)
+## Emitted when an emission kit has been equipped.
+## It provides information about the equipped emission kit.
+signal emission_kit_equipped(kit:RangedEmissionKit)
+## Emitted when a reload mode has been changed.
+## It provides information about the old and the new reload modes.
+signal reload_mode_changed(old_reload_mode:int, new_reload_mode:int)
+## Emitted when a firing mode has been changed.
+## It provides information about the old and new firing modes.
+signal firing_mode_changed(old_firing_mode:int, new_firing_mode:int)
 
 ## Used to manage delays between firing and reloading actions.
 ## Sets current weapon state to READY when it timesout.
@@ -148,6 +163,7 @@ func equip_stat_kit(kit:RangedStatKit) -> void:
 	reload_time_empty = reload_time_empty + kit.reload_time_empty_modifier if kit.reload_time_empty_modifier != 0 else reload_time_empty
 	fire_rate = fire_rate + kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else fire_rate
 
+	stat_kit_equipped.emit(kit)
 	prints("Equiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Reverses the changes made by equip_kit
@@ -159,6 +175,7 @@ func unequip_stat_kit(kit:RangedStatKit) -> void:
 	reload_time_empty -= kit.reload_time_empty_modifier
 	fire_rate -= kit.fire_rate_modifier
 
+	stat_kit_unequipped.emit(kit)
 	prints("Unequiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Changes the weapon's emissions, null variables will be ignored.
@@ -173,12 +190,16 @@ func equip_emission_kit(kit:RangedEmissionKit) -> void:
 	else:
 		print("Null field detected, New field rejected...")
 
+	emission_kit_equipped.emit(kit)
+
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func change_modes(mode:String, new_mode:int) -> void:
 	match mode:
 		"reload":
+			reload_mode_changed.emit(reload_mode, new_mode)
 			reload_mode = new_mode
 		"firing":
+			firing_mode_changed.emit(firing_mode, new_mode)
 			firing_mode = new_mode
 		_:
 			printerr("Invalid mode")
