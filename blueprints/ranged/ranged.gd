@@ -35,7 +35,8 @@ var fire_rate:float
 ## Defines the reload mode (automatic or manual)
 @export_enum("Automatic", "Manual") var reload_mode:int
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
-@export_enum("Automatic", "Semi", "Burst") var firing_mode:int
+## @experimental: This has 0 internal functionality
+@export_enum("Auto", "Semi", "Burst") var firing_mode:int
 
 @export_group("Gun Emissions")
 ## Slot for field
@@ -53,6 +54,20 @@ enum WEAPON_STATE {
 	SHOOTING = 2,
 	## The weapon is reloading
 	RELOADING = 3,
+}
+
+enum RELOADING_MODE {
+	## When the mag_size is 0, the weapon will be automatically reloaded.
+	AUTOMATIC,
+	## The user will have to use the reload function.
+	MANUAL,
+}
+
+## @experimental: This has 0 internal functionality
+enum FIRING_MODE {
+	AUTO,
+	SEMI,
+	BURST,
 }
 
 ## Emitted when the weapon is ready to shoot or reload.
@@ -193,16 +208,28 @@ func equip_emission_kit(kit:RangedEmissionKit) -> void:
 	emission_kit_equipped.emit(kit)
 
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
-func change_modes(mode:String, new_mode:int) -> void:
+func change_modes(mode:String, new_mode:String) -> void:
 	match mode:
 		"reload":
-			reload_mode_changed.emit(reload_mode, new_mode)
-			reload_mode = new_mode
+			var old_mode = reload_mode
+			reload_mode = _string_to_enum(new_mode)
+			reload_mode_changed.emit(old_mode, new_mode)
 		"firing":
-			firing_mode_changed.emit(firing_mode, new_mode)
-			firing_mode = new_mode
+			var old_mode = firing_mode
+			firing_mode = _string_to_enum(new_mode)
+			firing_mode_changed.emit(old_mode, new_mode)
 		_:
 			printerr("Invalid mode")
+
+func _string_to_enum(value:String) -> int:
+	match value:
+		"AUTOMATIC": return RELOADING_MODE.AUTOMATIC
+		"MANUAL": return RELOADING_MODE.MANUAL
+		"AUTO": return FIRING_MODE.AUTO
+		"SEMI": return FIRING_MODE.SEMI
+		"BURST": return FIRING_MODE.BURST
+		_: print(value + " is invalid")
+	return 0
 
 func _on_timer_timeout() -> void:
 	print("timer ended")
