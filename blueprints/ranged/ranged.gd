@@ -140,22 +140,22 @@ func equip_stat_kit(kit:RangedStatKit) -> void:
 			return
 
 	equipped_kits.append(kit.kit_name)
-	mag_size = kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
-	max_ammo = kit.max_ammo_modifier if kit.max_ammo_modifier != 0 else max_ammo
-	reload_time = kit.reload_time_modifier if kit.reload_time_modifier != 0 else reload_time
-	reload_time_empty = kit.reload_time_empty_modifier if kit.reload_time_empty_modifier != 0 else reload_time_empty
-	fire_rate = kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else fire_rate
+	mag_size = mag_size + kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
+	max_ammo = max_ammo + kit.max_ammo_modifier if kit.max_ammo_modifier != 0 else max_ammo
+	reload_time = reload_time + kit.reload_time_modifier if kit.reload_time_modifier != 0 else reload_time
+	reload_time_empty = reload_time_empty + kit.reload_time_empty_modifier if kit.reload_time_empty_modifier != 0 else reload_time_empty
+	fire_rate = fire_rate + kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else fire_rate
 
 	prints("Equiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Reverses the changes made by equip_kit
 func unequip_stat_kit(kit:RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
-	mag_size = base_stats.mag_size_modifier
-	max_ammo = base_stats.max_ammo_modifier
-	reload_time = base_stats.reload_time_modifier
-	reload_time_empty = base_stats.reload_time_empty_modifier
-	fire_rate = base_stats.fire_rate_modifier
+	mag_size -= kit.mag_size_modifier
+	max_ammo -= kit.max_ammo_modifier
+	reload_time -= kit.reload_time_modifier
+	reload_time_empty -= kit.reload_time_empty_modifier
+	fire_rate -= kit.fire_rate_modifier
 
 	prints("Unequiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 

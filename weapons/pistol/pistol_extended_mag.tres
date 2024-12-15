@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_8cw7w")
 kit_name = "extended_mag"
-mag_size_modifier = 16
+mag_size_modifier = 8
 max_ammo_modifier = 0
-reload_time_modifier = 1.25
-reload_time_empty_modifier = 1.75
-fire_rate_modifier = 0
+reload_time_modifier = 0.25
+reload_time_empty_modifier = 0.25
+fire_rate_modifier = 0.0
