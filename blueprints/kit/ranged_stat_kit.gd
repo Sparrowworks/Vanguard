@@ -20,4 +20,4 @@ extends Resource
 ## (reload time + reload time empty = actual reload time).
 @export var reload_time_empty_modifier:float
 ## The amount by which to increase or decrease the rate of fire.
-@export var fire_rate_modifier: float
+@export var fire_rate_modifier:float
