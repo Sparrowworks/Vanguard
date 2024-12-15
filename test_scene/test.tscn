@@ -8,7 +8,3 @@ script = ExtResource("1_jlb5m")
 
 [node name="Pistol" parent="." instance=ExtResource("2_tf4ak")]
 position = Vector2(553, 331)
-max_ammo = 64
-reload_time = 1.0
-reload_time_empty = 1.5
-fire_rate = 1.0

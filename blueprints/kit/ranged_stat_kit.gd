@@ -10,14 +10,14 @@ extends Resource
 @export_group("Kit Stat Modifiers")
 ## Internal name for comparison checks
 @export var kit_name:String
-## The percentage by which to increase or decrease the size of the magazine.
-@export var mag_size_modifier:float
-## The percentage by which to increase or decrease the maximum ammunition.
-@export var max_ammo_modifier:float
-## The percentage by which to increase or decrease the reload speed.
+## The amount by which to increase or decrease the size of the magazine.
+@export var mag_size_modifier:int
+## The amount by which to increase or decrease the maximum ammunition.
+@export var max_ammo_modifier:int
+## The amount by which to increase or decrease the reload speed.
 @export var reload_time_modifier:float
-## The percentage by which to increase or decrease the reload speed when the magazine is empty.
+## The amount by which to increase or decrease the reload speed when the magazine is empty.
 ## (reload time + reload time empty = actual reload time).
 @export var reload_time_empty_modifier:float
-## The percentage by which to increase or decrease the rate of fire.
+## The amount by which to increase or decrease the rate of fire.
 @export var fire_rate_modifier:float

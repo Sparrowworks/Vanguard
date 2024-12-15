@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbiichedux50"]
+
+[ext_resource type="Script" path="res://weapons/pistol/pistol_bullet.gd" id="1_02655"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6qaq"]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_02655")
+accuracy = 100.0
+lifespan = 1
+speed = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f6qaq")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

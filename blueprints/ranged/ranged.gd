@@ -9,19 +9,31 @@ extends Node2D
 
 @export_group("Gun Stats")
 ## The maximum number of rounds that can be held in the weapon's magazine.
-@export var mag_size:int
+var mag_size:int
 ## The total amount of ammunition available for the weapon.
-@export var max_ammo:int
+var max_ammo:int
 ## The time (in milliseconds) it takes to reload the weapon when there are rounds left in the magazine.
-@export var reload_time:float
+var reload_time:float
 ## Addtional time (in milliseconds) it takes to reload the weapon when the magazine is empty.
-@export var reload_time_empty:float
+var reload_time_empty:float
 ## The rate at which the weapon can fire (in milliseconds between shots).
-@export var fire_rate:float
+var fire_rate:float
+
 ## Defines the reload mode (automatic or manual)
 @export_enum("Automatic", "Manual") var reload_mode:int
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
 @export_enum("Automatic", "Semi", "Burst") var firing_mode:int
+
+@export var base_stats: RangedStatKit:
+	set(val):
+		if val:
+			mag_size = val.mag_size_modifier
+			max_ammo = val.max_ammo_modifier
+			reload_time = val.reload_time_modifier
+			reload_time_empty = val.reload_time_empty_modifier
+			fire_rate = val.fire_rate_modifier
+
+			base_stats = val
 
 @export_group("Gun Emissions")
 ## Slot for field
@@ -72,17 +84,20 @@ func _ready() -> void:
 func shoot() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
+
 	if (current_mag == 0):
 		if (reload_mode == 0):
 			reload()
 		return
 
 	current_state = WEAPON_STATE.SHOOTING
+	print("Fire rate: " + str(fire_rate))
 	TIMER.wait_time = fire_rate
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
 	weapon_shot.emit(current_mag)
+	print(str(current_mag) + " " + str(current_ammo))
 
 	TIMER.start()
 
@@ -102,6 +117,7 @@ func reload() -> void:
 		return
 
 	current_state = WEAPON_STATE.RELOADING
+	print('started reloading')
 	if (current_mag == 0):
 		TIMER.wait_time = reload_time + reload_time_empty
 	else:
@@ -124,20 +140,24 @@ func equip_stat_kit(kit:RangedStatKit) -> void:
 			return
 
 	equipped_kits.append(kit.kit_name)
-	mag_size *= int(1 + kit.mag_size_modifier / 100)
-	max_ammo *= int(1 + kit.max_ammo_modifier / 100)
-	reload_time *= (1 + kit.mag_size_modifier / 100)
-	reload_time_empty *= (1 + kit.mag_size_modifier / 100)
-	fire_rate *= (1 + kit.mag_size_modifier / 100)
+	mag_size = mag_size + kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
+	max_ammo = max_ammo + kit.max_ammo_modifier if kit.max_ammo_modifier != 0 else max_ammo
+	reload_time = reload_time + kit.reload_time_modifier if kit.reload_time_modifier != 0 else reload_time
+	reload_time_empty = reload_time_empty + kit.reload_time_empty_modifier if kit.reload_time_empty_modifier != 0 else reload_time_empty
+	fire_rate = fire_rate + kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else fire_rate
+
+	prints("Equiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Reverses the changes made by equip_kit
 func unequip_stat_kit(kit:RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
-	mag_size *= int(1 - kit.mag_size_modifier / 100)
-	max_ammo *= int(1 - kit.max_ammo_modifier / 100)
-	reload_time *= (1 - kit.mag_size_modifier / 100)
-	reload_time_empty *= (1 - kit.mag_size_modifier / 100)
-	fire_rate *= (1 - kit.mag_size_modifier / 100)
+	mag_size -= kit.mag_size_modifier
+	max_ammo -= kit.max_ammo_modifier
+	reload_time -= kit.reload_time_modifier
+	reload_time_empty -= kit.reload_time_empty_modifier
+	fire_rate -= kit.fire_rate_modifier
+
+	prints("Unequiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Changes the weapon's emissions, null variables will be ignored.
 func equip_emission_kit(kit:RangedEmissionKit) -> void:
@@ -145,6 +165,7 @@ func equip_emission_kit(kit:RangedEmissionKit) -> void:
 		projectile = kit.new_projectile
 	else:
 		print("Null projectile detected, New projectile rejected...")
+
 	if (kit.new_field != null):
 		field = kit.new_field
 	else:
@@ -161,6 +182,6 @@ func change_modes(mode:String, new_mode:int) -> void:
 			printerr("Invalid mode")
 
 func _on_timer_timeout() -> void:
+	print("timer ended")
 	current_state = WEAPON_STATE.READY
-	print(str(current_mag) + " " + str(current_ammo))
 	weapon_ready.emit(current_mag, current_ammo)
