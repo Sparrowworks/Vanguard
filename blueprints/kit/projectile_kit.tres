@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brk7gr35t1qja"]
-
-[ext_resource type="Script" path="res://blueprints/kit/projectile_kit.gd" id="1_6b1hv"]
-
-[resource]
-script = ExtResource("1_6b1hv")
