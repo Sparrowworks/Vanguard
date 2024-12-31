@@ -8,3 +8,52 @@ script = ExtResource("1_jlb5m")
 
 [node name="Pistol" parent="." instance=ExtResource("2_tf4ak")]
 position = Vector2(553, 331)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 25
+
+[node name="MagLabel" type="Label" parent="UI/Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Mag: 0/0"
+horizontal_alignment = 1
+
+[node name="AmmoLabel" type="Label" parent="UI/Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Reserve: 0/0"
+horizontal_alignment = 1
+
+[node name="StateLabel" type="Label" parent="UI/Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "State: READY"
+horizontal_alignment = 1
+
+[connection signal="ammo_updated" from="Pistol" to="." method="_on_pistol_ammo_updated"]
+[connection signal="mag_updated" from="Pistol" to="." method="_on_pistol_mag_updated"]
+[connection signal="state_updated" from="Pistol" to="." method="_on_pistol_state_updated"]
