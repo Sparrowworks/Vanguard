@@ -7,22 +7,12 @@ extends Node2D
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
-signal mag_updated(new_amount: int, max_amount: int)
-signal ammo_updated(new_amount: int, max_amount: int)
 signal state_updated(new_state: String)
 
 ## The maximum number of rounds that can be held in the weapon's magazine.
-var mag_size:int:
-	set(val):
-		mag_size = val
-		mag_updated.emit(current_mag, mag_size)
-
+var mag_size:int
 ## The total amount of ammunition available for the weapon.
-var max_ammo:int:
-	set(val):
-		max_ammo = val
-		ammo_updated.emit(current_ammo, max_ammo)
-
+var max_ammo:int
 ## The time (in milliseconds) it takes to reload the weapon when there are rounds left in the magazine.
 var reload_time:float
 ## Addtional time (in milliseconds) it takes to reload the weapon when the magazine is empty.
@@ -92,7 +82,7 @@ enum FIRING_MODE {
 signal weapon_ready(mag:int, ammo:int)
 ## Emitted when the weapon has finished shooting.
 ## It provides information about the current magazine count.
-signal weapon_shot(mag:int)
+signal weapon_shot(mag:int, ammo:int)
 ## Emitted when the weapon has finished reloading
 ## It provides information about the current magazine and ammunition count.
 signal weapon_reloaded(mag:int, ammo:int)
@@ -118,7 +108,6 @@ var TIMER:Timer
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
-	print(current_state)
 
 	if (projectile == null):
 		printerr("Undefined Projectile")
@@ -145,26 +134,17 @@ func shoot() -> void:
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
-	weapon_shot.emit(current_mag)
-	print(str(current_mag) + " " + str(current_ammo))
+	weapon_shot.emit(current_mag, current_ammo)
 
 	TIMER.start()
 
 ## The current amount of ammunition available for use.
 ## Decreases when reloading based on magazine size and available ammo.
-var current_ammo:int:
-	set(val):
-		current_ammo = val
-		ammo_updated.emit(current_ammo, max_ammo)
-
+var current_ammo:int
 ## The number of rounds currently loaded in the weapon's magazine.
 ## Decreases with each shot fired and increases during reloading
 ## until it reaches its maximum capacity (mag_size).
-var current_mag:int:
-	set(val):
-		current_mag = val
-		mag_updated.emit(current_mag, mag_size)
-
+var current_mag:int
 ## The reload() method is responsible for reloading the weapon's magazine with ammunition.
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
 ## the method will exit without reloading.
