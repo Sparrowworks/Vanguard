@@ -7,6 +7,8 @@ extends Node2D
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
+signal state_updated(new_state: String)
+
 ## The maximum number of rounds that can be held in the weapon's magazine.
 var mag_size:int
 ## The total amount of ammunition available for the weapon.
@@ -46,7 +48,12 @@ var fire_rate:float
 
 ## Represents the current state of the weapon.
 ## It can be one of three states defined in the WEAPON_STATE enum.
-var current_state:int = WEAPON_STATE.READY
+var current_state:int = WEAPON_STATE.READY:
+	set(val):
+		current_state = val
+		state_updated.emit(enum_to_str(current_state))
+
+
 enum WEAPON_STATE {
 	## The weapon is ready to fire or reload.
 	READY = 1,
@@ -75,7 +82,7 @@ enum FIRING_MODE {
 signal weapon_ready(mag:int, ammo:int)
 ## Emitted when the weapon has finished shooting.
 ## It provides information about the current magazine count.
-signal weapon_shot(mag:int)
+signal weapon_shot(mag:int, ammo:int)
 ## Emitted when the weapon has finished reloading
 ## It provides information about the current magazine and ammunition count.
 signal weapon_reloaded(mag:int, ammo:int)
@@ -101,7 +108,6 @@ var TIMER:Timer
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
-	print(current_state)
 
 	if (projectile == null):
 		printerr("Undefined Projectile")
@@ -128,8 +134,7 @@ func shoot() -> void:
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
-	weapon_shot.emit(current_mag)
-	print(str(current_mag) + " " + str(current_ammo))
+	weapon_shot.emit(current_mag, current_ammo)
 
 	TIMER.start()
 
@@ -140,7 +145,6 @@ var current_ammo:int
 ## Decreases with each shot fired and increases during reloading
 ## until it reaches its maximum capacity (mag_size).
 var current_mag:int
-
 ## The reload() method is responsible for reloading the weapon's magazine with ammunition.
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
 ## the method will exit without reloading.
@@ -166,10 +170,9 @@ func reload() -> void:
 var equipped_kits:Array[String]
 ## Modifies weapon stats by providing a kit.
 func equip_stat_kit(kit:RangedStatKit) -> void:
-	for kit_equipped in equipped_kits:
-		if (kit_equipped == kit.kit_name):
-			print("kit already installed")
-			return
+	if has_stat_kit(kit):
+		print("kit already installed")
+		return
 
 	equipped_kits.append(kit.kit_name)
 	mag_size = mag_size + kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
@@ -192,6 +195,14 @@ func unequip_stat_kit(kit:RangedStatKit) -> void:
 
 	stat_kit_unequipped.emit(kit)
 	prints("Unequiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
+
+func has_stat_kit(kit: RangedStatKit) -> bool:
+	for kit_equipped in equipped_kits:
+		if (kit_equipped == kit.kit_name):
+			return true
+
+	return false
+
 
 ## Changes the weapon's emissions, null variables will be ignored.
 func equip_emission_kit(kit:RangedEmissionKit) -> void:
@@ -220,6 +231,17 @@ func change_modes(mode:String, new_mode:String) -> void:
 			firing_mode_changed.emit(old_mode, new_mode)
 		_:
 			printerr("Invalid mode")
+
+func enum_to_str(state: int) -> String:
+	match state:
+		1:
+			return "READY"
+		2:
+			return "SHOOTING"
+		3:
+			return "RELOADING"
+		_:
+			return "ERROR"
 
 func _string_to_enum(value:String) -> int:
 	match value:
