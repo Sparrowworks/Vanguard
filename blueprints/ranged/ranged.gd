@@ -35,7 +35,7 @@ var fire_rate:float
 			base_stats = val
 
 ## Defines the reload mode (automatic or manual)
-@export_enum("Automatic", "Manual") var reload_mode:int
+@export var is_weapon_automatic:bool = true
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
 ## @experimental: This has 0 internal functionality
 @export_enum("Auto", "Semi", "Burst") var firing_mode:int
@@ -61,13 +61,6 @@ enum WEAPON_STATE {
 	SHOOTING = 2,
 	## The weapon is reloading
 	RELOADING = 3,
-}
-
-enum RELOADING_MODE {
-	## When the mag_size is 0, the weapon will be automatically reloaded.
-	AUTOMATIC,
-	## The user will have to use the reload function.
-	MANUAL,
 }
 
 ## @experimental: This has 0 internal functionality
@@ -124,7 +117,7 @@ func shoot() -> void:
 		return
 
 	if (current_mag == 0):
-		if (reload_mode == 0):
+		if (is_weapon_automatic):
 			reload()
 		return
 
@@ -222,8 +215,8 @@ func equip_emission_kit(kit:RangedEmissionKit) -> void:
 func change_modes(mode:String, new_mode:String) -> void:
 	match mode:
 		"reload":
-			var old_mode = reload_mode
-			reload_mode = _string_to_enum(new_mode)
+			var old_mode = is_weapon_automatic
+			is_weapon_automatic = _string_to_enum(new_mode)
 			reload_mode_changed.emit(old_mode, new_mode)
 		"firing":
 			var old_mode = firing_mode
@@ -245,8 +238,8 @@ func enum_to_str(state: int) -> String:
 
 func _string_to_enum(value:String) -> int:
 	match value:
-		"AUTOMATIC": return RELOADING_MODE.AUTOMATIC
-		"MANUAL": return RELOADING_MODE.MANUAL
+		"AUTOMATIC": return true
+		"MANUAL": return false
 		"AUTO": return FIRING_MODE.AUTO
 		"SEMI": return FIRING_MODE.SEMI
 		"BURST": return FIRING_MODE.BURST
