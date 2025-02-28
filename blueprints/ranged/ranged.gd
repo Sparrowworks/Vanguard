@@ -98,6 +98,12 @@ signal firing_mode_changed(old_firing_mode:int, new_firing_mode:int)
 ## Used to manage delays between firing and reloading actions.
 ## Sets current weapon state to READY when it timesout.
 var TIMER:Timer
+func _init() -> void:
+	TIMER = Timer.new()
+	TIMER.one_shot = true
+	add_child(TIMER)
+	TIMER.timeout.connect(_on_timer_timeout)
+
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
@@ -105,8 +111,6 @@ func _ready() -> void:
 	if (projectile == null):
 		printerr("Undefined Projectile")
 		return
-	TIMER = $Timer
-	TIMER.one_shot = true
 	weapon_ready.emit(current_mag, current_ammo)
 
 ## The shoot() method is responsible for handling the firing mechanism of the weapon.
