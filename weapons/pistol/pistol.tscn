@@ -6,14 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://b3e6i42bqdrf2" path="res://weapons/pistol/emissions/pistol_bullet.tscn" id="3_xdnxl"]
 [ext_resource type="Texture2D" uid="uid://7gul8j33i6ft" path="res://icon.svg" id="4_g8vi1"]
 
-[node name="Pistol" type="Node2D"]
+[node name="Pistol" type="Sprite2D"]
+texture = ExtResource("4_g8vi1")
 script = ExtResource("1_mpj23")
 base_stats = ExtResource("2_nv260")
 field = ExtResource("2_2gra5")
 projectile = ExtResource("3_xdnxl")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_g8vi1")
 
 [node name="Timer" type="Timer" parent="."]
 
