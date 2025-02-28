@@ -97,12 +97,12 @@ signal firing_mode_changed(old_firing_mode:int, new_firing_mode:int)
 
 ## Used to manage delays between firing and reloading actions.
 ## Sets current weapon state to READY when it timesout.
-var TIMER:Timer
+var ranged_timer:Timer
 func _init() -> void:
-	TIMER = Timer.new()
-	TIMER.one_shot = true
-	add_child(TIMER)
-	TIMER.timeout.connect(_on_timer_timeout)
+	ranged_timer = Timer.new()
+	ranged_timer.one_shot = true
+	add_child(ranged_timer)
+	ranged_timer.timeout.connect(_on_timer_timeout)
 
 func _ready() -> void:
 	current_mag = mag_size
@@ -127,13 +127,13 @@ func shoot() -> void:
 
 	current_state = WEAPON_STATE.SHOOTING
 	print("Fire rate: " + str(fire_rate))
-	TIMER.wait_time = fire_rate
+	ranged_timer.wait_time = fire_rate
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
 	weapon_shot.emit(current_mag, current_ammo)
 
-	TIMER.start()
+	ranged_timer.start()
 
 ## The current amount of ammunition available for use.
 ## Decreases when reloading based on magazine size and available ammo.
@@ -152,16 +152,16 @@ func reload() -> void:
 	current_state = WEAPON_STATE.RELOADING
 	print('started reloading')
 	if (current_mag == 0):
-		TIMER.wait_time = reload_time + reload_time_empty
+		ranged_timer.wait_time = reload_time + reload_time_empty
 	else:
-		TIMER.wait_time = reload_time
+		ranged_timer.wait_time = reload_time
 
 	var ammo_to_load = min(mag_size - current_mag, current_ammo)
 	current_ammo -= ammo_to_load
 	current_mag += ammo_to_load
 	weapon_reloaded.emit(current_mag, current_ammo)
 
-	TIMER.start()
+	ranged_timer.start()
 
 ## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
