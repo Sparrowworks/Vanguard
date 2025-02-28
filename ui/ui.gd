@@ -5,9 +5,3 @@ func _on_pistol_state_updated(new_state: String) -> void:
 
 func _on_pistol_weapon_ready(mag: int, ammo: int) -> void:
 	%AmmoLabel.text = "Ammo: " + str(mag) + "/" + str(ammo)
-
-func _on_pistol_weapon_shot(mag: int, ammo: int) -> void:
-	%AmmoLabel.text = "Ammo: " + str(mag) + "/" + str(ammo)
-
-func _on_pistol_weapon_reloaded(mag: int, ammo: int) -> void:
-	%AmmoLabel.text = "Ammo: " + str(mag) + "/" + str(ammo)
