@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjuweh32idvkx"]
+[gd_scene load_steps=4 format=3 uid="uid://cjuweh32idvkx"]
 
 [ext_resource type="Script" path="res://test_scene/test.gd" id="1_jlb5m"]
 [ext_resource type="PackedScene" uid="uid://cdg3qi6f4n7vf" path="res://weapons/pistol/pistol.tscn" id="2_tf4ak"]
+[ext_resource type="PackedScene" uid="uid://dj8ehpa0iwbtd" path="res://debugger/debugger.tscn" id="3_vwx20"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_jlb5m")
@@ -36,6 +37,8 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "State: READY"
 horizontal_alignment = 1
+
+[node name="Debugger" parent="." instance=ExtResource("3_vwx20")]
 
 [connection signal="state_updated" from="Pistol" to="." method="_on_pistol_state_updated"]
 [connection signal="weapon_ready" from="Pistol" to="." method="_on_pistol_weapon_ready"]
