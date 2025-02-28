@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://test_scene/test.gd" id="1_jlb5m"]
 [ext_resource type="PackedScene" uid="uid://cdg3qi6f4n7vf" path="res://weapons/pistol/pistol.tscn" id="2_tf4ak"]
-[ext_resource type="PackedScene" uid="uid://dj8ehpa0iwbtd" path="res://debugger/debugger.tscn" id="3_vwx20"]
+[ext_resource type="PackedScene" uid="uid://mn3e8u2h6qhq" path="res://ui/ui.tscn" id="3_0233u"]
+[ext_resource type="PackedScene" uid="uid://dj8ehpa0iwbtd" path="res://debugger/debugger.tscn" id="4_vwx20"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_jlb5m")
@@ -10,37 +11,7 @@ script = ExtResource("1_jlb5m")
 [node name="Pistol" parent="." instance=ExtResource("2_tf4ak")]
 position = Vector2(553, 331)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" parent="." instance=ExtResource("3_0233u")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -119.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/separation = 25
-
-[node name="AmmoLabel" type="Label" parent="UI/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Ammo: 0/0"
-horizontal_alignment = 1
-
-[node name="StateLabel" type="Label" parent="UI/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "State: READY"
-horizontal_alignment = 1
-
-[node name="Debugger" parent="." instance=ExtResource("3_vwx20")]
-
-[connection signal="state_updated" from="Pistol" to="." method="_on_pistol_state_updated"]
-[connection signal="weapon_ready" from="Pistol" to="." method="_on_pistol_weapon_ready"]
-[connection signal="weapon_reloaded" from="Pistol" to="." method="_on_pistol_weapon_reloaded"]
-[connection signal="weapon_shot" from="Pistol" to="." method="_on_pistol_weapon_shot"]
+[connection signal="state_updated" from="Pistol" to="UI" method="_on_pistol_state_updated"]
+[connection signal="weapon_ready" from="Pistol" to="UI" method="_on_pistol_weapon_ready"]
