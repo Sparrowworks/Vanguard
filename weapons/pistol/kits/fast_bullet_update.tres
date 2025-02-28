@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://blueprints/kit/ranged_emission_kit.gd" id="3_4m5mt"]
 
 [resource]
+resource_name = "fast_bullet"
 script = ExtResource("3_4m5mt")
 new_projectile = ExtResource("2_rorue")
 new_field = ExtResource("1_pwxaj")
