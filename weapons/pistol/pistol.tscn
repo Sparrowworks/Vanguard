@@ -12,7 +12,3 @@ script = ExtResource("1_mpj23")
 base_stats = ExtResource("2_nv260")
 field = ExtResource("2_2gra5")
 projectile = ExtResource("3_xdnxl")
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
