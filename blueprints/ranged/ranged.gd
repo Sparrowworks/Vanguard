@@ -142,7 +142,7 @@ var current_mag:int
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
 ## the method will exit without reloading.
 func reload() -> void:
-	if (current_mag == mag_size && current_ammo == 0 || current_state != WEAPON_STATE.READY):
+	if (current_mag == mag_size || current_ammo == 0 || current_state != WEAPON_STATE.READY):
 		return
 
 	current_state = WEAPON_STATE.RELOADING
