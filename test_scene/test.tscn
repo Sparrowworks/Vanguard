@@ -39,5 +39,3 @@ horizontal_alignment = 1
 
 [connection signal="state_updated" from="Pistol" to="." method="_on_pistol_state_updated"]
 [connection signal="weapon_ready" from="Pistol" to="." method="_on_pistol_weapon_ready"]
-[connection signal="weapon_reloaded" from="Pistol" to="." method="_on_pistol_weapon_reloaded"]
-[connection signal="weapon_shot" from="Pistol" to="." method="_on_pistol_weapon_shot"]
