@@ -53,7 +53,6 @@ var current_state:int = WEAPON_STATE.READY:
 		current_state = val
 		state_updated.emit(enum_to_str(current_state))
 
-
 enum WEAPON_STATE {
 	## The weapon is ready to fire or reload.
 	READY = 1,
@@ -195,7 +194,6 @@ func has_stat_kit(kit: RangedStatKit) -> bool:
 			return true
 
 	return false
-
 
 ## Changes the weapon's emissions, null variables will be ignored.
 func equip_emission_kit(kit:RangedEmissionKit) -> void:
