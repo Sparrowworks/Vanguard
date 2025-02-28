@@ -7,8 +7,6 @@ extends Node2D
 ## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
-signal state_updated(new_state: String)
-
 ## The maximum number of rounds that can be held in the weapon's magazine.
 var mag_size:int
 ## The total amount of ammunition available for the weapon.
@@ -46,15 +44,26 @@ var fire_rate:float
 ## Slot for projectile
 @export var projectile:PackedScene
 
+## Emitted when current_state is changed
+signal state_updated(new_state: String)
+
 ## Represents the current state of the weapon.
 ## It can be one of three states defined in the WEAPON_STATE enum.
-var current_state:int = WEAPON_STATE.READY:
+var current_state:int = WEAPON_STATE.INITIALIZE:
 	set(val):
 		current_state = val
 		state_updated.emit(enum_to_str(current_state))
 
+		match current_state:
+			WEAPON_STATE.READY: weapon_ready.emit(current_mag, current_ammo)
+			WEAPON_STATE.SHOOTING: weapon_firing.emit()
+			WEAPON_STATE.RELOADING: weapon_reloading.emit()
+			_: print("Invalid state: %s" %[current_state])
+
 
 enum WEAPON_STATE {
+	## The weapon system is being initialized
+	INITIALIZE = 0,
 	## The weapon is ready to fire or reload.
 	READY = 1,
 	## The weapon is firing.
@@ -73,12 +82,10 @@ enum FIRING_MODE {
 ## Emitted when the weapon is ready to shoot or reload.
 ## It Provides information about the current magazine and ammunition count.
 signal weapon_ready(mag:int, ammo:int)
-## Emitted when the weapon has finished shooting.
-## It provides information about the current magazine count.
-signal weapon_shot(mag:int, ammo:int)
-## Emitted when the weapon has finished reloading
-## It provides information about the current magazine and ammunition count.
-signal weapon_reloaded(mag:int, ammo:int)
+## Emitted when the weapon has started shooting.
+signal weapon_firing()
+## Emitted when the weapon has started reloading
+signal weapon_reloading()
 ## Emitted when a stat kit has been equipped.
 ## It provides information about the equipped stat kit.
 signal stat_kit_equipped(kit:RangedStatKit)
@@ -111,7 +118,8 @@ func _ready() -> void:
 	if (projectile == null):
 		printerr("Undefined Projectile")
 		return
-	weapon_ready.emit(current_mag, current_ammo)
+
+	current_state = WEAPON_STATE.READY
 
 ## The shoot() method is responsible for handling the firing mechanism of the weapon.
 ## If there is no ammunition, it will reload.
@@ -131,7 +139,6 @@ func shoot() -> void:
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
-	weapon_shot.emit(current_mag, current_ammo)
 
 	ranged_timer.start()
 
@@ -159,7 +166,6 @@ func reload() -> void:
 	var ammo_to_load = min(mag_size - current_mag, current_ammo)
 	current_ammo -= ammo_to_load
 	current_mag += ammo_to_load
-	weapon_reloaded.emit(current_mag, current_ammo)
 
 	ranged_timer.start()
 
@@ -253,4 +259,3 @@ func _string_to_enum(value:String) -> int:
 func _on_timer_timeout() -> void:
 	print("timer ended")
 	current_state = WEAPON_STATE.READY
-	weapon_ready.emit(current_mag, current_ammo)
