@@ -1,22 +1,23 @@
 extends Node
 
-@onready var pistol:Ranged = $"../Pistol" 
+@onready var ranged_list : Array[Node] = get_tree().get_nodes_in_group("ranged")
 
 func _ready() -> void:
-	connect_signals()
+	connect_signals(ranged_list)
 	print("Debugger ready")
 
-func connect_signals() -> void:
-	pistol.weapon_ready.connect(debug_weapon_ready)
-	pistol.weapon_firing.connect(debug_weapon_firing)
-	pistol.weapon_reloading.connect(debug_weapon_reloading)
-	pistol.state_updated.connect(debug_state_updated)
-	pistol.stat_kit_equipped.connect(debug_stat_kit_equipped)
-	pistol.stat_kit_unequipped.connect(debug_stat_kit_unequipped)
-	pistol.emission_kit_equipped.connect(debug_emission_kit_equipped)
-	pistol.reload_mode_changed.connect(debug_reload_mode_changed)
-	pistol.firing_mode_changed.connect(debug_firing_mode_changed)
-	pistol.ranged_timer.timeout.connect(debug_pistol_timeout)
+func connect_signals(ranged_weapons:Array[Node]) -> void:
+	for ranged in ranged_weapons:
+		ranged.weapon_ready.connect(debug_weapon_ready)
+		ranged.weapon_firing.connect(debug_weapon_firing)
+		ranged.weapon_reloading.connect(debug_weapon_reloading)
+		ranged.state_updated.connect(debug_state_updated)
+		ranged.stat_kit_equipped.connect(debug_stat_kit_equipped)
+		ranged.stat_kit_unequipped.connect(debug_stat_kit_unequipped)
+		ranged.emission_kit_equipped.connect(debug_emission_kit_equipped)
+		ranged.reload_mode_changed.connect(debug_reload_mode_changed)
+		ranged.firing_mode_changed.connect(debug_firing_mode_changed)
+		ranged.ranged_timer.timeout.connect(debug_ranged_weapons_timeout)
 
 func debug_weapon_ready(mag:int, ammo:int) -> void:
 	print("Weapon ready! Mag: %d, Ammo: %d" % [mag,ammo])
@@ -62,5 +63,5 @@ func debug_reload_mode_changed(old_reload_mode:int, new_reload_mode:int) -> void
 func debug_firing_mode_changed(old_firing_mode:int, new_firing_mode:int) -> void:
 	print("Firing mode changed from %d to %d" % [old_firing_mode, new_firing_mode])
 
-func debug_pistol_timeout() -> void:
+func debug_ranged_weapons_timeout() -> void:
 	print("Timer ended")
