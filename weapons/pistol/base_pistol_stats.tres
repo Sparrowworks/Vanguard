@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RangedStatKit" load_steps=2 format=3 uid="uid://6kstk7m6ja3s"]
 
-[ext_resource type="Script" path="res://blueprints/kit/ranged_stat_kit.gd" id="1_vjv2v"]
+[ext_resource type="Script" uid="uid://b2638got4cc3t" path="res://blueprints/kit/ranged_stat_kit.gd" id="1_vjv2v"]
 
 [resource]
 script = ExtResource("1_vjv2v")

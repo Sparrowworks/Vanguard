@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjuweh32idvkx"]
 
-[ext_resource type="Script" path="res://test_scene/test.gd" id="1_jlb5m"]
+[ext_resource type="Script" uid="uid://g3ttdpvmtai" path="res://test_scene/test.gd" id="1_jlb5m"]
 [ext_resource type="PackedScene" uid="uid://cdg3qi6f4n7vf" path="res://weapons/pistol/pistol.tscn" id="2_tf4ak"]
 [ext_resource type="PackedScene" uid="uid://mn3e8u2h6qhq" path="res://ui/ui.tscn" id="3_0233u"]
 

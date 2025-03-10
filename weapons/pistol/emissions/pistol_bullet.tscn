@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3e6i42bqdrf2"]
 
-[ext_resource type="Script" path="res://weapons/pistol/emissions/pistol_bullet.gd" id="1_c338n"]
+[ext_resource type="Script" uid="uid://dh1xlqypp0cfv" path="res://weapons/pistol/emissions/pistol_bullet.gd" id="1_c338n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6qaq"]
 
