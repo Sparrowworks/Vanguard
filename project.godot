@@ -12,12 +12,16 @@ config_version=5
 
 config/name="Vanguard"
 run/main_scene="res://test_scene/test.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Vanguard"
+
+[global_group]
+
+ranged=""
 
 [input]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://doqbqxslfj3d5"]
 
-[ext_resource type="Script" path="res://blueprints/ranged/ranged.gd" id="1_yrano"]
+[ext_resource type="Script" uid="uid://dlwk1kya7qm4s" path="res://blueprints/ranged/ranged.gd" id="1_yrano"]
 [ext_resource type="Resource" uid="uid://co6gi2wyfcial" path="res://blueprints/kit/ranged_stat_kit.tres" id="2_e6m1x"]
 
 [node name="Ranged" type="Node2D"]

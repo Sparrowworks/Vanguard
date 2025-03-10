@@ -60,7 +60,6 @@ var current_state:int = WEAPON_STATE.INITIALIZE:
 			WEAPON_STATE.RELOADING: weapon_reloading.emit()
 			_: print("Invalid state: %s" %[current_state])
 
-
 enum WEAPON_STATE {
 	## The weapon system is being initialized
 	INITIALIZE = 0,
@@ -134,7 +133,6 @@ func shoot() -> void:
 		return
 
 	current_state = WEAPON_STATE.SHOOTING
-	print("Fire rate: " + str(fire_rate))
 	ranged_timer.wait_time = fire_rate
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
@@ -157,7 +155,6 @@ func reload() -> void:
 		return
 
 	current_state = WEAPON_STATE.RELOADING
-	print('started reloading')
 	if (current_mag == 0):
 		ranged_timer.wait_time = reload_time + reload_time_empty
 	else:
@@ -185,7 +182,6 @@ func equip_stat_kit(kit:RangedStatKit) -> void:
 	fire_rate = fire_rate + kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else fire_rate
 
 	stat_kit_equipped.emit(kit)
-	prints("Equiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 ## Reverses the changes made by equip_kit
 func unequip_stat_kit(kit:RangedStatKit) -> void:
@@ -197,7 +193,6 @@ func unequip_stat_kit(kit:RangedStatKit) -> void:
 	fire_rate -= kit.fire_rate_modifier
 
 	stat_kit_unequipped.emit(kit)
-	prints("Unequiped: ", kit.kit_name, mag_size, max_ammo, reload_time, reload_time_empty, fire_rate)
 
 func has_stat_kit(kit: RangedStatKit) -> bool:
 	for kit_equipped in equipped_kits:
@@ -205,7 +200,6 @@ func has_stat_kit(kit: RangedStatKit) -> bool:
 			return true
 
 	return false
-
 
 ## Changes the weapon's emissions, null variables will be ignored.
 func equip_emission_kit(kit:RangedEmissionKit) -> void:
@@ -257,5 +251,4 @@ func _string_to_enum(value:String) -> int:
 	return 0
 
 func _on_timer_timeout() -> void:
-	print("timer ended")
 	current_state = WEAPON_STATE.READY
