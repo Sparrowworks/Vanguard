@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdg3qi6f4n7vf"]
 
-[ext_resource type="Script" path="res://weapons/pistol/pistol.gd" id="1_mpj23"]
+[ext_resource type="Script" uid="uid://b4wnayamtohrw" path="res://weapons/pistol/pistol.gd" id="1_mpj23"]
 [ext_resource type="PackedScene" uid="uid://dmge3gix20vuv" path="res://weapons/pistol/emissions/pistol_noise.tscn" id="2_2gra5"]
 [ext_resource type="Resource" uid="uid://6kstk7m6ja3s" path="res://weapons/pistol/base_pistol_stats.tres" id="2_nv260"]
 [ext_resource type="PackedScene" uid="uid://b3e6i42bqdrf2" path="res://weapons/pistol/emissions/pistol_bullet.tscn" id="3_xdnxl"]
