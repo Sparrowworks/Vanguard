@@ -11,7 +11,7 @@ class_name Melee extends Node2D
 	set(val):
 		if val:
 			attack_rate = val.attack_rate
-			recovery_time = val.recovery_time
+			recovery_rate = val.recovery_time
 			base_stats = val
 
 @export_group("Melee Emissions")
@@ -21,7 +21,7 @@ class_name Melee extends Node2D
 @export var projectile:PackedScene
 
 var attack_rate:int
-var recovery_time:int
+var recovery_rate:int
 
 ## Emitted when current_state is changed
 signal state_updated()
@@ -88,7 +88,7 @@ func recover() -> void:
 		return
 
 	current_state = WEAPON_STATE.RECOVERING
-	ranged_timer.wait_time = recovery_time
+	ranged_timer.wait_time = recovery_rate
 	ranged_timer.start()
 
 ## A list containing the names of currently equipped modifications
@@ -101,7 +101,7 @@ func equip_stat_kit(kit:MeleeStatKit) -> void:
 
 	equipped_kits.append(kit.kit_name)
 	attack_rate += kit.attack_rate if kit.attack_rate_modifier != 0 else attack_rate
-	recovery_time += kit.recovery_rate_modifier if kit.recovery_rate_modifier !=0 else recovery_time
+	recovery_rate += kit.recovery_rate_modifier if kit.recovery_rate_modifier !=0 else recovery_rate
 
 	stat_kit_equipped.emit(kit)
 
@@ -109,7 +109,7 @@ func equip_stat_kit(kit:MeleeStatKit) -> void:
 func unequip_stat_kit(kit:MeleeStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
 	attack_rate -= kit.attack_rate_modifier
-	recovery_time -= kit.recovery_rate_modifier
+	recovery_rate -= kit.recovery_rate_modifier
 
 	stat_kit_unequipped.emit(kit)
 
