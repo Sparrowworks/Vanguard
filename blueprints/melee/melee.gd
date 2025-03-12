@@ -42,7 +42,7 @@ enum WEAPON_STATE {
 	RECOVERING = 3,
 }
 
-## Used to manage delays between firing and reloading actions.
+## Manages delays between attacking and recovery actions.
 ## Sets current weapon state to READY when it timesout.
 var ranged_timer:Timer
 func _init() -> void:
@@ -51,9 +51,8 @@ func _init() -> void:
 	add_child(ranged_timer)
 	ranged_timer.timeout.connect(_on_weapon_timer_timeout)
 
-## The shoot() method is responsible for handling the firing mechanism of the weapon.
-## If there is no ammunition, it will reload.
-## If the weapon is currently firing or reloading, it exits without firing.
+## Handles the weapon's attacking mechanism.
+## If the weapon is currently attacking or recovering, it exits without attacking.
 func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -62,6 +61,8 @@ func attack() -> void:
 	ranged_timer.wait_time = attack_rate
 	ranged_timer.start()
 
+## Handles the weapon's recovery mechanism.
+## If the weapon is currently attacking or recovering, it exits without recovering.
 func recover() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
