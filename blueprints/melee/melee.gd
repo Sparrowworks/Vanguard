@@ -20,8 +20,8 @@ class_name Melee extends Node2D
 ## Slot for projectile
 @export var projectile:PackedScene
 
-var attack_rate:int
-var recovery_rate:int
+var attack_rate:float
+var recovery_rate:float
 
 ## Emitted when current_state is changed
 signal state_updated()
