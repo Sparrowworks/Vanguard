@@ -1,5 +1,11 @@
 class_name Melee extends Node2D
 
+## Base class for melee weapons
+##
+## The Melee class represents a weapon system in a 2D game using Godot's Node structure.
+## It manages weapon stats such as "INSERT NO DOCUMENTATION HERE".
+## This class is designed to handle various weapon functionalities, including attacking and recovering.
+
 ## Emitted when current_state is changed
 signal state_updated()
 ## Emitted when current_state is ready
