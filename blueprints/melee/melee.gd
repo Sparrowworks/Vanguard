@@ -20,7 +20,9 @@ class_name Melee extends Node2D
 ## Slot for projectile
 @export var projectile:PackedScene
 
+## The time it takes in Milliseconds to be in the attacking phase
 var attack_rate:float
+## The time it takes in Milliseconds to be in the recovery phase
 var recovery_rate:float
 
 ## Emitted when current_state is changed
