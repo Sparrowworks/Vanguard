@@ -52,7 +52,7 @@ signal state_updated(new_state: String)
 var current_state:int = WEAPON_STATE.INITIALIZE:
 	set(val):
 		current_state = val
-		state_updated.emit(enum_to_str(current_state))
+		state_updated.emit(_enum_to_str(current_state))
 
 		match current_state:
 			WEAPON_STATE.READY: weapon_ready.emit(current_mag, current_ammo)
@@ -229,7 +229,7 @@ func change_modes(mode:String, new_mode:String) -> void:
 		_:
 			printerr("Invalid mode")
 
-func enum_to_str(state: int) -> String:
+func _enum_to_str(state: int) -> String:
 	match state:
 		1:
 			return "READY"
