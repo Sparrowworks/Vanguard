@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://wrrqbqhc88eu"]
+[gd_scene load_steps=3 format=3 uid="uid://wrrqbqhc88eu"]
 
 [ext_resource type="Script" uid="uid://cgh8jvecwxj7q" path="res://blueprints/melee/melee.gd" id="1_6y1g6"]
+[ext_resource type="Resource" uid="uid://dh5q417mn01qw" path="res://blueprints/kit/melee_stat_kit.tres" id="2_8e8ik"]
 
 [node name="Melee" type="Node2D"]
 script = ExtResource("1_6y1g6")
+base_stats = ExtResource("2_8e8ik")
