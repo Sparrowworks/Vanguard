@@ -1,10 +1,16 @@
 class_name Melee extends Node2D
 
+## Emitted when current_state is changed
 signal state_updated()
+## Emitted when current_state is ready
 signal weapon_ready()
+## Emitted when current_state is attacking
 signal weapon_attacking()
+## Emitted when current_state is recovering
 signal weapon_recovering()
 
+## Represents the current state of the weapon.
+## It can be one of the states defined in the WEAPON_STATE enum.
 var current_state:int = WEAPON_STATE.INITIALIZE :
 	set(val):
 		current_state = val
