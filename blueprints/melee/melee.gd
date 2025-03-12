@@ -58,10 +58,12 @@ enum WEAPON_STATE {
 	INITIALIZE = 0,
 	## The weapon is ready to attack or recover.
 	READY = 1,
+	## The weapon is charging
+	CHARGING = 2,
 	## The weapon is attacking.
-	ATTACKING = 2,
+	ATTACKING = 3,
 	## The weapon is recovering.
-	RECOVERING = 3,
+	RECOVERING = 4,
 }
 
 ## Manages delays between attacking and recovery actions.
@@ -141,11 +143,15 @@ func _on_weapon_timer_timeout() -> void:
 
 func _enum_to_str(state: int) -> String:
 	match state:
+		0:
+			return "INITILIAZING"
 		1:
 			return "READY"
 		2:
-			return "SHOOTING"
+			return "CHARGING"
 		3:
-			return "RELOADING"
+			return "ATTACKING"
+		4:
+			return "RECOVERING"
 		_:
 			return "ERROR"
