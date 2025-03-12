@@ -66,8 +66,8 @@ enum WEAPON_STATE {
 	RECOVERING = 4,
 }
 
-## Manages delays between attacking and recovery actions.
-## Sets current weapon state to READY when it timesout.
+## Manages delays between weapon states.
+## Sets current_state to READY when it timesout.
 var weapon_timer:Timer
 func _init() -> void:
 	weapon_timer = Timer.new()
