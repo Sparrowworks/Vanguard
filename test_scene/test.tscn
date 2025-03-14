@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjuweh32idvkx"]
+[gd_scene load_steps=4 format=3 uid="uid://cjuweh32idvkx"]
 
 [ext_resource type="Script" uid="uid://g3ttdpvmtai" path="res://test_scene/test.gd" id="1_jlb5m"]
 [ext_resource type="PackedScene" uid="uid://b1rp4j7j1tgyd" path="res://test_scene/test_ranged/test_ranged.tscn" id="2_x35se"]
+[ext_resource type="PackedScene" uid="uid://ptbwg1yjgrlt" path="res://test_scene/test_melee/test_melee.tscn" id="3_h4gmi"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_jlb5m")
 
 [node name="TestRanged" parent="." instance=ExtResource("2_x35se")]
+visible = false
+
+[node name="TestMelee" parent="." instance=ExtResource("3_h4gmi")]
+visible = false

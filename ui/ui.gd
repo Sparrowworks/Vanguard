@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var ranged_weapon:Node2D = get_parent()
 
