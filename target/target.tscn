@@ -5,10 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymib0"]
 size = Vector2(165, 89)
 
-[node name="Target" type="Area2D"]
+[node name="Target" type="Area2D" groups=["hurtbox"]]
 script = ExtResource("1_gdpld")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["hurtbox"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(73.5, 37.5)
 shape = SubResource("RectangleShape2D_ymib0")
 
