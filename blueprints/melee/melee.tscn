@@ -44,7 +44,7 @@ base_stats = ExtResource("2_8e8ik")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8e8ik")
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["hurtbox"]]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
