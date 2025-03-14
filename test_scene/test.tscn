@@ -5,6 +5,13 @@
 [node name="Test" type="Node2D"]
 script = ExtResource("1_jlb5m")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 175.0
+offset_top = 6.0
+offset_right = 460.0
+offset_bottom = 29.0
+text = "<-- Switch using this :D"
+
 [node name="OptionButton" type="OptionButton" parent="."]
 offset_right = 153.0
 offset_bottom = 27.0
@@ -13,12 +20,5 @@ popup/item_0/text = "Ranged"
 popup/item_0/id = 0
 popup/item_1/text = "Melee"
 popup/item_1/id = 1
-
-[node name="Label" type="Label" parent="."]
-offset_left = 175.0
-offset_top = 6.0
-offset_right = 460.0
-offset_bottom = 29.0
-text = "<-- Switch using this :D"
 
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
