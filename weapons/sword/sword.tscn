@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dspkpsooyhemj"]
+[gd_scene load_steps=7 format=3 uid="uid://dspkpsooyhemj"]
 
+[ext_resource type="Script" uid="uid://f48ev63dr8lx" path="res://weapons/sword/sword.gd" id="1_304gn"]
 [ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://weapons/sword/sword.png" id="1_w1idm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1idm"]
@@ -67,6 +68,7 @@ _data = {
 }
 
 [node name="Sword" type="Area2D"]
+script = ExtResource("1_304gn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(247, -10)
