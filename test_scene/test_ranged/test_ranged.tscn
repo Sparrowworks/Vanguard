@@ -11,6 +11,10 @@
 position = Vector2(553, 331)
 
 [node name="UI" parent="Pistol" instance=ExtResource("2_dqj7r")]
+offset_left = 616.0
+offset_top = 331.0
+offset_right = 616.0
+offset_bottom = 331.0
 
 [node name="Debugger" parent="." instance=ExtResource("3_vtnsh")]
 
