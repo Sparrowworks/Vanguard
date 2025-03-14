@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://t2l2xikeni17" path="res://ui/ui.gd" id="1_fghyb"]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_fghyb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
