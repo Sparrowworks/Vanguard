@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dh5q417mn01qw"]
+
+[ext_resource type="Script" uid="uid://c2t56wisym3j2" path="res://blueprints/kit/melee_stat_kit.gd" id="1_boxnp"]
+
+[resource]
+script = ExtResource("1_boxnp")
+attack_rate = 0
+recovery_rate = 0
