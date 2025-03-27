@@ -1,50 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://wrrqbqhc88eu"]
+[gd_scene load_steps=5 format=3 uid="uid://wrrqbqhc88eu"]
 
-[ext_resource type="Script" uid="uid://cgh8jvecwxj7q" path="res://blueprints/melee/melee.gd" id="1_6y1g6"]
-[ext_resource type="Resource" uid="uid://dh5q417mn01qw" path="res://blueprints/kit/melee_stat_kit.tres" id="2_8e8ik"]
+[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://blueprints/hitbox/hitbox.gd" id="1_6y1g6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e8ik"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y1g6"]
+size = Vector2(108, 93)
 
 [sub_resource type="Animation" id="Animation_8e8ik"]
 resource_name = "melee"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swogp"]
 _data = {
 &"melee": SubResource("Animation_8e8ik")
 }
 
-[node name="Melee" type="Area2D"]
+[node name="Melee" type="Sprite2D"]
+
+[node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("1_6y1g6")
-base_stats = ExtResource("2_8e8ik")
+metadata/_custom_type_script = "uid://dlglmeqyeuca5"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8e8ik")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(44, 36.5)
+shape = SubResource("RectangleShape2D_6y1g6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

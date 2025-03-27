@@ -66,14 +66,8 @@ enum WEAPON_STATE {
 	RECOVERING = 4,
 }
 
-## Manages delays between weapon states.
-## Sets current_state to READY when it timesout.
-var weapon_timer:Timer
 func _init() -> void:
-	weapon_timer = Timer.new()
-	weapon_timer.one_shot = true
-	add_child(weapon_timer)
-	weapon_timer.timeout.connect(_on_weapon_timer_timeout)
+	pass
 
 ## Handles the weapon's attacking mechanism.
 ## If the weapon is currently attacking or recovering, it exits without attacking.
@@ -82,8 +76,6 @@ func attack() -> void:
 		return
 
 	current_state = WEAPON_STATE.ATTACKING
-	weapon_timer.wait_time = attack_rate
-	weapon_timer.start()
 
 ## Handles the weapon's recovery mechanism.
 ## If the weapon is currently attacking or recovering, it exits without recovering.
@@ -92,8 +84,6 @@ func recover() -> void:
 		return
 
 	current_state = WEAPON_STATE.RECOVERING
-	weapon_timer.wait_time = recovery_rate
-	weapon_timer.start()
 
 ## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
@@ -137,9 +127,6 @@ func equip_emission_kit(kit:RangedEmissionKit) -> void:
 		print("Null field detected, New field rejected...")
 
 	emission_kit_equipped.emit(kit)
-
-func _on_weapon_timer_timeout() -> void:
-	current_state = WEAPON_STATE.READY
 
 func _enum_to_str(state: int) -> String:
 	match state:

@@ -1,5 +1,5 @@
 class_name Projectile
-extends Area2D
+extends Hitbox
 
 ## The base class for all damage-causing object-destroying projectiles
 ##
