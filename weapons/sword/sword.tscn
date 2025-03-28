@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dspkpsooyhemj"]
+
+[ext_resource type="Script" uid="uid://f48ev63dr8lx" path="res://weapons/sword/sword.gd" id="1_304gn"]
+[ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://weapons/sword/sword.png" id="1_w1idm"]
+[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://blueprints/hitbox/hitbox.gd" id="3_kg2df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg2df"]
+size = Vector2(301, 272)
+
+[sub_resource type="Animation" id="Animation_304gn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_w1idm"]
+resource_name = "sword_attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.57889, 1.57889, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kg2df"]
+_data = {
+&"RESET": SubResource("Animation_304gn"),
+&"sword_attack": SubResource("Animation_w1idm")
+}
+
+[node name="Sword" type="Sprite2D"]
+texture = ExtResource("1_w1idm")
+script = ExtResource("1_304gn")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_kg2df")
+metadata/_custom_type_script = "uid://dlglmeqyeuca5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(82.5, -77)
+shape = SubResource("RectangleShape2D_kg2df")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kg2df")
+}
