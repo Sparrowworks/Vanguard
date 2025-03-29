@@ -17,6 +17,7 @@ func _init() -> void:
 func _ready() -> void:
 	area_entered.connect(on_hurtbox_entered)
 
+## Defines what the hurtbox should do when it detects a hitbox
 func on_hurtbox_entered(hitbox: Hitbox) -> void:
 	if hitbox == null:
 		return
