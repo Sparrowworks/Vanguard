@@ -6,4 +6,3 @@ var hitbox_mask:int = 0
 func _init() -> void:
 	collision_layer = hitbox_layer
 	collision_mask = hitbox_mask
-	
