@@ -15,9 +15,9 @@ func _init() -> void:
 	collision_mask = hurtbox_mask
 
 func _ready() -> void:
-	area_entered.connect(_on_hurtbox_entered)
+	area_entered.connect(on_hurtbox_entered)
 
-func _on_hurtbox_entered(hitbox: Hitbox) -> void:
+func on_hurtbox_entered(hitbox: Hitbox) -> void:
 	if hitbox == null:
 		return
 
