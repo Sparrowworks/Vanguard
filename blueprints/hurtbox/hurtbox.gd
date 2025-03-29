@@ -1,6 +1,13 @@
 class_name Hurtbox extends Area2D
 
+## Class for the detection of [Hitbox]
+##
+## Whatever you have assigned as [member Hitbox.hitbox_layer] [u]must be[/u] 
+## used for [member Hurtbox.hurtbox_mask] to run detection logic
+
+## [member CollisionObject2D.collision_layer] used to be detected by [member CollisionObject2D.collision_mask]
 var hurtbox_layer:int = 0
+## [member CollisionObject2D.collision_mask] used to detect [member CollisionObject2D.collision_layer]
 var hurtbox_mask:int = 2
 
 func _init() -> void:
