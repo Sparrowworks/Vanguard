@@ -1,5 +1,4 @@
-class_name Ranged
-extends Node2D
+class_name Ranged extends Weapon
 
 ## Base class for ranged weapons
 ##
@@ -44,33 +43,6 @@ var fire_rate:float
 ## Slot for projectile
 @export var projectile:PackedScene
 
-## Emitted when current_state is changed
-signal state_updated(new_state: String)
-
-## Represents the current state of the weapon.
-## It can be one of three states defined in the WEAPON_STATE enum.
-var current_state:int = WEAPON_STATE.INITIALIZE:
-	set(val):
-		current_state = val
-		state_updated.emit(_enum_to_str(current_state))
-
-		match current_state:
-			WEAPON_STATE.READY: weapon_ready.emit(current_mag, current_ammo)
-			WEAPON_STATE.SHOOTING: weapon_firing.emit()
-			WEAPON_STATE.RELOADING: weapon_reloading.emit()
-			_: print("Invalid state: %s" %[current_state])
-
-enum WEAPON_STATE {
-	## The weapon system is being initialized
-	INITIALIZE = 0,
-	## The weapon is ready to fire or reload.
-	READY = 1,
-	## The weapon is firing.
-	SHOOTING = 2,
-	## The weapon is reloading
-	RELOADING = 3,
-}
-
 ## @experimental: This has 0 internal functionality
 enum FIRING_MODE {
 	AUTO,
@@ -78,13 +50,6 @@ enum FIRING_MODE {
 	BURST,
 }
 
-## Emitted when the weapon is ready to shoot or reload.
-## It Provides information about the current magazine and ammunition count.
-signal weapon_ready(mag:int, ammo:int)
-## Emitted when the weapon has started shooting.
-signal weapon_firing()
-## Emitted when the weapon has started reloading
-signal weapon_reloading()
 ## Emitted when a stat kit has been equipped.
 ## It provides information about the equipped stat kit.
 signal stat_kit_equipped(kit:RangedStatKit)
@@ -101,15 +66,6 @@ signal reload_mode_changed(old_reload_mode:int, new_reload_mode:int)
 ## It provides information about the old and new firing modes.
 signal firing_mode_changed(old_firing_mode:int, new_firing_mode:int)
 
-## Used to manage delays between firing and reloading actions.
-## Sets current weapon state to READY when it timesout.
-var ranged_timer:Timer
-func _init() -> void:
-	ranged_timer = Timer.new()
-	ranged_timer.one_shot = true
-	add_child(ranged_timer)
-	ranged_timer.timeout.connect(_on_timer_timeout)
-
 func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
@@ -123,22 +79,12 @@ func _ready() -> void:
 ## The shoot() method is responsible for handling the firing mechanism of the weapon.
 ## If there is no ammunition, it will reload.
 ## If the weapon is currently firing or reloading, it exits without firing.
-func shoot() -> void:
-	if (current_state != WEAPON_STATE.READY):
-		return
+func attack() -> void:
+	super.attack()
 
-	if (current_mag == 0):
-		if (is_weapon_automatic):
-			reload()
-		return
-
-	current_state = WEAPON_STATE.SHOOTING
-	ranged_timer.wait_time = fire_rate
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
-
-	ranged_timer.start()
 
 ## The current amount of ammunition available for use.
 ## Decreases when reloading based on magazine size and available ammo.
@@ -150,21 +96,21 @@ var current_mag:int
 ## The reload() method is responsible for reloading the weapon's magazine with ammunition.
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
 ## the method will exit without reloading.
-func reload() -> void:
-	if (current_mag == mag_size || current_ammo == 0 || current_state != WEAPON_STATE.READY):
+func recover() -> void:
+	if (current_state != WEAPON_STATE.READY):
 		return
 
-	current_state = WEAPON_STATE.RELOADING
+	current_state = WEAPON_STATE.RECOVERING
 	if (current_mag == 0):
-		ranged_timer.wait_time = reload_time + reload_time_empty
+		weapon_timer.wait_time = reload_time + reload_time_empty
 	else:
-		ranged_timer.wait_time = reload_time
+		weapon_timer.wait_time = reload_time
 
 	var ammo_to_load = min(mag_size - current_mag, current_ammo)
 	current_ammo -= ammo_to_load
 	current_mag += ammo_to_load
 
-	ranged_timer.start()
+	weapon_timer.start()
 
 ## A list containing the names of currently equipped modifications
 var equipped_kits:Array[String]
@@ -228,17 +174,6 @@ func change_modes(mode:String, new_mode:String) -> void:
 			firing_mode_changed.emit(old_mode, new_mode)
 		_:
 			printerr("Invalid mode")
-
-func _enum_to_str(state: int) -> String:
-	match state:
-		1:
-			return "READY"
-		2:
-			return "SHOOTING"
-		3:
-			return "RELOADING"
-		_:
-			return "ERROR"
 
 func _string_to_enum(value:String) -> int:
 	match value:
