@@ -24,3 +24,7 @@ func on_hurtbox_entered(hitbox: Hitbox) -> void:
 
 	if owner.has_method("take_damage"):
 		owner.take_damage()
+
+# Seems random yes, but the only "hitbox" here with a timer is a projectile
+		if hitbox.has_node("./Timer"):
+			hitbox.queue_free()
