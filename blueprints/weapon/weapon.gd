@@ -6,15 +6,15 @@ class_name Weapon extends Node
 ## [Signal] management and basic [Weapon] functionality.
 
 #region State Machine
-## Emitted when [member current_state] is changed.
+## Emitted when [member current_state] is [b]changed[/b].
 signal state_updated(state: String)
-## Emitted when [member current_state] is ready.
+## Emitted when [member current_state] is [constant READY].
 signal weapon_ready(data: Dictionary)
-## Emitted when [member current_state] is charging.
+## Emitted when [member current_state] is [constant CHARGING].
 signal weapon_charging(data: Dictionary)
-## Emitted when [member current_state] is attacking.
+## Emitted when [member current_state] is [constant ATTACKING].
 signal weapon_attacking(data: Dictionary)
-## Emitted when [member current_state] is refilling.
+## Emitted when [member current_state] is [constant REFILLING].
 signal weapon_refilling(data: Dictionary)
 
 ## A list of possible weapon states, used with [member current_state].
