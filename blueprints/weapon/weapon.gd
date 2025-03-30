@@ -33,7 +33,7 @@ enum WEAPON_STATE {
 
 ## Enables data trasmission over built-in signals through [member current_state],
 ## gets nullified after being emitted.
-## [br]Set it up yourself through any class that extends [Weapon]
+## [br]Set it up yourself through any class that extends [Weapon].
 var collected_data: Dictionary
 
 ## Represents the current state of the [Weapon],
@@ -58,7 +58,7 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 #endregion
 
 #region Initialization logic
-## Used to keep track of how long the [Weapon] stays in one state before resetting to [constant READY]
+## Used to keep track of how long the [Weapon] stays in one state before resetting to [constant READY].
 var weapon_timer: Timer
 
 # Exists so that the user doesn't need to create a timer everytime they make a new weapon!
@@ -116,7 +116,7 @@ func refill() -> void:
 	weapon_timer.start()
 
 ## Governs what happens when the [Weapon] finished an action.
-## Resets to [constant READY]
+## Resets to [constant READY].
 func on_weapon_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
 #endregion
