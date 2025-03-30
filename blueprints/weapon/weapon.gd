@@ -58,7 +58,8 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 #endregion
 
 #region Initialization logic
-## Used to keep track of how long the [Weapon] stays in one state before resetting to [constant READY].
+## Used to keep track of how long the [Weapon] stays in one state 
+## before [code]resetting[/code] to [constant READY].
 var weapon_timer: Timer
 
 # Exists so that the user doesn't need to create a timer everytime they make a new weapon!
@@ -83,7 +84,7 @@ func _ready() -> void:
 @export var refill_rate: float
 
 ## Handles the [Weapon]'s [constant CHARGING] mechanism,
-## It will exits without charging if it's not [constant READY] or [constant CHARGING].
+## [code]Exits[/code] without charging if it's not [constant READY] or [constant CHARGING].
 func charge() -> void:
 	if (current_state != WEAPON_STATE.READY || WEAPON_STATE.CHARGING):
 		return
@@ -96,7 +97,7 @@ func charge() -> void:
 	pass
 
 ## Handles the [Weapon]'s [constant ATTACKING] mechanism,
-## It will exits without [constant ATTACKING] if it's not [constant READY].
+## [code]Exits[/code] without [constant ATTACKING] if it's not [constant READY].
 func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -106,7 +107,7 @@ func attack() -> void:
 	weapon_timer.start()
 
 ## Handles the [Weapon]'s [constant REFILLING] mechanism,
-## It will exits without [constant REFILLING] if it's not [constant READY].
+## [code]Exits[/code] without [constant REFILLING] if it's not [constant READY].
 func refill() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -116,7 +117,7 @@ func refill() -> void:
 	weapon_timer.start()
 
 ## Governs what happens when the [Weapon] finished an action.
-## Resets to [constant READY].
+## [code]Resets[/code] to [constant READY].
 func on_weapon_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
 #endregion
