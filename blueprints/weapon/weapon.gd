@@ -14,8 +14,8 @@ signal weapon_ready(data: Dictionary)
 signal weapon_charging(data: Dictionary)
 ## Emitted when [member current_state] is attacking.
 signal weapon_attacking(data: Dictionary)
-## Emitted when [member current_state] is recovering.
-signal weapon_recovering(data: Dictionary)
+## Emitted when [member current_state] is refilling.
+signal weapon_refilling(data: Dictionary)
 
 ## A list of possible weapon states.
 enum WEAPON_STATE {
@@ -27,8 +27,8 @@ enum WEAPON_STATE {
 	CHARGING = 2,
 	## The [Weapon] is attacking (ex: shooting).
 	ATTACKING = 3,
-	## The [Weapon] is recovering (ex: reloading).
-	RECOVERING = 4,
+	## The [Weapon] is refilling (ex: reloading).
+	REFILLING = 4,
 }
 
 ## Enables data trasmission over built-in signals through [member current_state],
@@ -51,7 +51,7 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 			WEAPON_STATE.READY: weapon_ready.emit(collected_data)
 			WEAPON_STATE.CHARGING: weapon_charging.emit(collected_data)
 			WEAPON_STATE.ATTACKING: weapon_attacking.emit(collected_data)
-			WEAPON_STATE.RECOVERING: weapon_recovering.emit(collected_data)
+			WEAPON_STATE.REFILLING: weapon_refilling.emit(collected_data)
 			_: print("Invalid state: %s" %[current_state])
 
 		collected_data = {}
@@ -104,14 +104,14 @@ func attack() -> void:
 	weapon_timer.wait_time = attack_rate
 	weapon_timer.start()
 
-## Handles the [Weapon]'s [constant RECOVERING] mechanism,
-## It will exits without [constant RECOVERING] if it's not [constant READY].
-func recover() -> void:
+## Handles the [Weapon]'s [constant REFILLING] mechanism,
+## It will exits without [constant REFILLING] if it's not [constant READY].
+func refill() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
 
-	current_state = WEAPON_STATE.RECOVERING
-	weapon_timer.wait_time = recovery_rate
+	current_state = WEAPON_STATE.REFILLING
+	weapon_timer.wait_time = refill_rate
 	weapon_timer.start()
 
 ## Governs what happens when the [Weapon] finished an action.
@@ -134,7 +134,7 @@ func _enum_to_str(state: int) -> String:
 		3:
 			return "ATTACKING"
 		4:
-			return "RECOVERING"
+			return "REFILLING"
 		_:
 			return "ERROR"
 #endregion
