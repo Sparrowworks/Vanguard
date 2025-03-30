@@ -61,11 +61,11 @@ func debug_emission_kit_equipped(kit: RangedEmissionKit) -> void:
 		Name: %s" % [kit.resource_name]
 	)
 
-func debug_refill_mode_changed(old_reload_mode: int, new_reload_mode: int) -> void:
-	print("Reload mode changed from %d to %d" % [old_reload_mode, new_reload_mode])
+func debug_refill_mode_changed(new_reload_mode: int) -> void:
+	print("Reload mode changed to %d" % [new_reload_mode])
 
-func debug_firing_mode_changed(old_firing_mode: int, new_firing_mode: int) -> void:
-	print("Firing mode changed from %d to %d" % [old_firing_mode, new_firing_mode])
+func debug_firing_mode_changed(new_firing_mode: int) -> void:
+	print("Firing mode changed to %d" % [new_firing_mode])
 
 func debug_ranged_weapons_timeout() -> void:
 	print("Timer ended")

@@ -1,27 +1,30 @@
 class_name Ranged extends Weapon
 
-## [Weapon] class catered to [Ranged] weapons
+## [Weapon] class catered to [Ranged] weapons.
 ##
-## The [Ranged] class contains ammunition management, stat & emission modification and 
+## The [Ranged] class contains ammunition management, {RangedStatKit] & [RangedEmissionKit] modification and 
 ## reload + firing mode alteration.
-## [br]It also emits [member current_ammo] and [member current_mag] using [member Weapon.collected_data]
+## [br]It also emits [member current_ammo] and [member current_mag] using [member Weapon.collected_data].
 
 #region Initiliazation logic
 @export_category("Gun Emissions")
-## Slot for field
+## Slot for [Field].
 @export var field: PackedScene
-## Slot for projectile
+## Slot for [Projectile].
 @export var projectile: PackedScene
 
 func _ready() -> void:
+# A while back, i tried doing this outside _ready() while exporting the max values only to fail.
 	current_mag = mag_size
 	current_ammo = max_ammo
 
+# Without this, UI will display "NULL/NULL".
 	collected_data = {
 		"ammo": current_ammo,
 		"mag": current_mag,
 		}
 
+# Prevents any instantiation errors.
 	if (projectile == null):
 		printerr("Undefined Projectile")
 		return
@@ -35,24 +38,25 @@ func _ready() -> void:
 
 #region Ranged functionality
 @export_category("Ranged stats")
-## The maximum number of rounds that can be held in the weapon's magazine.
-@export var max_ammo: int
 ## The total amount of ammunition available for the weapon.
+@export var max_ammo: int
+## The maximum number of rounds that can be held in the weapon's magazine.
 @export var mag_size: int
 ## Addtional time (in milliseconds) it takes to reload the weapon when the magazine is empty.
 @export var refill_rate_empty: float
 
 ## The current amount of ammunition available for use.
-## Decreases when reloading based on magazine size and available ammo.
 var current_ammo: int
+
 ## The number of rounds currently loaded in the weapon's magazine.
-## Decreases with each shot fired and increases during reloading
-## until it reaches its maximum capacity (mag_size).
 var current_mag: int
 
-## The shoot() method is responsible for handling the firing mechanism of the weapon.
-## If there is no ammunition, it will reload.
-## If the weapon is currently firing or reloading, it exits without firing.
+## Overrides [method Weapon.attack]:
+## [br] - [code]Cancels[/code] if the [Weapon] is currently [constant Weapon.ATTACKING] 
+## [code]or[/code] [constant Weapon.REFILLING],
+## [br] - If [member current_ammo] is 0, it will [method refill].
+## [br] - Enters [constant Weapon.ATTACKING], spews [class Projectile], [class Field],
+## deducts [member current_ammo] by 1 and starts [member Weapon.weapon_timer].
 func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -70,9 +74,14 @@ func attack() -> void:
 	current_mag -= 1
 	weapon_timer.start()
 
-## The reload() method is responsible for reloading the weapon's magazine with ammunition.
-## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
-## the method will exit without reloading.
+## Overrides [method Weapon.refill]:
+## [br] - [code]Cancels[/code] if [member current_mag] is [member mag_size]
+## [code]OR[/code] [member current_ammo] is ZERO
+## [code]OR[/code] [member Weapon.current_state] is [constant Weapon.ATTACKING]
+## [code]OR[/code] [member Weapon.RELOADING].
+## [br] - Switches to [constant Weapon.ATTACKING],
+## Deducts the appropriate amount from [member current_ammo] and adds it to [member current_mag],
+## then starts [member Weapon.weapon_timer].
 func refill() -> void:
 	if (current_mag == mag_size || current_ammo == 0 || current_state != WEAPON_STATE.READY):
 		return
@@ -91,16 +100,16 @@ func refill() -> void:
 #endregion
 
 #region Stat kit
-## Emitted when a stat kit has been equipped.
-## It provides information about the equipped stat kit.
+## Emitted when a [RangedStatKit] has been equipped.
 signal stat_kit_equipped(kit: RangedStatKit)
-## Emitted when a stat kit has been unequipped.
-## It provides information about the unequipped stat kit.
+## Emitted when a [RangedStatKit] has been un-equipped.
 signal stat_kit_unequipped(kit: RangedStatKit)
 
-## A list containing the names of currently equipped modifications
+## An [Array] containing the [member RangedStatKit.kit_name] of currently equipped modifications.
 var equipped_kits:Array[String]
-## Modifies weapon stats by providing a kit.
+
+## Uses [method has_stat_kit], Registers [member RangedStatKit.kit_name] in [member equipped_kits],
+## Modifies [Weapon] and [Ranged] stats using a [RangedStatKit] and emits [signal stat_kit_equipped].
 func equip_stat_kit(kit: RangedStatKit) -> void:
 	if has_stat_kit(kit):
 		print("kit already installed")
@@ -115,7 +124,7 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 
 	stat_kit_equipped.emit(kit)
 
-## Reverses the changes made by equip_kit
+## Reverses the changes made by [method equip_stat_kit] and emits [signal stat_kit_unequipped].
 func unequip_stat_kit(kit: RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
 	mag_size -= kit.mag_size_modifier
@@ -126,6 +135,8 @@ func unequip_stat_kit(kit: RangedStatKit) -> void:
 
 	stat_kit_unequipped.emit(kit)
 
+## Checks if the [member RangedStatKit.kit_name] is in [member equipped_arrays],
+## Returns [code]true[/code] or [code]false[/code].
 func has_stat_kit(kit: RangedStatKit) -> bool:
 	for kit_equipped in equipped_kits:
 		if (kit_equipped == kit.kit_name):
@@ -135,11 +146,11 @@ func has_stat_kit(kit: RangedStatKit) -> bool:
 #endregion
 
 #region Emission kit
-## Emitted when an emission kit has been equipped.
-## It provides information about the equipped emission kit.
+## Emitted when a [RangedEmissionKit] has been equipped.
 signal emission_kit_equipped(kit: RangedEmissionKit)
 
-## Changes the weapon's emissions, null variables will be ignored.
+## Changes [Ranged]'s [member projectile] and [member field], null variables will be ignored.
+## [br]Emits [signal emission_kit_equipped]
 func equip_emission_kit(kit: RangedEmissionKit) -> void:
 	if (kit.new_projectile != null):
 		projectile = kit.new_projectile
@@ -154,43 +165,51 @@ func equip_emission_kit(kit: RangedEmissionKit) -> void:
 	emission_kit_equipped.emit(kit)
 #endregion
 
-#region Ranged modes
+#region Refill mode
 ## Emitted when [member is_refill_automatic] has been changed.
-signal refill_mode_changed(old_refill_mode: int, new_refill_mode: int)
+signal refill_mode_changed(refill_mode: int)
 
-## Defines the refill mode (automatic or manual)
-@export var is_refill_automatic: bool = true
+## Defines the refill mode (automatic or manual) and emits [signal refill_mode_changed].
+@export var is_refill_automatic: bool = true:
+	set(val):
+		is_refill_automatic = val
+		refill_mode_changed.emit(is_refill_automatic)
 
+## Changes [member is_refill_automatic]
+func change_reload_mode(new_setting: bool) -> void:
+	is_refill_automatic = new_setting
+#endregion
+
+#region Firing mode
 ## Emitted when [firing_mode] has been changed.
-signal firing_mode_changed(old_firing_mode: int, new_firing_mode: int)
+signal firing_mode_changed(new_firing_mode: int)
 
-## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
-## @experimental: This has 0 internal functionality
-@export_enum("Auto", "Semi", "Burst") var firing_mode: int
-
-## @experimental: This has 0 internal functionality
+## A list of possible firing modes used with [member firing_mode]
+## [br]@experimental: This has 0 internal functionality.
 enum FIRING_MODE {
+	## User can [method Weapon.attack()] by holding their button.
 	AUTO,
+	## User has to press to [method Weapon.attack()].
 	SEMI,
+	## User presses to [method Weapon.attack()] a few times.
 	BURST,
 }
 
-## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
-func change_modes(mode: String, new_mode: String) -> void:
-	match mode:
-		"reload":
-			var old_mode = is_refill_automatic
-			is_refill_automatic = _string_to_enum(new_mode)
-			refill_mode_changed.emit(old_mode, new_mode)
-		"firing":
-			var old_mode = firing_mode
-			firing_mode = _string_to_enum(new_mode)
-			firing_mode_changed.emit(old_mode, new_mode)
-		_:
-			printerr("Invalid mode")
+## Defines the firing mode of the weapon, emits [signal firing_mode_changed]
+## @experimental: This has 0 internal functionality.
+@export_enum("Auto", "Semi", "Burst") var current_firing_mode: int:
+	set(val):
+		current_firing_mode = val
+		firing_mode_changed.emit(current_firing_mode)
+
+## Changes [member current_firing_mode]
+func change_firing_mode(new_mode: int) -> void:
+	current_firing_mode = new_mode
 #endregion
 
 #region Misc
+## Overrides [method Weapon.on_weapon_timer_timeout] by filling [member Weapon.collected_data]
+## then executes built-in instruction.
 func on_weapon_timer_timeout() -> void:
 	collected_data = {
 		"ammo": current_ammo,
@@ -198,14 +217,4 @@ func on_weapon_timer_timeout() -> void:
 		}
 
 	super.on_weapon_timer_timeout()
-
-func _string_to_enum(value: String) -> int:
-	match value:
-		"AUTOMATIC": return true
-		"MANUAL": return false
-		"AUTO": return FIRING_MODE.AUTO
-		"SEMI": return FIRING_MODE.SEMI
-		"BURST": return FIRING_MODE.BURST
-		_: print(value + " is invalid")
-	return 0
 #endregion
