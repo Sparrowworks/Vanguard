@@ -23,13 +23,13 @@ func connect_signals(ranged_weapons:Array[Node]) -> void:
 func debug_weapon_ready(data: Dictionary) -> void:
 	print("Weapon ready! Mag: %d, Ammo: %d" % [data.get("mag"), data.get("ammo")])
 
-func debug_weapon_charging() -> void:
+func debug_weapon_charging(_data: Dictionary) -> void:
 	print("Started charging")
 
-func debug_weapon_attacking() -> void:
+func debug_weapon_attacking(_data: Dictionary) -> void:
 	print("Started shooting")
 
-func debug_weapon_refilling() -> void:
+func debug_weapon_refilling(_data: Dictionary) -> void:
 	print("Started reloading")
 
 func debug_state_updated(new_state: String) -> void:
