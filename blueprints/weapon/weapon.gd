@@ -9,13 +9,13 @@ class_name Weapon extends Node
 ## Emitted when [member current_state] is changed.
 signal state_updated(state: String)
 ## Emitted when [member current_state] is ready.
-signal weapon_ready()
+signal weapon_ready(data: Dictionary)
 ## Emitted when [member current_state] is charging.
-signal weapon_charging()
+signal weapon_charging(data: Dictionary)
 ## Emitted when [member current_state] is attacking.
-signal weapon_attacking()
+signal weapon_attacking(data: Dictionary)
 ## Emitted when [member current_state] is recovering.
-signal weapon_recovering()
+signal weapon_recovering(data: Dictionary)
 
 ## A list of possible weapon states.
 enum WEAPON_STATE {
@@ -31,22 +31,30 @@ enum WEAPON_STATE {
 	RECOVERING = 4,
 }
 
+## Enables data trasmission over built-in signals through [member current_state],
+## gets nullified after being emitted.
+## [br]Set it up yourself through any class that extends [Weapon]
+var collected_data: Dictionary
+
 ## Represents the current state of the [Weapon],
 ## It can be one of the states defined in the [enum WEAPON_STATE].
 ## [br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
 ## (if [constant READY] then [signal weapon_ready]).
-## [br]Starts off at [constant INITIALIZE].
+## [br]Starts off at [constant INITIALIZE], switches to [constant READY] when [method Node._ready]
+## [br]Nullifies [member collected_data] after [Signal] emission.
 var current_state: int = WEAPON_STATE.INITIALIZE:
 	set(val):
 		current_state = val
 		state_updated.emit(_enum_to_str(current_state))
 
 		match current_state:
-			WEAPON_STATE.READY: weapon_ready.emit()
-			WEAPON_STATE.CHARGING: weapon_charging.emit()
-			WEAPON_STATE.ATTACKING: weapon_attacking.emit()
-			WEAPON_STATE.RECOVERING: weapon_recovering.emit()
+			WEAPON_STATE.READY: weapon_ready.emit(collected_data)
+			WEAPON_STATE.CHARGING: weapon_charging.emit(collected_data)
+			WEAPON_STATE.ATTACKING: weapon_attacking.emit(collected_data)
+			WEAPON_STATE.RECOVERING: weapon_recovering.emit(collected_data)
 			_: print("Invalid state: %s" %[current_state])
+
+		collected_data = {}
 #endregion
 
 #region Initialization logic
