@@ -31,11 +31,6 @@ enum WEAPON_STATE {
 	REFILLING = 4,
 }
 
-## Enables data trasmission over built-in signals through [member current_state],
-## gets nullified after being emitted.
-## [br]Set it up yourself through any class that extends [Weapon].
-var collected_data: Dictionary
-
 ## Represents the current state of the [Weapon],
 ## It can be one of the states defined in the [enum WEAPON_STATE].
 ## [br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
@@ -55,6 +50,11 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 			_: print("Invalid state: %s" %[current_state])
 
 		collected_data = {}
+
+## Enables data trasmission over built-in signals through [member current_state],
+## gets nullified after being emitted.
+## [br]Set it up yourself through any class that extends [Weapon].
+var collected_data: Dictionary
 #endregion
 
 #region Initialization logic
