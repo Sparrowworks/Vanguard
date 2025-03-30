@@ -80,7 +80,7 @@ func _ready() -> void:
 @export var charge_rate: float
 ## Time (in milliseconds) it takes to finish an [method attack] before making another action.
 @export var attack_rate: float
-## Time (in milliseconds) it takes to finish a [method recover] phase.
+## Time (in milliseconds) it takes to [method refill].
 @export var refill_rate: float
 
 ## Handles the [Weapon]'s [constant CHARGING] mechanism,
