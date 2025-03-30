@@ -174,6 +174,13 @@ func change_modes(mode:String, new_mode:String) -> void:
 #endregion
 
 #region Misc
+func on_weapon_timer_timeout() -> void:
+	collected_data = {
+		"ammo": current_ammo,
+		"mag": current_mag,
+		}
+	super.on_weapon_timer_timeout()
+
 func _string_to_enum(value:String) -> int:
 	match value:
 		"AUTOMATIC": return true
