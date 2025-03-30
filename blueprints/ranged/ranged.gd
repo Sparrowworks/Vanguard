@@ -60,11 +60,10 @@ func attack() -> void:
 
 	current_state = WEAPON_STATE.ATTACKING
 
+	weapon_timer.wait_time = attack_rate
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
-
-	weapon_timer.wait_time = attack_rate
 	weapon_timer.start()
 
 ## The reload() method is responsible for reloading the weapon's magazine with ammunition.
