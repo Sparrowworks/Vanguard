@@ -155,12 +155,13 @@ func equip_emission_kit(kit: RangedEmissionKit) -> void:
 #endregion
 
 #region Ranged modes
-## Emitted when a reload mode has been changed.
-## It provides information about the old and the new reload modes.
-signal reload_mode_changed(old_reload_mode: int, new_reload_mode: int)
+## Emitted when [member is_refill_automatic] has been changed.
+signal refill_mode_changed(old_refill_mode: int, new_refill_mode: int)
 
-## Emitted when a firing mode has been changed.
-## It provides information about the old and new firing modes.
+## Defines the refill mode (automatic or manual)
+@export var is_refill_automatic: bool = true
+
+## Emitted when [firing_mode] has been changed.
 signal firing_mode_changed(old_firing_mode: int, new_firing_mode: int)
 
 ## Defines the firing mode of the weapon. (Note: it does not have any internal functionality)
@@ -174,16 +175,13 @@ enum FIRING_MODE {
 	BURST,
 }
 
-## Defines the reload mode (automatic or manual)
-@export var is_refill_automatic: bool = true
-
 ## Modifies firing and reloading modes based on the mode name and a number corresponding to the enums
 func change_modes(mode: String, new_mode: String) -> void:
 	match mode:
 		"reload":
 			var old_mode = is_refill_automatic
 			is_refill_automatic = _string_to_enum(new_mode)
-			reload_mode_changed.emit(old_mode, new_mode)
+			refill_mode_changed.emit(old_mode, new_mode)
 		"firing":
 			var old_mode = firing_mode
 			firing_mode = _string_to_enum(new_mode)

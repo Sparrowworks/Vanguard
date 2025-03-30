@@ -16,7 +16,7 @@ func connect_signals(ranged_weapons:Array[Node]) -> void:
 		ranged.stat_kit_equipped.connect(debug_stat_kit_equipped)
 		ranged.stat_kit_unequipped.connect(debug_stat_kit_unequipped)
 		ranged.emission_kit_equipped.connect(debug_emission_kit_equipped)
-		ranged.reload_mode_changed.connect(debug_reload_mode_changed)
+		ranged.refill_mode_changed.connect(debug_refill_mode_changed)
 		ranged.firing_mode_changed.connect(debug_firing_mode_changed)
 		ranged.weapon_timer.timeout.connect(debug_ranged_weapons_timeout)
 
@@ -61,7 +61,7 @@ func debug_emission_kit_equipped(kit: RangedEmissionKit) -> void:
 		Name: %s" % [kit.resource_name]
 	)
 
-func debug_reload_mode_changed(old_reload_mode: int, new_reload_mode: int) -> void:
+func debug_refill_mode_changed(old_reload_mode: int, new_reload_mode: int) -> void:
 	print("Reload mode changed from %d to %d" % [old_reload_mode, new_reload_mode])
 
 func debug_firing_mode_changed(old_firing_mode: int, new_firing_mode: int) -> void:
