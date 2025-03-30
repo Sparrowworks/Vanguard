@@ -7,7 +7,7 @@ class_name Ranged extends Weapon
 ## This class is designed to handle various weapon functionalities, including shooting and reloading.
 
 #region Initiliazation logic
-@export_group("Gun Emissions")
+@export_category("Gun Emissions")
 ## Slot for field
 @export var field:PackedScene
 ## Slot for projectile
