@@ -48,12 +48,12 @@ func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
 
-	current_state = WEAPON_STATE.ATTACKING
-
 	if (current_mag == 0):
 		if (is_refill_automatic):
 			refill()
 		return
+
+	current_state = WEAPON_STATE.ATTACKING
 
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
