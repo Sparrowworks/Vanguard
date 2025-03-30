@@ -45,11 +45,22 @@ var current_mag:int
 ## If there is no ammunition, it will reload.
 ## If the weapon is currently firing or reloading, it exits without firing.
 func attack() -> void:
-	super.attack()
+	if (current_state != WEAPON_STATE.READY):
+		return
+
+	current_state = WEAPON_STATE.ATTACKING
+
+	if (current_mag == 0):
+		if (is_refill_automatic):
+			refill()
+		return
 
 	add_child(projectile.instantiate())
 	add_child(field.instantiate())
 	current_mag -= 1
+
+	weapon_timer.wait_time = attack_rate
+	weapon_timer.start()
 
 ## The reload() method is responsible for reloading the weapon's magazine with ammunition.
 ## If the magazine is full or there is no ammunition left or the weapon is currently firing or reloading,
