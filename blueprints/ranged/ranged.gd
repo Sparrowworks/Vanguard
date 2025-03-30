@@ -17,6 +17,11 @@ func _ready() -> void:
 	current_mag = mag_size
 	current_ammo = max_ammo
 
+	collected_data = {
+		"ammo": current_ammo,
+		"mag": current_mag,
+		}
+
 	if (projectile == null):
 		printerr("Undefined Projectile")
 		return
