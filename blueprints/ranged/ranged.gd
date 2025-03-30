@@ -1,10 +1,10 @@
 class_name Ranged extends Weapon
 
-## Base class for ranged weapons
+## [Weapon] class catered to [Ranged] weapons
 ##
-## The Ranged class represents a weapon system in a 2D game using Godot's Node structure.
-## It manages weapon stats such as magazine size, ammo count, reload times, and firing rates.
-## This class is designed to handle various weapon functionalities, including shooting and reloading.
+## The [Ranged] class contains ammunition management, stat & emission modification and 
+## reload + firing mode alteration.
+## [br]It also emits [member current_ammo] and [member current_mag] using [member Weapon.collected_data]
 
 #region Initiliazation logic
 @export_category("Gun Emissions")
