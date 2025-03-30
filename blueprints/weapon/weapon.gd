@@ -34,8 +34,8 @@ enum WEAPON_STATE {
 ## Represents the current state of the [Weapon],
 ## It can be one of the states defined in the [enum WEAPON_STATE].
 ## [br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
-## (if [enum READY] then [signal weapon_ready]).
-## [br]Starts off at [enum INITIALIZE].
+## (if [constant READY] then [signal weapon_ready]).
+## [br]Starts off at [constant INITIALIZE].
 var current_state: int = WEAPON_STATE.INITIALIZE:
 	set(val):
 		current_state = val
@@ -50,7 +50,7 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 #endregion
 
 #region Initialization logic
-## Used to keep track of how long the [Weapon] stays in one state before resetting to [enum READY]
+## Used to keep track of how long the [Weapon] stays in one state before resetting to [constant READY]
 var weapon_timer: Timer
 
 # Exists so that the user doesn't need to create a timer everytime they make a new weapon!
@@ -73,8 +73,8 @@ var attack_rate: float
 ## Time (in milliseconds) it takes to finish a [method recover] phase.
 var recovery_rate: float
 
-## Handles the [Weapon]'s [enum CHARGING] mechanism,
-## It will exits without charging if it's not [enum READY] or [enum CHARGING].
+## Handles the [Weapon]'s [constant CHARGING] mechanism,
+## It will exits without charging if it's not [constant READY] or [constant CHARGING].
 func charge() -> void:
 	if (current_state != WEAPON_STATE.READY || WEAPON_STATE.CHARGING):
 		return
@@ -86,8 +86,8 @@ func charge() -> void:
 
 	pass
 
-## Handles the [Weapon]'s [enum ATTACKING] mechanism,
-## It will exits without [enum ATTACKING] if it's not [enum READY].
+## Handles the [Weapon]'s [constant ATTACKING] mechanism,
+## It will exits without [constant ATTACKING] if it's not [constant READY].
 func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -96,8 +96,8 @@ func attack() -> void:
 	weapon_timer.wait_time = attack_rate
 	weapon_timer.start()
 
-## Handles the [Weapon]'s [enum RECOVERING] mechanism,
-## It will exits without [enum RECOVERING] if it's not [enum READY].
+## Handles the [Weapon]'s [constant RECOVERING] mechanism,
+## It will exits without [constant RECOVERING] if it's not [constant READY].
 func recover() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -107,7 +107,7 @@ func recover() -> void:
 	weapon_timer.start()
 
 ## Governs what happens when the [Weapon] finished an action.
-## Resets to [enum READY]
+## Resets to [constant READY]
 func on_weapon_timer_timeout() -> void:
 	current_state = WEAPON_STATE.READY
 #endregion
