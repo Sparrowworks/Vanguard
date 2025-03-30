@@ -74,12 +74,13 @@ func _ready() -> void:
 #endregion
 
 #region Weapon Functionality
+@export_category("Weapon stats")
 ## Time (in milliseconds) it takes to [method charge] a [Weapon] fully.
-var charge_rate: float
+@export var charge_rate: float
 ## Time (in milliseconds) it takes to finish an [method attack] before making another action.
-var attack_rate: float
+@export var attack_rate: float
 ## Time (in milliseconds) it takes to finish a [method recover] phase.
-var recovery_rate: float
+@export var refill_rate: float
 
 ## Handles the [Weapon]'s [constant CHARGING] mechanism,
 ## It will exits without charging if it's not [constant READY] or [constant CHARGING].
