@@ -190,6 +190,7 @@ func on_weapon_timer_timeout() -> void:
 		"ammo": current_ammo,
 		"mag": current_mag,
 		}
+
 	super.on_weapon_timer_timeout()
 
 func _string_to_enum(value:String) -> int:
