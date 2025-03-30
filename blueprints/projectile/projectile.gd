@@ -1,5 +1,4 @@
-class_name Projectile
-extends Hitbox
+class_name Projectile extends Hitbox
 
 ## The base class for all damage-causing object-destroying projectiles
 ##
