@@ -17,7 +17,7 @@ signal weapon_attacking(data: Dictionary)
 ## Emitted when [member current_state] is refilling.
 signal weapon_refilling(data: Dictionary)
 
-## A list of possible weapon states.
+## A list of possible weapon states, used with [member current_state].
 enum WEAPON_STATE {
 	## The [Weapon] system is being initialized.
 	INITIALIZE = 0,
