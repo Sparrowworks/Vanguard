@@ -1,43 +1,42 @@
 class_name Projectile extends Hitbox
 
-## The base class for all damage-causing object-destroying projectiles
+## The base class for all damage-causing object-destroying [Projectile]s.
 ##
-## This script serves as a foundation for creating various types of projectiles.
+## This script serves as a foundation for creating various types of [Projectile]s.
 
-## A timer used to manage the fate of the projectile after it has reached 0.
-var TIMER:Timer
-@export_group("Projectile Stats")
-## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy),
-## Determines how precisely the projectile will hit its target.
+#region Initialisation Logic
+@export_category("Projectile Stats")
+## Determines how precisely the [Projectile] will hit its target,
+## Ranges from 0.0 (poor accuracy) to 1.0 (high accuracy).
 @export var accuracy:float
-## Defines the maximum angle of deviation for the projectile when fired at zero accuracy.
+## Defines the maximum angle of deviation for the [Projectile] when fired at zero [member accuracy].
 @export var max_spread:int
-## Determines for how long the projectile remains in the world (in seconds)
-@export var lifespan:int
-## The velocity at which the projectile travels in the game world
+## The velocity at which the [Projectile] travels in the game world.
 @export var speed:int
 
-@export_group("Projectile Emissions")
+## The direction the [Projectile] will point at when shot,
+## by default it points to the right along the X-axis.
+var direction:Vector2 = Vector2(1,0)
+
+func _enter_tree() -> void:
+	var spread:float = (1.0 - accuracy) * max_spread
+	var random_angle:float = randf_range(-spread, spread)
+	var adjusted_angle = rotation + deg_to_rad(random_angle)
+	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
+#endregion
+
+#region Projectile Behavior
+@export_category("Projectile Emissions")
 ## Slot for custom field
 @export var field:PackedScene
 ## Slot for custom projectile
 @export var projectile:PackedScene
 
-## Internal Vector2 pointing to the right along the X-axis
-var direction:Vector2 = Vector2(1,0)
-func _ready() -> void:
-	var spread:float = (1.0 - accuracy) * max_spread
-	var random_angle:float = randf_range(-spread, spread)
-	var adjusted_angle = rotation + deg_to_rad(random_angle)
-	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
-
-	TIMER = $Timer
-	TIMER.one_shot = true
-	TIMER.wait_time = lifespan
-	TIMER.start()
-
 func _physics_process(delta: float) -> void:
 	global_position += direction.rotated(rotation) * speed * delta
+#endregion
 
-func _on_timer_timeout() -> void:
+#region Misc
+func _on_projectile_timer_timeout() -> void:
 	queue_free()
+#endregion

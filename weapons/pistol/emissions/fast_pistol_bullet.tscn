@@ -7,7 +7,6 @@
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_02655")
 accuracy = 100.0
-lifespan = 1
 speed = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,4 +17,3 @@ one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
