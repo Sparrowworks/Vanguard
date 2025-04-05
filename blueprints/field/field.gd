@@ -7,9 +7,9 @@ class_name Field extends Hitbox
 
 #region Initialization Logic
 ## A reference to the [Field]'s [CollisionShape2D], used to manipulate [member CollisionShape2D.shape.radius]
-var field_collision_shape:CollisionShape2D
+var field_collision_shape: CollisionShape2D
 ## Manages what happens to the [Field] after it has reached [member max_radius].
-var field_timer:Timer
+var field_timer: Timer
 
 func _ready() -> void:
 	field_collision_shape = $CollisionShape2D
@@ -21,7 +21,7 @@ func _ready() -> void:
 #region Expansion logic
 @export_category("Field Stats")
 ## The maximum [member CollisionShape2D.shape.radius] the [Field] should reach.
-@export var max_radius:int
+@export var max_radius: int
 ## The speed the [Field] expands to reach its maximum [member radius] (in milliseconds per 1 physics frame).
 @export var expansion_speed: float
 

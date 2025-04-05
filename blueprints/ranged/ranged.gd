@@ -111,7 +111,7 @@ signal stat_kit_equipped(kit: RangedStatKit)
 signal stat_kit_unequipped(kit: RangedStatKit)
 
 ## An [Array] containing the [member RangedStatKit.kit_name] of currently equipped modifications.
-var equipped_kits:Array[String]
+var equipped_kits: Array[String]
 
 ## Uses [method has_stat_kit], Registers [member RangedStatKit.kit_name] in [member equipped_kits],
 ## Modifies [Weapon] and [Ranged] stats using a [RangedStatKit] and emits [signal stat_kit_equipped].
