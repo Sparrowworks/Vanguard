@@ -1,23 +1,16 @@
-class_name RangedStatKit
-extends Resource
+class_name RangedStatKit extends WeaponStatKit
 
-## Base class for ranged stat modifiers.
+## Base [Resource] for [Ranged] stat modifiers.
 ##
-## To create a new kit (or attachment), create a custom resource and assign it this script.
-## Simply write a percentage and equip_stat_kit will take care of the math,
-## your only limitation is how much the float type can handle.
+## Holds the values used to increase or decrease [Weapon] stats.
+## Used in conjunction with [method Weapon.equip_stat_kit].
+## [br]
+## [br]To create a new kit (or attachment), create a custom [Resource] and assign it this [Script].
+## Fill in the stats and [method Ranged.equip_stat_kit] will take care of the math.
 
-@export_group("Kit Stat Modifiers")
-## Internal name for comparison checks
-@export var kit_name:String
-## The amount by which to increase or decrease the size of the magazine.
+## The amount to increase or decrease [member Ranged.mag_size].
 @export var mag_size_modifier:int
-## The amount by which to increase or decrease the maximum ammunition.
+## The amount to increase or decrease [member Ranged.max_ammo].
 @export var max_ammo_modifier:int
-## The amount by which to increase or decrease the reload speed.
-@export var reload_time_modifier:float
-## The amount by which to increase or decrease the reload speed when the magazine is empty.
-## (reload time + reload time empty = actual reload time).
+## The amount to increase or decrease [member Ranged.refill_rate_empty].
 @export var reload_time_empty_modifier:float
-## The amount by which to increase or decrease the rate of fire.
-@export var fire_rate_modifier:float

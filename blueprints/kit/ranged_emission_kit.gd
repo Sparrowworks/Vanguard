@@ -1,14 +1,12 @@
-class_name RangedEmissionKit
-extends Resource
+class_name RangedEmissionKit extends Resource
 
-## Base class for kits related to changing ranged emissions.
+## Base [Resource] for [Ranged] emissions.
 ##
-## To create a new kit (or attachment), create a custom resource and assign it this script.
-## Simply add the desired PackedScenes
-## Note that null variables will be ignored by "equip_emission_kit()"
+## To create a new kit (or attachment), create a custom [Resource] and assign it this [Script]
+## and add the new [PackedScene]s.
+## [br][br]Null variables are ignored by [method Ranged.equip_emission_kit].
 
-@export_group("New Emissions")
-## New projectile for a gun
+## New [Projectile] for [member Ranged.projectile]
 @export var new_projectile:PackedScene
-## New field for a gun
+## New [Field] for [member Ranged.field]
 @export var new_field:PackedScene

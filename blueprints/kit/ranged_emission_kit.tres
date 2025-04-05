@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://c6g6uofc08to1" path="res://blueprints/kit/ranged_emission_kit.gd" id="1_wenvm"]
 
 [resource]
+resource_name = "default_ranged_emission_kit"
 script = ExtResource("1_wenvm")
