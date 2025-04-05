@@ -129,6 +129,15 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 
 	stat_kit_equipped.emit(kit)
 
+## Checks if the [member RangedStatKit.kit_name] is in [member equipped_arrays],
+## Returns [code]true[/code] or [code]false[/code].
+func has_stat_kit(kit: RangedStatKit) -> bool:
+	for kit_equipped in equipped_kits:
+		if (kit_equipped == kit.kit_name):
+			return true
+
+	return false
+
 ## Reverses the changes made by [method equip_stat_kit] and emits [signal stat_kit_unequipped].
 func unequip_stat_kit(kit: RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
@@ -139,15 +148,6 @@ func unequip_stat_kit(kit: RangedStatKit) -> void:
 	attack_rate -= kit.fire_rate_modifier
 
 	stat_kit_unequipped.emit(kit)
-
-## Checks if the [member RangedStatKit.kit_name] is in [member equipped_arrays],
-## Returns [code]true[/code] or [code]false[/code].
-func has_stat_kit(kit: RangedStatKit) -> bool:
-	for kit_equipped in equipped_kits:
-		if (kit_equipped == kit.kit_name):
-			return true
-
-	return false
 #endregion
 
 #region Emission kit
