@@ -13,11 +13,10 @@ class_name Ranged extends Weapon
 ## Slot for [Projectile].
 @export var projectile: PackedScene
 
-## Inherits and executes [method Weapon._ready],
-## used to setup [member current_mag] and [member current_ammo],
-## [member collected_data] and checks for if [member projectile] and [member field] are null.
-func _ready() -> void:
-# A while back, i tried doing this outside _ready() while exporting the max values only to fail.
+## Inherits [method Node2D._enter_tree],
+## Sets up [member current_mag], [member current_ammo] and [member collected_data].
+func _enter_tree() -> void:
+# A while back, i tried doing this outside _enter_tree while exporting the max values only to fail.
 	current_mag = mag_size
 	current_ammo = max_ammo
 
@@ -27,6 +26,9 @@ func _ready() -> void:
 		"mag": current_mag,
 		}
 
+## Inherits and executes [method Weapon._ready],
+## checks for if [member projectile] and [member field] are null.
+func _ready() -> void:
 # Prevents any instantiation errors.
 	if (projectile == null):
 		printerr("Undefined Projectile")
