@@ -21,13 +21,13 @@ signal weapon_refilling(data: Dictionary)
 enum WEAPON_STATE {
 	## The [Weapon] system is being initialized.
 	INITIALIZE = 0,
-	## The [Weapon] is ready (can be toggled to anything below).
+	## The [Weapon] is ready and can be toggled to any state below.
 	READY = 1,
-	## The [Weapon] is charging (ex: charging a rifle).
+	## The [Weapon] is charging (e.g. charging a rifle).
 	CHARGING = 2,
-	## The [Weapon] is attacking (ex: shooting).
+	## The [Weapon] is attacking (e.g. shooting).
 	ATTACKING = 3,
-	## The [Weapon] is refilling (ex: reloading).
+	## The [Weapon] is refilling (e.g. reloading).
 	REFILLING = 4,
 }
 
