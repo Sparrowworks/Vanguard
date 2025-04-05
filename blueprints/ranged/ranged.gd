@@ -213,8 +213,7 @@ func change_firing_mode(new_mode: int) -> void:
 #endregion
 
 #region Misc
-## Overrides [method Weapon.on_weapon_timer_timeout] by filling [member Weapon.collected_data]
-## then executes built-in instruction.
+## Inherits ane executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data]
 func on_weapon_timer_timeout() -> void:
 	collected_data = {
 		"ammo": current_ammo,
