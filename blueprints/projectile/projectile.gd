@@ -18,6 +18,7 @@ class_name Projectile extends Hitbox
 ## by default it points to the right along the X-axis.
 var direction:Vector2 = Vector2(1,0)
 
+## [method Node2D._enter_tree], calculates the angle of spread to face a [member direction]
 func _enter_tree() -> void:
 	var spread:float = (1.0 - accuracy) * max_spread
 	var random_angle:float = randf_range(-spread, spread)
@@ -27,17 +28,19 @@ func _enter_tree() -> void:
 
 #region Projectile Behavior
 @export_category("Projectile Emissions")
-## Slot for custom field
+## Slot for custom [Field]
 @export var field:PackedScene
-## Slot for custom projectile
+## Slot for custom [Projectile]
 @export var projectile:PackedScene
 
+## [method Node2D._physics_process], Moves the [Projectile] 
+## using it's [member global_position] and [member direction].
 func _physics_process(delta: float) -> void:
 	global_position += direction.rotated(rotation) * speed * delta
 #endregion
 
 #region Misc
-## Decides what happens when [member projectile_timer] [signal Timer.timeout]
+## Decides what happens when [member projectile_timer] emits [signal Timer.timeout]
 func on_projectile_timer_timeout() -> void:
 	queue_free()
 #endregion
