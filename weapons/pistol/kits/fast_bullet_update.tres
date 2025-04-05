@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ccwfgwtjvrx3c" path="res://weapons/pistol/emissions/silent_pistol_noise.tscn" id="1_pwxaj"]
 [ext_resource type="PackedScene" uid="uid://dbiichedux50" path="res://weapons/pistol/emissions/fast_pistol_bullet.tscn" id="2_rorue"]
-[ext_resource type="Script" uid="uid://c6g6uofc08to1" path="res://blueprints/kit/ranged_emission_kit.gd" id="3_4m5mt"]
+[ext_resource type="Script" uid="uid://c6g6uofc08to1" path="res://kits/ranged_emission_kit.gd" id="3_4m5mt"]
 
 [resource]
 script = ExtResource("3_4m5mt")
