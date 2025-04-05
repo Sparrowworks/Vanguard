@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
-		anim_player.play("sword_attack")
+		anim_player.play("attack")

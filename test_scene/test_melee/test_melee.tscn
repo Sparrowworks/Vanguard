@@ -6,7 +6,7 @@
 [node name="TestMelee" type="Node2D"]
 
 [node name="Sword" parent="." instance=ExtResource("1_n76tj")]
-position = Vector2(422, 324)
+position = Vector2(427, 301)
 
 [node name="Target" parent="." instance=ExtResource("2_gqtkn")]
 offset_left = 615.0

@@ -1,17 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://wrrqbqhc88eu"]
+[gd_scene load_steps=2 format=3 uid="uid://wrrqbqhc88eu"]
 
 [ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://blueprints/hitbox/hitbox.gd" id="1_6y1g6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y1g6"]
-size = Vector2(108, 93)
-
-[sub_resource type="Animation" id="Animation_8e8ik"]
-resource_name = "melee"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_swogp"]
-_data = {
-&"melee": SubResource("Animation_8e8ik")
-}
 
 [node name="Melee" type="Sprite2D"]
 
@@ -21,11 +10,6 @@ metadata/_custom_type_script = "uid://dlglmeqyeuca5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(44, 36.5)
-shape = SubResource("RectangleShape2D_6y1g6")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_swogp")
-}
+disabled = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
