@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dlwk1kya7qm4s" path="res://blueprints/ranged/ranged.gd" id="1_yrano"]
 
-[node name="Ranged" type="Node2D"]
+[node name="Ranged" type="Sprite2D"]
 script = ExtResource("1_yrano")
