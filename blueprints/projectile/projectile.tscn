@@ -20,4 +20,8 @@ texture = ExtResource("2_kov32")
 one_shot = true
 autostart = true
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.500002, -0.499996)
+scale = Vector2(6.35, 6.55)
+
 [connection signal="timeout" from="Timer" to="." method="on_projectile_timer_timeout"]

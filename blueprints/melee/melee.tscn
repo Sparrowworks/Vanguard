@@ -27,3 +27,5 @@ shape = SubResource("RectangleShape2D_6y1g6")
 libraries = {
 &"": SubResource("AnimationLibrary_swogp")
 }
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
