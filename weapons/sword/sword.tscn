@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://dspkpsooyhemj"]
+[gd_scene load_steps=7 format=3 uid="uid://dspkpsooyhemj"]
 
-[ext_resource type="Script" uid="uid://f48ev63dr8lx" path="res://weapons/sword/sword.gd" id="1_304gn"]
 [ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://weapons/sword/sword.png" id="1_w1idm"]
 [ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://blueprints/hitbox/hitbox.gd" id="3_kg2df"]
 
@@ -70,7 +69,6 @@ _data = {
 
 [node name="Sword" type="Sprite2D"]
 texture = ExtResource("1_w1idm")
-script = ExtResource("1_304gn")
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("3_kg2df")
