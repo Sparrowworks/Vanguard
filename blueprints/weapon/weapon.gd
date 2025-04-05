@@ -35,7 +35,7 @@ enum WEAPON_STATE {
 ## It can be one of the states defined in the [enum WEAPON_STATE].
 ## [br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
 ## (if [constant READY] then [signal weapon_ready]).
-## [br]Starts off at [constant INITIALIZE], switches to [constant READY] when [method Node._ready]
+## [br]Starts off at [constant INITIALIZE], switches to [constant READY] when [method _ready]
 ## [br]Nullifies [member collected_data] after [Signal] emission.
 var current_state: int = WEAPON_STATE.INITIALIZE:
 	set(val):
@@ -62,14 +62,15 @@ var collected_data: Dictionary
 ## before [code]resetting[/code] to [constant READY].
 var weapon_timer: Timer
 
-# Exists so that the user doesn't need to create a timer everytime they make a new weapon!
+## Inherits [method Node2D._init], used to create a [Timer]
+## and connect it's [signal Timer.timeout] to [method on_weapon_timer_timeout].
 func _init() -> void:
 	weapon_timer = Timer.new()
 	weapon_timer.one_shot = true
 	add_child(weapon_timer)
 	weapon_timer.timeout.connect(on_weapon_timer_timeout)
 
-# Signals it's ready, useful for giving UI stats and all.
+## Inherits [method Node2D._ready], Sets [member current_state] to [constant READY]
 func _ready() -> void:
 	current_state = WEAPON_STATE.READY
 #endregion
@@ -123,8 +124,8 @@ func on_weapon_timer_timeout() -> void:
 #endregion
 
 #region Misc
-# Translates enums to strings, outputs a string.
-# Used at current_state setter to emit the state_updated signal.
+## Takes a [enum weapon_state] constant and [code]returns[/code] it as a string.
+## Used at [member current_state] to emit [signal state_updated].
 func _enum_to_str(state: int) -> String:
 	match state:
 		0:
