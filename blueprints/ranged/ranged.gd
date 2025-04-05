@@ -113,7 +113,7 @@ signal stat_kit_unequipped(kit: RangedStatKit)
 ## An [Array] containing the [member RangedStatKit.kit_name] of currently equipped modifications.
 var equipped_kits: Array[String]
 
-## Uses [method has_stat_kit], Registers [member RangedStatKit.kit_name] in [member equipped_kits],
+## Uses [method has_stat_kit], Registers [member RangedStatKit.resource_name] in [member equipped_kits],
 ## Modifies [Weapon] and [Ranged] stats using a [RangedStatKit] and emits [signal stat_kit_equipped].
 func equip_stat_kit(kit: RangedStatKit) -> void:
 	if has_stat_kit(kit):
@@ -121,11 +121,16 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 		return
 
 	equipped_kits.append(kit.kit_name)
+
+# RangedStatKit section
 	mag_size += kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
 	max_ammo += kit.max_ammo_modifier if kit.max_ammo_modifier != 0 else max_ammo
-	refill_rate += kit.reload_time_modifier if kit.reload_time_modifier != 0 else refill_rate
-	refill_rate_empty += kit.reload_time_empty_modifier if kit.reload_time_empty_modifier != 0 else refill_rate_empty
-	attack_rate += kit.fire_rate_modifier if kit.fire_rate_modifier != 0 else attack_rate
+	refill_rate_empty += kit.refill_rate_empty_modifier if kit.reload_rate_empty_modifier != 0 else refill_rate_empty
+
+# WeaponStatKit section
+	charge_rate += kit.charge_rate_modifier if kit.charge_rate_modifier != 0 else charge_rate
+	attack_rate += kit.attack_rate_modifier if kit.attack_rate_modifier != 0 else attack_rate
+	refill_rate += kit.refill_rate_modifier if kit.refill_rate_modifier != 0 else refill_rate
 
 	stat_kit_equipped.emit(kit)
 
@@ -133,7 +138,7 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 ## Returns [code]true[/code] or [code]false[/code].
 func has_stat_kit(kit: RangedStatKit) -> bool:
 	for kit_equipped in equipped_kits:
-		if (kit_equipped == kit.kit_name):
+		if (kit_equipped == kit.resource_name):
 			return true
 
 	return false
@@ -143,9 +148,11 @@ func unequip_stat_kit(kit: RangedStatKit) -> void:
 	equipped_kits.erase(kit.kit_name)
 	mag_size -= kit.mag_size_modifier
 	max_ammo -= kit.max_ammo_modifier
-	refill_rate -= kit.reload_time_modifier
-	refill_rate_empty -= kit.reload_time_empty_modifier
-	attack_rate -= kit.fire_rate_modifier
+	refill_rate_empty -= kit.refill_rate_empty_modifier
+
+	charge_rate -= kit.charge_rate_modifier
+	attack_rate -= kit.attack_rate_modifier
+	refill_rate -= kit.refill_rate_modifier
 
 	stat_kit_unequipped.emit(kit)
 #endregion
