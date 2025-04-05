@@ -7,6 +7,6 @@ class_name RangedEmissionKit extends Resource
 ## [br][br]Null variables are ignored by [method Ranged.equip_emission_kit].
 
 ## New [Projectile] for [member Ranged.projectile]
-@export var new_projectile:PackedScene
+@export var new_projectile: PackedScene
 ## New [Field] for [member Ranged.field]
-@export var new_field:PackedScene
+@export var new_field: PackedScene
