@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0sqxto228wfx"]
 
-[ext_resource type="Script" uid="uid://5b4r2fbx2asn" path="res://blueprints/target/target.gd" id="1_gdpld"]
+[ext_resource type="Script" uid="uid://5b4r2fbx2asn" path="res://target/target.gd" id="1_gdpld"]
 [ext_resource type="Script" uid="uid://o8iadwa5ulxk" path="res://blueprints/hurtbox/hurtbox.gd" id="2_kswpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymib0"]
