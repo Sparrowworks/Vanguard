@@ -13,4 +13,4 @@ class_name RangedStatKit extends WeaponStatKit
 ## The amount to increase or decrease [member Ranged.max_ammo].
 @export var max_ammo_modifier: int
 ## The amount to increase or decrease [member Ranged.refill_rate_empty].
-@export var reload_time_empty_modifier: float
+@export var refill_rate_empty_modifier: float
