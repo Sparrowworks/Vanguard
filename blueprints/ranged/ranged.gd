@@ -13,6 +13,9 @@ class_name Ranged extends Weapon
 ## Slot for [Projectile].
 @export var projectile: PackedScene
 
+## Inherits and executes [method Weapon._ready],
+## used to setup [member current_mag] and [member current_ammo],
+## [member collected_data] and checks for if [member projectile] and [member field] are null.
 func _ready() -> void:
 # A while back, i tried doing this outside _ready() while exporting the max values only to fail.
 	current_mag = mag_size
