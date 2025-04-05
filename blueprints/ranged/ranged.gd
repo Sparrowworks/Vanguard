@@ -31,7 +31,7 @@ func _ready() -> void:
 	if (projectile == null):
 		printerr("Undefined Projectile")
 		return
-	
+
 	if (field == null):
 		printerr("Undefined Field")
 		return
