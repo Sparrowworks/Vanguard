@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ixaj1hwn1vsa" path="res://weapons/pistol/pistol.png" id="1_ie44i"]
 [ext_resource type="Script" uid="uid://b4wnayamtohrw" path="res://weapons/pistol/pistol.gd" id="1_mpj23"]
-[ext_resource type="PackedScene" uid="uid://dmge3gix20vuv" path="res://weapons/pistol/emissions/pistol_noise.tscn" id="2_2gra5"]
+[ext_resource type="PackedScene" uid="uid://dmge3gix20vuv" path="res://weapons/pistol/fields/pistol_noise.tscn" id="2_2gra5"]
 [ext_resource type="PackedScene" uid="uid://cp0jfd6t3wa6l" path="res://weapons/pistol/bullets/pistol_bullet.tscn" id="3_xdnxl"]
 
 [node name="Pistol" type="Sprite2D" groups=["ranged"]]
