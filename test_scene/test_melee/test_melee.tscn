@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ptbwg1yjgrlt"]
 
 [ext_resource type="PackedScene" uid="uid://dspkpsooyhemj" path="res://weapons/sword/sword.tscn" id="1_n76tj"]
-[ext_resource type="PackedScene" uid="uid://b0sqxto228wfx" path="res://target/target.tscn" id="2_gqtkn"]
+[ext_resource type="PackedScene" uid="uid://b0sqxto228wfx" path="res://test_scene/target/target.tscn" id="2_gqtkn"]
 
 [node name="TestMelee" type="Node2D"]
 
