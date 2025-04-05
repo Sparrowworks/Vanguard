@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 #region Misc
-func _on_projectile_timer_timeout() -> void:
+## Decides what happens when [member projectile_timer] [signal Timer.timeout]
+func on_projectile_timer_timeout() -> void:
 	queue_free()
 #endregion
