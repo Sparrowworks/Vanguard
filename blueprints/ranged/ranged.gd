@@ -145,11 +145,14 @@ func has_stat_kit(kit: RangedStatKit) -> bool:
 
 ## Reverses the changes made by [method equip_stat_kit] and emits [signal stat_kit_unequipped].
 func unequip_stat_kit(kit: RangedStatKit) -> void:
-	equipped_kits.erase(kit.kit_name)
+	equipped_kits.erase(kit.resource_name)
+
+# RangedStatKit section
 	mag_size -= kit.mag_size_modifier
 	max_ammo -= kit.max_ammo_modifier
 	refill_rate_empty -= kit.refill_rate_empty_modifier
 
+# WeaponStatKit section
 	charge_rate -= kit.charge_rate_modifier
 	attack_rate -= kit.attack_rate_modifier
 	refill_rate -= kit.refill_rate_modifier
