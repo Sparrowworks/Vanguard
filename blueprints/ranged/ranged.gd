@@ -2,7 +2,7 @@ class_name Ranged extends Weapon
 
 ## [Weapon] class catered to [Ranged] weapons.
 ##
-## The [Ranged] class contains ammunition management, {RangedStatKit] & [RangedEmissionKit] modification and 
+## The [Ranged] class handles ammunition management, {RangedStatKit] & [RangedEmissionKit] modification and 
 ## reload + firing mode alteration.
 ## [br]It also emits [member current_ammo] and [member current_mag] using [member Weapon.collected_data].
 
@@ -13,8 +13,8 @@ class_name Ranged extends Weapon
 ## Slot for [Projectile].
 @export var projectile: PackedScene
 
-## Inherits [method Node2D._enter_tree],
-## Sets up [member current_mag], [member current_ammo] and [member collected_data].
+## Inherits [method Node2D._enter_tree]
+## to setup [member current_mag], [member current_ammo] and [member collected_data].
 func _enter_tree() -> void:
 # A while back, i tried doing this outside _enter_tree while exporting the max values only to fail.
 	current_mag = mag_size
@@ -27,7 +27,7 @@ func _enter_tree() -> void:
 		}
 
 ## Inherits and executes [method Weapon._ready],
-## checks for if [member projectile] and [member field] are null.
+## Checks if [member projectile] and [member field] are null.
 func _ready() -> void:
 # Prevents any instantiation errors.
 	if (projectile == null):
