@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dspkpsooyhemj"]
+[gd_scene load_steps=8 format=3 uid="uid://dspkpsooyhemj"]
 
 [ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://weapons/sword/sword.png" id="1_w1idm"]
+[ext_resource type="Script" uid="uid://bqwdvvrwf8f87" path="res://weapons/sword/sword.gd" id="2_kg2df"]
 [ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://blueprints/hitbox/hitbox.gd" id="3_kg2df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg2df"]
@@ -69,6 +70,7 @@ _data = {
 
 [node name="Sword" type="Sprite2D"]
 texture = ExtResource("1_w1idm")
+script = ExtResource("2_kg2df")
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("3_kg2df")
