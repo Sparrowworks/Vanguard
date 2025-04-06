@@ -2,7 +2,7 @@ class_name Field extends Hitbox
 
 ## The base class for explosions, noise and effect-inducing zones.
 ##
-## This script defines a [Field] effect in a 2D game using [Hitbox].
+## This script defines a [Field] effect in a 2D game using [Hitbox],
 ## The [Field] expands over time and fades out after reaching its [member max_radius].
 
 #region Initialization Logic
