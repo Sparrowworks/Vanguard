@@ -1,7 +1,10 @@
-extends Melee
+extends Sprite2D
 
-@onready var animation_player = $AnimationPlayer
+var anim_player: AnimationPlayer
+
+func _ready() -> void:
+	anim_player = $AnimationPlayer
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
-		animation_player.play("sword_attack")
+		anim_player.play("attack")

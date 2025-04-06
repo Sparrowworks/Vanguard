@@ -11,3 +11,5 @@ script = ExtResource("1_aen8h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(55, 7.5)
 shape = SubResource("RectangleShape2D_mya4v")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccwfgwtjvrx3c"]
-
-[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://blueprints/field/field.tscn" id="1_knha0"]
-
-[node name="Field" instance=ExtResource("1_knha0")]
-radius = 10
-propagation_speed = 100.0
-field_fade_time = 0.1

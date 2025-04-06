@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccwfgwtjvrx3c"]
+
+[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://blueprints/field/field.tscn" id="1_knha0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fyml5"]
+
+[node name="Silent Pistol noise" instance=ExtResource("1_knha0")]
+max_radius = 10
+expansion_speed = 100.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_fyml5")
+
+[node name="Timer" parent="." index="1"]
+wait_time = 0.1

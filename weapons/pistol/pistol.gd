@@ -5,10 +5,10 @@ extends Ranged
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
-		shoot()
+		attack()
 
 	if Input.is_action_just_pressed("reload"):
-		reload()
+		refill()
 
 	if Input.is_action_just_pressed("equip"):
 		if has_stat_kit(extended_mag):
