@@ -31,10 +31,10 @@ func _ready() -> void:
 ## Inherits [method Node2D._physics_process],
 ## Expands/Enlargens [member field_collision_shape] till its [member CollisionShape2D.shape.radius] == [member max_radius].
 ## [br][br] - If [member field_timer] is active then [code]return[/code].
-## [br] - If [member field_collision] == [member max_radius], start [member field_timer]
+## [br] - If [member field_collision] == [member max_radius], start [member field_timer] and [code]return[/code]
 func _physics_process(delta: float) -> void:
 	# Stops physics_process if the timer is working.
-	if (field_timer.is_stopped() == false):
+	if (!field_timer.is_stopped()):
 		return
 
 	# Activates timer when the max_radius has been reached.
