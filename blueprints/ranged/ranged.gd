@@ -80,12 +80,13 @@ func attack() -> void:
 	weapon_timer.start()
 
 ## Overrides [method Weapon.refill]:
-## [br] - [code]Cancels[/code] if [member current_mag] is [member mag_size]
-## [code]OR[/code] [member current_ammo] is ZERO
-## [code]OR[/code] [member Weapon.current_state] is [constant Weapon.ATTACKING]
-## [code]OR[/code] [member Weapon.RELOADING].
+## [br][br] - [code]Cancels[/code] if: 
+## [br] - [member current_mag] is [member mag_size]
+## [br] - [code]OR[/code] [member current_ammo] is ZERO
+## [br] - [code]OR[/code] [member Weapon.current_state] is [constant Weapon.ATTACKING]
+## [br] - [code]OR[/code] [member Weapon.RELOADING].
 ## [br] - Switches to [constant Weapon.ATTACKING],
-## Deducts the appropriate amount from [member current_ammo] and adds it to [member current_mag],
+## [br][br]Deducts the appropriate amount from [member current_ammo] and adds it to [member current_mag],
 ## then starts [member Weapon.weapon_timer].
 func refill() -> void:
 	if (current_mag == mag_size || current_ammo == 0 || current_state != WEAPON_STATE.READY):
@@ -165,7 +166,7 @@ func unequip_stat_kit(kit: RangedStatKit) -> void:
 signal emission_kit_equipped(kit: RangedEmissionKit)
 
 ## Changes [Ranged]'s [member projectile] and [member field], null variables will be ignored.
-## [br]Emits [signal emission_kit_equipped]
+## [br]Emits [signal emission_kit_equipped].
 func equip_emission_kit(kit: RangedEmissionKit) -> void:
 	if (kit.new_projectile != null):
 		projectile = kit.new_projectile
@@ -190,7 +191,7 @@ signal refill_mode_changed(refill_mode: int)
 		is_refill_automatic = val
 		refill_mode_changed.emit(is_refill_automatic)
 
-## Changes [member is_refill_automatic]
+## Changes [member is_refill_automatic].
 func change_reload_mode(new_setting: bool) -> void:
 	is_refill_automatic = new_setting
 #endregion
@@ -217,13 +218,13 @@ enum FIRING_MODE {
 		current_firing_mode = val
 		firing_mode_changed.emit(current_firing_mode)
 
-## Changes [member current_firing_mode]
+## Changes [member current_firing_mode].
 func change_firing_mode(new_mode: int) -> void:
 	current_firing_mode = new_mode
 #endregion
 
 #region Misc
-## Inherits ane executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data]
+## Inherits ane executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data].
 func on_weapon_timer_timeout() -> void:
 	collected_data = {
 		"ammo": current_ammo,
