@@ -1,16 +1,19 @@
 class_name Field extends Hitbox
 
-## The base class for explosions, noise and effect-inducing zones
+## The base class for explosions, noise and effect-inducing zones.
 ##
-## This script defines a [Field] effect in a 2D game using [Hitbox].
+## This script defines a [Field] effect in a 2D game using [Hitbox],
 ## The [Field] expands over time and fades out after reaching its [member max_radius].
 
 #region Initialization Logic
-## A reference to the [Field]'s [CollisionShape2D], used to manipulate [member CollisionShape2D.shape.radius]
+## A reference to the [Field]'s [CollisionShape2D], used to manipulate [member CollisionShape2D.shape.radius].
 var field_collision_shape: CollisionShape2D
-## Manages what happens to the [Field] after it has reached [member max_radius].
+
+## A reference to the [Field]'s [Timer],
+## Executes [method on_field_timer_timeout] when emitting [signal Timer.timeout]
 var field_timer: Timer
 
+## Inherits [method Node2D._ready], Assigns references their respective [NodePath]
 func _ready() -> void:
 	field_collision_shape = $CollisionShape2D
 	field_timer = $Timer
@@ -25,9 +28,13 @@ func _ready() -> void:
 ## The speed the [Field] expands to reach its maximum [member radius] (in milliseconds per 1 physics frame).
 @export var expansion_speed: float
 
+## Inherits [method Node2D._physics_process],
+## Expands/Enlargens [member field_collision_shape] till its [member CollisionShape2D.shape.radius] == [member max_radius].
+## [br][br] - If [member field_timer] is active then [code]return[/code].
+## [br] - If [member field_collision] == [member max_radius], start [member field_timer] and [code]return[/code]
 func _physics_process(delta: float) -> void:
 	# Stops physics_process if the timer is working.
-	if (field_timer.is_stopped() == false):
+	if (!field_timer.is_stopped()):
 		return
 
 	# Activates timer when the max_radius has been reached.

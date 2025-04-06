@@ -33,7 +33,7 @@ enum WEAPON_STATE {
 
 ## Represents the current state of the [Weapon],
 ## It can be one of the states defined in the [enum WEAPON_STATE].
-## [br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
+## [br][br]Emits two signals, [signal state_updated] and the corresponding [enum WEAPON_STATE]'s signal,
 ## (if [constant READY] then [signal weapon_ready]).
 ## [br]Starts off at [constant INITIALIZE], switches to [constant READY] when [method _ready]
 ## [br]Nullifies [member collected_data] after [Signal] emission.
@@ -58,7 +58,7 @@ var collected_data: Dictionary
 #endregion
 
 #region Initialization logic
-## Used to keep track of how long the [Weapon] stays in one state 
+## Used to keep track of how long the [Weapon] stays in one state
 ## before [code]resetting[/code] to [constant READY].
 var weapon_timer: Timer
 
@@ -70,7 +70,7 @@ func _init() -> void:
 	add_child(weapon_timer)
 	weapon_timer.timeout.connect(on_weapon_timer_timeout)
 
-## Inherits [method Node2D._ready], Sets [member current_state] to [constant READY]
+## Inherits [method Node2D._ready], Sets [member current_state] to [constant READY].
 func _ready() -> void:
 	current_state = WEAPON_STATE.READY
 #endregion
@@ -84,8 +84,10 @@ func _ready() -> void:
 ## Time (in milliseconds) it takes to [method refill].
 @export var refill_rate: float
 
-## Handles the [Weapon]'s [constant CHARGING] mechanism,
-## [code]Exits[/code] without charging if it's not [constant READY] or [constant CHARGING].
+## Sets [member current_state] to [constant CHARGING],
+## Handles the [Weapon]'s [constant CHARGING] mechanism.
+## [br][br]Sets [member weapon_timer] to [member charge_rate] and [method Timer.start].
+## [br][code]Exits[/code] without charging if it's not [constant READY] or [constant CHARGING].
 func charge() -> void:
 	if (current_state != WEAPON_STATE.READY || WEAPON_STATE.CHARGING):
 		return
@@ -97,8 +99,10 @@ func charge() -> void:
 
 	pass
 
-## Handles the [Weapon]'s [constant ATTACKING] mechanism,
-## [code]Exits[/code] without [constant ATTACKING] if it's not [constant READY].
+## Sets [member current_state] to [constant ATTACKING],
+## Handles the [Weapon]'s [constant ATTACKING] mechanism.
+## [br][br]Sets [member weapon_timer] to [member attack_rate] and [method Timer.start].
+## [br][code]Exits[/code] without [constant ATTACKING] if it's not [constant READY].
 func attack() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -107,8 +111,10 @@ func attack() -> void:
 	weapon_timer.wait_time = attack_rate
 	weapon_timer.start()
 
-## Handles the [Weapon]'s [constant REFILLING] mechanism,
-## [code]Exits[/code] without [constant REFILLING] if it's not [constant READY].
+## Sets [member current_state] to [constant REFILLING],
+## Handles the [Weapon]'s [constant REFILLING] mechanism.
+## [br][br]Sets [member weapon_timer] to [member refill_rate] and [method Timer.start].
+## [br][code]Exits[/code] without [constant REFILLING] if it's not [constant READY].
 func refill() -> void:
 	if (current_state != WEAPON_STATE.READY):
 		return
@@ -124,7 +130,7 @@ func on_weapon_timer_timeout() -> void:
 #endregion
 
 #region Misc
-## Takes a [enum weapon_state] constant and [code]returns[/code] it as a string.
+## Takes a [enum weapon_state] constant and [code]returns[/code] it as a string,
 ## Used at [member current_state] to emit [signal state_updated].
 func _enum_to_str(state: int) -> String:
 	match state:
