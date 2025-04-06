@@ -4,6 +4,7 @@ class_name Hitbox extends Area2D
 ##
 ## Set a predefined [member Hitbox.hitbox_layer] here and assign the same value to [member Hurtbox.hurtbox_mask].
 
+#region Initialisation Logic
 ## [member CollisionObject2D.collision_layer] used to be detected by [member CollisionObject2D.collision_mask].
 @export var hitbox_layer: int = 2
 ## [member CollisionObject2D.collision_mask] used to detect [member CollisionObject2D.collision_layer].
@@ -13,3 +14,4 @@ class_name Hitbox extends Area2D
 func _init() -> void:
 	collision_layer = hitbox_layer
 	collision_mask = hitbox_mask
+#endregion
