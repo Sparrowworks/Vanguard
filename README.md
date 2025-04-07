@@ -13,7 +13,7 @@ Vanguard is a simple 2D weapon system catered to hobbyists, begginers and alike.
 
 ## Download Guide
 
-## Found a bug or wanna submit an idea?
+## Found a bug?
 See that beautiful (just like you) issue tab? click on it and submit an issue with the red label "bug" and we'll take it from there!
 
 ## Known issues
