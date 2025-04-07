@@ -9,10 +9,19 @@ Vanguard is a simple 2D weapon system catered to hobbyists, begginers and alike.
 * Build upon a core [Weapon](https://github.com/VargaDot/Vanguard/blob/main/blueprints/weapon/weapon.gd) class and create your own custom classes and weapon types.
 * Copy and "mass produce" like [Melee](https://github.com/VargaDot/Vanguard/blob/main/blueprints/melee/melee.tscn), [Hitbox](https://github.com/VargaDot/Vanguard/blob/main/blueprints/hitbox/hitbox.gd) and [Hurtbox](https://github.com/VargaDot/Vanguard/blob/main/blueprints/hurtbox/hurtbox.gd).
 
+## Usage Guide
+
+## Download Guide
+
+## Found a bug or wanna submit an idea?
+See that beautiful (just like you) issue tab? click on it and submit an issue with the red label "bug" and we'll take it from there!
+
+## Known issues
+
 ## Assets & Libraries
 **Sprites used**:
-- [Pistol](https://opengameart.org/content/gun-glock-26-gen5-9mm-vector)
-- [Sword](https://opengameart.org/content/2d-pixel-weapons)
+* [Pistol](https://opengameart.org/content/gun-glock-26-gen5-9mm-vector)
+* [Sword](https://opengameart.org/content/2d-pixel-weapons)
 
 **Libraries used**:
-- [Composer](https://github.com/Sparrowworks/ComposerGodot)
+* [Composer](https://github.com/Sparrowworks/ComposerGodot)
