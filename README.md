@@ -11,9 +11,16 @@ Vanguard is a library of simple 2D weapon system catered to hobbyists, begginers
 * Copy and "mass produce" like [Melee](https://github.com/VargaDot/Vanguard/blob/main/blueprints/melee/melee.tscn), [Hitbox](https://github.com/VargaDot/Vanguard/blob/main/blueprints/hitbox/hitbox.gd) and [Hurtbox](https://github.com/VargaDot/Vanguard/blob/main/blueprints/hurtbox/hurtbox.gd).
 
 ## How to use
-Here's a tutorial: -imagine this is some xXx_EpicVideo_xXx where your brain is literally cracked open from the sheer amount of knowledge-
+* Open the blueprints folder.
+* Open the desired folder of your choice.
+* Right click on the scene.
+* Click on "Inherit New Scene".
+* Enjoy.
+
+The codebase is pretty small and I've included documentation for everything. If you have a question, feel free to create an issue with the "Question" label.
 
 ## Download Guide
+Click on "releases" on the right and download
 
 ## Found a bug?
 See that beautiful (just like you) issue tab? click on it and submit an issue with the red label "bug" and we'll take it from there!
