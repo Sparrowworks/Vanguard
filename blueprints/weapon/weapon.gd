@@ -89,7 +89,7 @@ func _ready() -> void:
 ## [br][br]Sets [member weapon_timer] to [member charge_rate] and [method Timer.start].
 ## [br][code]Exits[/code] without charging if it's not [constant READY] or [constant CHARGING].
 func charge() -> void:
-	if (current_state != WEAPON_STATE.READY || WEAPON_STATE.CHARGING):
+	if (current_state != WEAPON_STATE.READY || current_state != WEAPON_STATE.CHARGING):
 		return
 
 	if (current_state != WEAPON_STATE.CHARGING):
