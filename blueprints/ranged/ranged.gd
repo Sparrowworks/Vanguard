@@ -134,20 +134,14 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 	equipped_kits.append(kit.kit_name)
 
 # RangedStatKit section
-	if kit.mag_size_modifier != 0:
-		mag_size += kit.mag_size_modifier
-	if kit.max_ammo_modifier != 0:
-		max_ammo += kit.max_ammo_modifier
-	if kit.refill_rate_empty_modifier != 0:
-		refill_rate_empty += kit.refill_rate_empty_modifier
+	mag_size += kit.mag_size_modifier
+	max_ammo += kit.max_ammo_modifier
+	refill_rate_empty += kit.refill_rate_empty_modifier
 
 # WeaponStatKit section
-	if kit.charge_rate_modifier != 0:
-		charge_rate += kit.charge_rate_modifier
-	if kit.attack_rate_modifier != 0:
-		attack_rate += kit.attack_rate_modifier
-	if kit.refill_rate_modifier != 0:
-		refill_rate += kit.refill_rate_modifier
+	charge_rate += kit.charge_rate_modifier
+	attack_rate += kit.attack_rate_modifier
+	refill_rate += kit.refill_rate_modifier
 
 	stat_kit_equipped.emit(kit)
 
