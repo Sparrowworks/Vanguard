@@ -135,7 +135,7 @@ func on_weapon_timer_timeout() -> void:
 func _enum_to_str(state: int) -> String:
 	match state:
 		0:
-			return "INITILIAZING"
+			return "INITIALIZING"
 		1:
 			return "READY"
 		2:
