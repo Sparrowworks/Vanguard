@@ -234,7 +234,7 @@ func change_firing_mode(new_mode: int) -> void:
 #endregion
 
 #region Misc
-## Inherits ane executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data].
+## Inherits and executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data].
 func on_weapon_timer_timeout() -> void:
 	collected_data = {
 		"ammo": current_ammo,
