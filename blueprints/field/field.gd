@@ -16,6 +16,8 @@ var field_timer: Timer
 ## Inherits [method Node2D._ready], Assigns references their respective [NodePath]
 func _ready() -> void:
 	field_collision_shape = $CollisionShape2D
+	field_collision_shape.shape = field_collision_shape.shape.duplicate()
+
 	field_timer = $Timer
 
 	print("field created")
