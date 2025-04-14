@@ -26,9 +26,9 @@ func _enter_tree() -> void:
 
 #region Projectile Behavior
 @export_category("Projectile Emissions")
-## Slot for custom [Field]
+## Slot for custom [Field].
 @export var field: PackedScene
-## Slot for custom [Projectile]
+## Slot for custom [Projectile].
 @export var projectile: PackedScene
 
 ## Returns direction * speed.
