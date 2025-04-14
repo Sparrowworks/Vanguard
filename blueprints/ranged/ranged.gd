@@ -131,7 +131,7 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 		print("kit already installed")
 		return
 
-	equipped_kits.append(kit.kit_name)
+	equipped_kits.append(kit.resource_name)
 
 # RangedStatKit section
 	mag_size += kit.mag_size_modifier
