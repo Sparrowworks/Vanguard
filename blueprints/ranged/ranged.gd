@@ -105,6 +105,16 @@ func refill() -> void:
 	weapon_timer.start()
 #endregion
 
+#region Ammunition management
+## [member current_ammo] + amount, caps at [member max_ammo]
+func give_ammo(amount: int) -> void:
+	current_ammo = min(current_ammo + amount, max_ammo)
+
+## [member current_ammo] - amount, caps at 0
+func take_ammo(amount: int) -> void:
+	current_ammo = max(current_ammo - amount, 0)
+#endregion
+
 #region Stat kit
 ## Emitted when a [RangedStatKit] has been equipped.
 signal stat_kit_equipped(kit: RangedStatKit)
