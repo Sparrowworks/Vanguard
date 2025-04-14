@@ -97,8 +97,6 @@ func charge() -> void:
 		weapon_timer.wait_time = charge_rate
 		weapon_timer.start()
 
-	pass
-
 ## Sets [member current_state] to [constant ATTACKING],
 ## Handles the [Weapon]'s [constant ATTACKING] mechanism.
 ## [br][br]Sets [member weapon_timer] to [member attack_rate] and [method Timer.start].
