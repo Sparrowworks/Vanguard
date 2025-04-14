@@ -31,6 +31,11 @@ func _enter_tree() -> void:
 ## Slot for custom [Projectile]
 @export var projectile: PackedScene
 
+## Returns direction * speed.
+var velocity: Vector2:
+	get:
+		return direction * speed
+
 ## [method Node2D._physics_process], Moves the [Projectile] 
 ## using it's [member global_position] at a [member direction] * [member speed] * delta.
 func _physics_process(delta: float) -> void:
