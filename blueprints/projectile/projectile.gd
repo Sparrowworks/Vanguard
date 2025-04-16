@@ -21,22 +21,25 @@ var direction: Vector2 = Vector2(1,0)
 ## [method Node2D._enter_tree], calculates the angle of spread to face a [member direction].
 func _enter_tree() -> void:
 	var spread: float = (1.0 - accuracy) * max_spread
-	var random_angle: float = randf_range(-spread, spread)
-	var adjusted_angle = rotation + deg_to_rad(random_angle)
-	direction = Vector2(cos(adjusted_angle), sin(adjusted_angle)).normalized()
+	direction = direction.rotated(deg_to_rad(randf_range(-spread, spread))).normalized()
 #endregion
 
 #region Projectile Behavior
 @export_category("Projectile Emissions")
-## Slot for custom [Field]
+## Slot for custom [Field].
 @export var field: PackedScene
-## Slot for custom [Projectile]
+## Slot for custom [Projectile].
 @export var projectile: PackedScene
 
+## Returns direction * speed.
+var velocity: Vector2:
+	get:
+		return direction * speed
+
 ## [method Node2D._physics_process], Moves the [Projectile] 
-## using it's [member global_position] and [member direction].
+## using it's [member global_position] at a [member direction] * [member speed] * delta.
 func _physics_process(delta: float) -> void:
-	global_position += direction.rotated(rotation) * speed * delta
+	global_position += direction * speed * delta
 #endregion
 
 #region Misc
