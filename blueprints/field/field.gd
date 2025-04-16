@@ -16,6 +16,8 @@ var field_timer: Timer
 ## Inherits [method Node2D._ready], Assigns references their respective [NodePath]
 func _ready() -> void:
 	field_collision_shape = $CollisionShape2D
+	field_collision_shape.shape = field_collision_shape.shape.duplicate()
+
 	field_timer = $Timer
 
 	print("field created")
@@ -29,7 +31,8 @@ func _ready() -> void:
 @export var expansion_speed: float
 
 ## Inherits [method Node2D._physics_process],
-## Expands/Enlargens [member field_collision_shape] till its [member CollisionShape2D.shape.radius] == [member max_radius].
+## Gradually expands [member field_collision_shape] till its 
+## [member CollisionShape2D.shape.radius] == [member max_radius].
 ## [br][br] - If [member field_timer] is active then [code]return[/code].
 ## [br] - If [member field_collision] == [member max_radius], start [member field_timer] and [code]return[/code]
 func _physics_process(delta: float) -> void:
