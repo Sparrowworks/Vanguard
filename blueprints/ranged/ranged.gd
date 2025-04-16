@@ -105,6 +105,16 @@ func refill() -> void:
 	weapon_timer.start()
 #endregion
 
+#region Ammunition management
+## [member current_ammo] + amount, caps at [member max_ammo]
+func give_ammo(amount: int) -> void:
+	current_ammo = min(current_ammo + amount, max_ammo)
+
+## [member current_ammo] - amount, caps at 0
+func take_ammo(amount: int) -> void:
+	current_ammo = max(current_ammo - amount, 0)
+#endregion
+
 #region Stat kit
 ## Emitted when a [RangedStatKit] has been equipped.
 signal stat_kit_equipped(kit: RangedStatKit)
@@ -121,17 +131,17 @@ func equip_stat_kit(kit: RangedStatKit) -> void:
 		print("kit already installed")
 		return
 
-	equipped_kits.append(kit.kit_name)
+	equipped_kits.append(kit.resource_name)
 
 # RangedStatKit section
-	mag_size += kit.mag_size_modifier if kit.mag_size_modifier != 0 else mag_size
-	max_ammo += kit.max_ammo_modifier if kit.max_ammo_modifier != 0 else max_ammo
-	refill_rate_empty += kit.refill_rate_empty_modifier if kit.reload_rate_empty_modifier != 0 else refill_rate_empty
+	mag_size += kit.mag_size_modifier
+	max_ammo += kit.max_ammo_modifier
+	refill_rate_empty += kit.refill_rate_empty_modifier
 
 # WeaponStatKit section
-	charge_rate += kit.charge_rate_modifier if kit.charge_rate_modifier != 0 else charge_rate
-	attack_rate += kit.attack_rate_modifier if kit.attack_rate_modifier != 0 else attack_rate
-	refill_rate += kit.refill_rate_modifier if kit.refill_rate_modifier != 0 else refill_rate
+	charge_rate += kit.charge_rate_modifier
+	attack_rate += kit.attack_rate_modifier
+	refill_rate += kit.refill_rate_modifier
 
 	stat_kit_equipped.emit(kit)
 
@@ -224,7 +234,7 @@ func change_firing_mode(new_mode: int) -> void:
 #endregion
 
 #region Misc
-## Inherits ane executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data].
+## Inherits and executes [method Weapon.on_weapon_timer_timeout] after filling [member Weapon.collected_data].
 func on_weapon_timer_timeout() -> void:
 	collected_data = {
 		"ammo": current_ammo,
