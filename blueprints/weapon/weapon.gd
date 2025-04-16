@@ -16,6 +16,8 @@ signal weapon_charging(data: Dictionary)
 signal weapon_attacking(data: Dictionary)
 ## Emitted when [member current_state] is [constant REFILLING].
 signal weapon_refilling(data: Dictionary)
+## Emitted when [member current_state] is [constant OVERHEATED].
+signal weapon_overheated(data: Dictionary)
 
 ## A list of possible weapon states, used with [member current_state].
 enum WEAPON_STATE {
@@ -29,6 +31,8 @@ enum WEAPON_STATE {
 	ATTACKING = 3,
 	## The [Weapon] is refilling (e.g. reloading).
 	REFILLING = 4,
+	## The [Weapon] has overheated (e.g you used a minigun too much).
+	OVERHEATED = 5,
 }
 
 ## Represents the current state of the [Weapon],
@@ -47,6 +51,7 @@ var current_state: int = WEAPON_STATE.INITIALIZE:
 			WEAPON_STATE.CHARGING: weapon_charging.emit(collected_data)
 			WEAPON_STATE.ATTACKING: weapon_attacking.emit(collected_data)
 			WEAPON_STATE.REFILLING: weapon_refilling.emit(collected_data)
+			WEAPON_STATE.OVERHEATED: weapon_overheated.emit(collected_data)
 			_: print("Invalid state: %s" %[current_state])
 
 		collected_data = {}
@@ -89,15 +94,13 @@ func _ready() -> void:
 ## [br][br]Sets [member weapon_timer] to [member charge_rate] and [method Timer.start].
 ## [br][code]Exits[/code] without charging if it's not [constant READY] or [constant CHARGING].
 func charge() -> void:
-	if (current_state != WEAPON_STATE.READY || WEAPON_STATE.CHARGING):
+	if (current_state != WEAPON_STATE.READY || current_state != WEAPON_STATE.CHARGING):
 		return
 
 	if (current_state != WEAPON_STATE.CHARGING):
 		current_state = WEAPON_STATE.CHARGING
 		weapon_timer.wait_time = charge_rate
 		weapon_timer.start()
-
-	pass
 
 ## Sets [member current_state] to [constant ATTACKING],
 ## Handles the [Weapon]'s [constant ATTACKING] mechanism.
@@ -135,7 +138,7 @@ func on_weapon_timer_timeout() -> void:
 func _enum_to_str(state: int) -> String:
 	match state:
 		0:
-			return "INITILIAZING"
+			return "INITIALIZING"
 		1:
 			return "READY"
 		2:
@@ -144,6 +147,8 @@ func _enum_to_str(state: int) -> String:
 			return "ATTACKING"
 		4:
 			return "REFILLING"
+		5:
+			return "OVERHEATED"
 		_:
 			return "ERROR"
 #endregion
