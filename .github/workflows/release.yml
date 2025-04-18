@@ -1,0 +1,46 @@
+name: Release Vanguard
+
+on:
+  # Activates when a push targets the files under "paths" in main.
+  push:
+    branches:
+      - main
+    paths:
+      - 'blueprints/**'
+      - 'kits/**'
+      - 'README.md'
+      - 'LICENSE'
+
+  # Enables manual trigger from the actions tab at the repository.
+  workflow_dispatch:
+    inputs:
+      create_release:
+        description: 'Create a new Composer release'
+        default: 'true'
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Vanguard zip
+        run: |
+          mkdir -p vanguard-release
+          cp blueprints kits README.md LICENSE composer-release/
+          cd vanguard-release
+          zip -r ../Vanguard.zip .
+
+      - name: Create latest release
+      # Creates a release under the "latest" tag and releases these files.
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Vanguard"
+          files: |
+            Vanguard.zip
