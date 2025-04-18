@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
     inputs:
       create_release:
-        description: 'Create a new Composer release'
+        description: 'Create a new Vanguard release'
         default: 'true'
 
 jobs:
