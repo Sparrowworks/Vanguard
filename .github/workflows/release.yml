@@ -30,7 +30,7 @@ jobs:
       - name: Create Vanguard zip
         run: |
           mkdir -p vanguard-release
-          cp blueprints kits README.md LICENSE composer-release/
+          cp blueprints kits README.md LICENSE vanguard-release/
           cd vanguard-release
           zip -r ../Vanguard.zip .
 
