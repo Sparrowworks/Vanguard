@@ -1,0 +1,55 @@
+name: Static checks
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  
+  workflow_dispatch:
+    inputs:
+      code_check:
+        description: 'Perform a static check?'
+        default: 'true'
+
+jobs:
+  static-checks:
+    permissions:
+      contents: write
+      pull-requests: write
+
+    name: 'Static checks'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: Scony/godot-gdscript-toolkit@master
+
+    - run: sudo apt-get install gh -y
+
+    - name: Format code
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        gdformat src/
+
+        if [[ -n $(git status --porcelain) ]]; then
+          BRANCH_NAME=static/check-$(date +%s)
+
+          git config user.name "github-actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b $BRANCH_NAME
+
+          git commit -am "chore: format GDScript files"
+          git remote set-url origin https://x-access-token:${{ secrets.SYNCER_TOKEN }}@github.com/${{ github.repository }}
+          git push --set-upstream origin $BRANCH_NAME
+
+          echo "${{ secrets.SYNCER_TOKEN }}" | gh auth login --with-token
+          gh pr create \
+            --title "chore: format GDScript files" \
+            --body "Automatically formatted GDScript files using gdformat." \
+            --base main \
+            --head $BRANCH_NAME
+        else
+          echo "No formatting changes."
+        fi
+
+    - name: Lint code
+      run: |
+        gdlint src/ || true
