@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponStatKit" load_steps=2 format=3 uid="uid://l8mlulv3td12"]
+
+[ext_resource type="Script" uid="uid://cv05jjrwhqq62" path="res://src/kits/weapon_stat_kit.gd" id="1_k68fc"]
+
+[resource]
+resource_name = "default_weapon_stat_kit"
+script = ExtResource("1_k68fc")
+charge_rate_modifier = 0.0
+attack_rate_modifier = 0.0
+refill_rate_modifier = 0.0

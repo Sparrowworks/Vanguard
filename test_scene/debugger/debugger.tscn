@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dla5qc80ockio"]
-
-[ext_resource type="Script" uid="uid://dgxx25afixf16" path="res://test_scene/debugger/debugger.gd" id="1_nopt1"]
-
-[node name="Debugger" type="Node"]
-physics_interpolation_mode = 2
-script = ExtResource("1_nopt1")

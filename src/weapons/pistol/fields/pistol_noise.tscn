@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmge3gix20vuv"]
+
+[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://src/blueprints/field/field.tscn" id="1_7fb82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8to3u"]
+
+[node name="Pistol noise" instance=ExtResource("1_7fb82")]
+max_radius = 100
+expansion_speed = 100.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_8to3u")

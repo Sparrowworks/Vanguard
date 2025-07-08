@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RangedStatKit" load_steps=2 format=3 uid="uid://co6gi2wyfcial"]
+
+[ext_resource type="Script" uid="uid://b2638got4cc3t" path="res://src/kits/ranged_stat_kit.gd" id="1_ysodx"]
+
+[resource]
+resource_name = "default_ranged_stat_kit"
+script = ExtResource("1_ysodx")
+mag_size_modifier = 0
+max_ammo_modifier = 0
+reload_time_modifier = 0.0
+reload_time_empty_modifier = 0.0
+fire_rate_modifier = 0.0
+charge_rate_modifier = 0.0
+attack_rate_modifier = 0.0
+refill_rate_modifier = 0.0
