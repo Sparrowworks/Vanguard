@@ -6,8 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'src/blueprints/**'
-      - 'src/kits/**'
+      - 'addons/vanguard'
       - 'README.md'
       - 'LICENSE'
 
@@ -30,7 +29,7 @@ jobs:
       - name: Create Vanguard zip
         run: |
           mkdir -p vanguard-release
-          cp src/blueprints src/kits README.md LICENSE vanguard-release/
+          cp addons/vanguard README.md LICENSE vanguard-release/
           cd vanguard-release
           zip -r ../Vanguard.zip .
 
