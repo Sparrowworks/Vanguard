@@ -8,6 +8,7 @@ on:
     paths:
       - 'src/**'
       - 'source/**'
+      - 'addons/vanguard/**'
   
   workflow_dispatch:
     inputs:
