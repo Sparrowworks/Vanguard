@@ -17,11 +17,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Composer="*res://composer/Composer.gd"
+Composer="*res://addons/composer_godot/Composer.gd"
 
 [dotnet]
 
 project/assembly_name="Vanguard"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/composer_godot/plugin.cfg")
 
 [global_group]
 
