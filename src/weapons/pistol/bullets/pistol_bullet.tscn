@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp0jfd6t3wa6l"]
 
-[ext_resource type="PackedScene" uid="uid://cp6ask5xmce30" path="res://src/blueprints/projectile/projectile.tscn" id="1_0e8gp"]
+[ext_resource type="PackedScene" uid="uid://cp6ask5xmce30" path="res://addons/vanguard/blueprints/projectile/projectile.tscn" id="1_0e8gp"]
 
 [node name="Pistol bullet" instance=ExtResource("1_0e8gp")]
 scale = Vector2(0.544319, 0.52)

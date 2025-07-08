@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bn2f2gkcynlw3"]
 
-[ext_resource type="Script" uid="uid://dh0pyfj8kgn10" path="res://src/blueprints/field/field.gd" id="1_1lpvi"]
+[ext_resource type="Script" uid="uid://dh0pyfj8kgn10" path="res://addons/vanguard/blueprints/field/field.gd" id="1_1lpvi"]
 
 [node name="Field" type="Area2D"]
 script = ExtResource("1_1lpvi")

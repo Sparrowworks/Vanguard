@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlnkhqj6764us"]
 
-[ext_resource type="Script" uid="uid://o8iadwa5ulxk" path="res://src/blueprints/hurtbox/hurtbox.gd" id="1_aen8h"]
+[ext_resource type="Script" uid="uid://o8iadwa5ulxk" path="res://addons/vanguard/blueprints/hurtbox/hurtbox.gd" id="1_aen8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mya4v"]
 size = Vector2(130, 35)

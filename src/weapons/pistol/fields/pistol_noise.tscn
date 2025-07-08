@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmge3gix20vuv"]
 
-[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://src/blueprints/field/field.tscn" id="1_7fb82"]
+[ext_resource type="PackedScene" uid="uid://bn2f2gkcynlw3" path="res://addons/vanguard/blueprints/field/field.tscn" id="1_7fb82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8to3u"]
 

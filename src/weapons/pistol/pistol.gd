@@ -1,7 +1,7 @@
 extends Ranged
 
-@onready var extended_mag: RangedStatKit = preload("res://weapons/pistol/kits/pistol_extended_mag.tres")
-@onready var fast_bullet: RangedEmissionKit = preload("res://weapons/pistol/kits/fast_bullet_update.tres")
+@onready var extended_mag: RangedStatKit = preload("uid://bgb07ch4jt7vq")
+@onready var fast_bullet: RangedEmissionKit = preload("uid://d4jmtu18rfu1w")
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):

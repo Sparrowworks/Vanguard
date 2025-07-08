@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dspkpsooyhemj"]
 
-[ext_resource type="PackedScene" uid="uid://wrrqbqhc88eu" path="res://src/blueprints/melee/melee.tscn" id="1_304gn"]
+[ext_resource type="PackedScene" uid="uid://wrrqbqhc88eu" path="res://addons/vanguard/blueprints/melee/melee.tscn" id="1_304gn"]
 [ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://src/weapons/sword/sword.png" id="1_w1idm"]
 [ext_resource type="Script" uid="uid://bqwdvvrwf8f87" path="res://src/weapons/sword/sword.gd" id="2_kg2df"]
 

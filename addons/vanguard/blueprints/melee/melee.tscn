@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://wrrqbqhc88eu"]
 
-[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://src/blueprints/hitbox/hitbox.gd" id="1_6y1g6"]
+[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://addons/vanguard/blueprints/hitbox/hitbox.gd" id="1_6y1g6"]
 
 [node name="Melee" type="Sprite2D"]
 
