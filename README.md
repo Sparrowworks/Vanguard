@@ -26,7 +26,10 @@ Click on "releases" on the right and download
 See that beautiful (just like you) issue tab? click on it and submit an issue with the red label "bug" and we'll take it from there!
 
 ## Known issues
-There are currently no known issues.
+"I shot my weapon and the field doesn't work"
+![image](https://github.com/user-attachments/assets/51e59518-6309-498b-80ab-9323f0fb9423)
+
+- you need to set a collisionshape2D manually, i don't know how you'd like your area of field to look like so i left it empty.
 
 ## Assets & Libraries
 **Sprites used**:
