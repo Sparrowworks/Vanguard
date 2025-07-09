@@ -3,6 +3,7 @@ extends Ranged
 @onready var extended_mag: RangedStatKit = preload("uid://bgb07ch4jt7vq")
 @onready var fast_bullet: RangedEmissionKit = preload("uid://d4jmtu18rfu1w")
 
+
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		attack()
