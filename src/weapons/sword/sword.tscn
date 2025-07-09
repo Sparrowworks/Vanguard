@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://dspkpsooyhemj"]
+
+[ext_resource type="PackedScene" uid="uid://wrrqbqhc88eu" path="res://addons/vanguard/blueprints/melee/melee.tscn" id="1_304gn"]
+[ext_resource type="Texture2D" uid="uid://dgd1kcgcv4p5m" path="res://src/weapons/sword/sword.png" id="1_w1idm"]
+[ext_resource type="Script" uid="uid://bqwdvvrwf8f87" path="res://src/weapons/sword/sword.gd" id="2_kg2df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il1cw"]
+size = Vector2(283.5, 252)
+
+[sub_resource type="Animation" id="Animation_x1qwj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_d8g0o"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.366667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.309, 1.309, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fpwmt"]
+resource_name = "charge"
+
+[sub_resource type="Animation" id="Animation_il1cw"]
+resource_name = "charge_attack"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1qwj"]
+_data = {
+&"RESET": SubResource("Animation_x1qwj"),
+&"attack": SubResource("Animation_d8g0o"),
+&"charge": SubResource("Animation_fpwmt"),
+&"charge_attack": SubResource("Animation_il1cw")
+}
+
+[node name="Sword" instance=ExtResource("1_304gn")]
+texture = ExtResource("1_w1idm")
+script = ExtResource("2_kg2df")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(102.25, 1)
+shape = SubResource("RectangleShape2D_il1cw")
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1"]
+position = Vector2(-0.5, 0.500004)
+scale = Vector2(12.45, 12.45)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_x1qwj")
+}

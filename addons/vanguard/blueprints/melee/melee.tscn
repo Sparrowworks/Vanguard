@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://wrrqbqhc88eu"]
+
+[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://addons/vanguard/blueprints/hitbox/hitbox.gd" id="1_6y1g6"]
+
+[node name="Melee" type="Sprite2D"]
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_6y1g6")
+metadata/_custom_type_script = "uid://dlglmeqyeuca5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(44, 36.5)
+disabled = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

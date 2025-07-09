@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://doqbqxslfj3d5"]
+
+[ext_resource type="Script" uid="uid://dlwk1kya7qm4s" path="res://addons/vanguard/blueprints/ranged/ranged.gd" id="1_yrano"]
+
+[node name="Ranged" type="Sprite2D"]
+script = ExtResource("1_yrano")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

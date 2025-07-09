@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://di8enfkfo8jwl"]
+
+[ext_resource type="Script" uid="uid://dlglmeqyeuca5" path="res://addons/vanguard/blueprints/hitbox/hitbox.gd" id="1_mci75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3w8n"]
+size = Vector2(185, 105)
+
+[node name="Hitbox" type="Area2D"]
+script = ExtResource("1_mci75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(82.5, 42.5)
+shape = SubResource("RectangleShape2D_j3w8n")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

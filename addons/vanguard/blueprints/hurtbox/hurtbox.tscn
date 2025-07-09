@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlnkhqj6764us"]
+
+[ext_resource type="Script" uid="uid://o8iadwa5ulxk" path="res://addons/vanguard/blueprints/hurtbox/hurtbox.gd" id="1_aen8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mya4v"]
+size = Vector2(130, 35)
+
+[node name="Hurtbox" type="Area2D"]
+script = ExtResource("1_aen8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(55, 7.5)
+shape = SubResource("RectangleShape2D_mya4v")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

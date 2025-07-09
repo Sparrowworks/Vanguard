@@ -11,17 +11,21 @@ config_version=5
 [application]
 
 config/name="Vanguard"
-run/main_scene="res://test_scene/test.tscn"
+run/main_scene="res://src/test_scene/test.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Composer="*res://composer/Composer.gd"
+Composer="*res://addons/composer_godot/Composer.gd"
 
 [dotnet]
 
 project/assembly_name="Vanguard"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/composer_godot/plugin.cfg")
 
 [global_group]
 

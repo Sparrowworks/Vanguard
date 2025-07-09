@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdg3qi6f4n7vf"]
+
+[ext_resource type="Texture2D" uid="uid://ixaj1hwn1vsa" path="res://src/weapons/pistol/pistol.png" id="1_ie44i"]
+[ext_resource type="Script" uid="uid://b4wnayamtohrw" path="res://src/weapons/pistol/pistol.gd" id="1_mpj23"]
+[ext_resource type="PackedScene" uid="uid://dmge3gix20vuv" path="res://src/weapons/pistol/fields/pistol_noise.tscn" id="2_2gra5"]
+[ext_resource type="PackedScene" uid="uid://cp0jfd6t3wa6l" path="res://src/weapons/pistol/bullets/pistol_bullet.tscn" id="3_xdnxl"]
+
+[node name="Pistol" type="Sprite2D" groups=["ranged"]]
+texture = ExtResource("1_ie44i")
+script = ExtResource("1_mpj23")
+field = ExtResource("2_2gra5")
+projectile = ExtResource("3_xdnxl")
+max_ammo = 64
+mag_size = 8
+refill_rate_empty = 0.5
+attack_rate = 1.0
+refill_rate = 1.0

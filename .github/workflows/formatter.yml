@@ -2,7 +2,13 @@ name: Static checks
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - master
+    paths:
+      - 'src/**'
+      - 'source/**'
+      - 'addons/vanguard/**'
   
   workflow_dispatch:
     inputs:
@@ -24,7 +30,7 @@ jobs:
 
     - run: sudo apt-get install gh -y
 
-    - name: Format code
+    - name: Format repo code
       if: github.event_name == 'workflow_dispatch'
       run: |
         gdformat src/
@@ -49,6 +55,11 @@ jobs:
         else
           echo "No formatting changes."
         fi
+
+    - name: Check PR code format
+      if: github.event_name == 'pull_request'
+      run:
+        gdformat --check src/
 
     - name: Lint code
       run: |
