@@ -37,8 +37,8 @@ func debug_state_updated(new_state: String) -> void:
 
 func debug_stat_kit_equipped(kit: RangedStatKit) -> void:
 	print(
-		"Stat kit Equipped!
-		Name: %s, Magazine: %d, Ammo: %d, ReloadTime: %f, ReloadTimeEmpty: %f, Firerate: %f" %
+		"""Stat kit Equipped!
+		Name: %s, Magazine: %d, Ammo: %d, ReloadTime: %f, ReloadTimeEmpty: %f, Firerate: %f""" %
 		[
 			kit.kit_name, kit.mag_size_modifier, kit.max_ammo_modifier,
 			kit.reload_time_modifier, kit.reload_time_empty_modifier, kit.fire_rate_modifier,
@@ -47,8 +47,8 @@ func debug_stat_kit_equipped(kit: RangedStatKit) -> void:
 
 func debug_stat_kit_unequipped(kit: RangedStatKit) -> void:
 	print(
-		"Stat kit Un-Equipped!
-		Name: %s, Magazine: %d, Ammo: %d, ReloadTime: %f, ReloadTimeEmpty: %f, Firerate: %f" %
+		"""Stat kit Un-Equipped!
+		Name: %s, Magazine: %d, Ammo: %d, ReloadTime: %f, ReloadTimeEmpty: %f, Firerate: %f""" %
 		[
 			kit.kit_name, kit.mag_size_modifier, kit.max_ammo_modifier,
 			kit.reload_time_modifier, kit.reload_time_empty_modifier, kit.fire_rate_modifier,
@@ -57,8 +57,8 @@ func debug_stat_kit_unequipped(kit: RangedStatKit) -> void:
 
 func debug_emission_kit_equipped(kit: RangedEmissionKit) -> void:
 	print(
-		"Emission kit Equipped!
-		Name: %s" % [kit.resource_name]
+		"""Emission kit Equipped!
+		Name: %s""" % [kit.resource_name]
 	)
 
 func debug_refill_mode_changed(new_reload_mode: int) -> void:
